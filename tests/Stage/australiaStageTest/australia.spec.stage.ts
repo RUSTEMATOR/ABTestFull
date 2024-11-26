@@ -2,7 +2,7 @@ import {test} from 'playwright/test';
 import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/VpnController/vpnController';
 import { Methods } from '../../../src/methods/methods';
-import RecursionsAU from '../../../src/methods/Recursions/recursionsAU';
+import RecursionsAU from '../../../src/methods/Recursions/Positive/recursionsAU';
 
 
 test.describe('A/B NDB Australia', () => {
