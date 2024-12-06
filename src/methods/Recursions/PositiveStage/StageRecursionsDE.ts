@@ -1,8 +1,8 @@
 import { chromium, type Browser, expect } from '@playwright/test';
 import { Methods } from '../../methods';
-import { ERROR_TEXT, EXPECTED_QUERY, PHONE_NUMBERS } from '../../../Data/constants';
+import { EXPECTED_QUERY, PHONE_NUMBERS } from '../../../Data/constants';
 import { GERMANY_LINKS, GERMANY_LINK_NDB } from '../../../Data/Germany/germanyLinks';
-import { EXPECTED_GERMANY_LINKS, EXPECTED_GERMANY_NDB_LINKS } from '../../../Data/Germany/expectedGermanyResults';
+import { EXPECTED_GERMANY_STAGE_WELCOME_LINKS, EXPECTED_GERMANY_STAGE_NDB_LINKS, EXPECTED_GERMANY_NDB_LINKS } from '../../../Data/Germany/expectedGermanyResults';
 import { qase } from 'playwright-qase-reporter';
 import { RegMethods3Step } from '../../regMethods3step';
 import { RegMethods1Step } from '../../regMethods1step';
@@ -21,12 +21,12 @@ async function startBrowser() {
   }
 
 
-export default class NegativeRecursionsDE {
+export default class StageRecursionsDE {
 
     constructor(){}
 
 
-    async NegativeRecursiveTestWelcomeDEStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageRecursiveTestWelcomeDEStag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -34,23 +34,27 @@ export default class NegativeRecursionsDE {
         const methods = new Methods(page)
 
         const regMethods = new RegMethods1Step(page)
-        
+        const email = new RandomEmail()
+        const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(1000)
         await methods.visitPage(stageLink || GERMANY_LINKS.UrlStag)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_GERMANY_LINKS.expectedUrlWelcome){
+        if (baseCurrentUrl === EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_LINKS.expectedUrlWelcome, EXPECTED_GERMANY_LINKS.expectedUrlLand)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome, EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryDE)
 
             await page.waitForTimeout(1000)
             
+            
+
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/WelcomeDEStag.png`})
 
             const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINKS.UrlStag);
             console.log('Expected btag:', expectedBtag);
@@ -63,25 +67,24 @@ export default class NegativeRecursionsDE {
             const finalUrl = await regMethods.page.url()
 
             await regMethods.openRegForm(`div.main__button button.button`)
-            await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+            await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
     
-            qase.comment(`Registered with: ${wrongEmail}\n\n
+            qase.comment(`Registered with: ${randomEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_LINKS.expectedUrlWelcome}\n${EXPECTED_GERMANY_LINKS.expectedUrlWelcome}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome}\n${EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryDE}\n Received parameters: ${receivedParameters}
                 
                 `)
 
-            console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+            console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
             console.log('Actual btag:', actualBtag);
 
             await regMethods.createAnAccount()
-            await regMethods.expectToBeVisible('div.error', ERROR_TEXT.DE)
             await regMethods.page.waitForTimeout(10000)
 
             await ctx.close();
@@ -89,30 +92,32 @@ export default class NegativeRecursionsDE {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestWelcomeDEStag(wrongEmail);
+            return this.StageRecursiveTestWelcomeDEStag(stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestWelcomeDEBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageRecursiveTestWelcomeDEBtag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
 
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
+        const email = new RandomEmail()
+        const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || GERMANY_LINKS.UrlBtag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_GERMANY_LINKS.expectedUrlWelcome){
+        if (baseCurrentUrl === EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_LINKS.expectedUrlWelcome, EXPECTED_GERMANY_LINKS.expectedUrlLand)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome, EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryDE)
 
             await page.waitForTimeout(1000)
@@ -121,9 +126,10 @@ export default class NegativeRecursionsDE {
     
                 // await ctx.close();
     
-    
+                
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/WelcomeDEBtag.png`})
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINKS.UrlBtag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -134,25 +140,24 @@ export default class NegativeRecursionsDE {
             const finalUrl = await regMethods.page.url()
 
             await regMethods.openRegForm(`div.main__button button.button`)
-            await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+            await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
     
-            qase.comment(`Registered with: ${wrongEmail}\n\n
+            qase.comment(`Registered with: ${randomEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_LINKS.expectedUrlWelcome}\n${EXPECTED_GERMANY_LINKS.expectedUrlLand}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome}\n${EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryDE}\n Received parameters: ${receivedParameters}
                 
                 `)
 
-            console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+            console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
             console.log('Actual btag:', actualBtag);
 
             await regMethods.createAnAccount()
-            await regMethods.expectToBeVisible('div.error', ERROR_TEXT.DE)
             await regMethods.page.waitForTimeout(10000)
 
 
@@ -160,32 +165,33 @@ export default class NegativeRecursionsDE {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestWelcomeDEBtag(wrongEmail);
+            return this.StageRecursiveTestWelcomeDEBtag(stageLink);
         }
 
     }
 
 
-    async NegativeRecursiveTestLandDEStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageRecursiveTestLandDEStag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
        
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
-       
+        const email = new RandomEmail()
+        const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || GERMANY_LINKS.UrlStag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_GERMANY_LINKS.expectedUrlLand){
+        if (baseCurrentUrl === EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_LINKS.expectedUrlWelcome, EXPECTED_GERMANY_LINKS.expectedUrlLand)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome, EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryDE)
 
             await page.waitForTimeout(1000)
@@ -195,7 +201,7 @@ export default class NegativeRecursionsDE {
                 // await ctx.close();
 
                 
-            
+            await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/LandDEStag.png`})
 
             const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINKS.UrlStag);
             console.log('Expected btag:', expectedBtag);
@@ -208,25 +214,24 @@ export default class NegativeRecursionsDE {
             const finalUrl = await regMethods.page.url()
 
             await regMethods.openRegForm(`div.main__button .button`)
-            await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+            await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
     
-            qase.comment(`Registered with: ${wrongEmail}\n\n
+            qase.comment(`Registered with: ${randomEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_LINKS.expectedUrlWelcome}\n${EXPECTED_GERMANY_LINKS.expectedUrlLand}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome}\n${EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryDE}\n Received parameters: ${receivedParameters}
                 
                 `)
 
-            console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+            console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
             console.log('Actual btag:', actualBtag);
 
             await regMethods.createAnAccount()
-            await regMethods.expectToBeVisible('div.error', ERROR_TEXT.DE)
             await regMethods.page.waitForTimeout(10000)
 
 
@@ -236,12 +241,12 @@ export default class NegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestLandDEStag(wrongEmail);
+            return this.StageRecursiveTestLandDEStag(stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestLandDEBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageRecursiveTestLandDEBtag(stageLink: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -249,32 +254,35 @@ export default class NegativeRecursionsDE {
        
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
-       
+        const email = new RandomEmail()
+        const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || GERMANY_LINKS.UrlBtag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_GERMANY_LINKS.expectedUrlLand){
+        if (baseCurrentUrl === EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_LINKS.expectedUrlWelcome, EXPECTED_GERMANY_LINKS.expectedUrlLand)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome, EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryDE)
 
             await page.waitForTimeout(1000)
             
             
 
-            qase.comment(`Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_LINKS.expectedUrlWelcome}\n${EXPECTED_GERMANY_LINKS.expectedUrlLand}
+            qase.comment(`Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome}\n${EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryDE}\n Received parameters: ${receivedParameters}`)
     
                 // await ctx.close();
 
+            
+                await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/LandDEStag.png`})
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINKS.UrlBtag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -285,21 +293,21 @@ export default class NegativeRecursionsDE {
             const finalUrl = await regMethods.page.url()
 
             await regMethods.openRegForm(`div.main__button .button`)
-            await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+            await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
     
-            qase.comment(`Registered with: ${wrongEmail}\n\n
+            qase.comment(`Registered with: ${randomEmail}\n\n
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_LINKS.expectedUrlWelcome}\n${EXPECTED_GERMANY_LINKS.expectedUrlLand}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome}\n${EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryDE}\n Received parameters: ${receivedParameters}
                 
                 `)
 
-            console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+            console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
             console.log('Actual btag:', actualBtag);
 
             await regMethods.createAnAccount()
@@ -312,7 +320,7 @@ export default class NegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestLandDEBtag(wrongEmail);
+            return this.StageRecursiveTestLandDEBtag(stageLink);
         }
 
     }
@@ -321,31 +329,32 @@ export default class NegativeRecursionsDE {
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     
-    async NegativeRecursiveTestDENDBStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageRecursiveTestDENDBStag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
        
         const methods = new Methods(page)
         const regMethods = new RegMethods3Step(page)
-       
+        const email = new RandomEmail()
+        const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(3000)
         await methods.visitPage(stageLink || GERMANY_LINK_NDB.Stag)
 
         const baseCurrentUrl = await methods.formBaseLink()
         
-        console.log(`Expecting ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}`)
-        qase.comment(`Expecting ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}`)
+        console.log(`Expecting ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}`)
+        qase.comment(`Expecting ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}`)
 
-        if (baseCurrentUrl === EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB){
+        if (baseCurrentUrl === EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB){
 
 
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB, EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB, EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep)
 
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQuerryDENDB)
 
@@ -354,7 +363,9 @@ export default class NegativeRecursionsDE {
     
                 // await ctx.close();
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINK_NDB.Stag);
+                await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/DeNDBStag.png`})
+
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -365,7 +376,7 @@ export default class NegativeRecursionsDE {
                 const finalUrl = await regMethods.page.url()
     
                 await regMethods.openRegForm(`xpath=//div[contains(@class, 'offer__button')]/button[contains(@class, 'button')]`)
-                await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+                await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
     
                 await regMethods.checkAdultCheckbox()
                 await regMethods.gotoSecondStep()
@@ -376,20 +387,19 @@ export default class NegativeRecursionsDE {
                 const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
             
     
-                qase.comment(`Registered with: ${wrongEmail}\n\n
+                qase.comment(`Registered with: ${randomEmail}\n\n
                     Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                     Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                     
-                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB}
+                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQuerryDENDB}\n Received parameters: ${receivedParameters}
                     
                     `)
     
-                console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+                console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
                 console.log('Actual btag:', actualBtag);
     
                 await regMethods.createAnAccount()
-                await regMethods.expectToBeVisible('div.error', ERROR_TEXT.DE)
                 await regMethods.page.waitForTimeout(10000)
     
                 
@@ -398,37 +408,38 @@ export default class NegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestDENDBStag(wrongEmail);
+            return this.StageRecursiveTestDENDBStag(stageLink);
         }
 
     }
 
 
-    async NegativeRecursiveTestDENoDepStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageRecursiveTestDENoDepStag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
        
         const methods = new Methods(page)
         const regMethods = new RegMethods3Step(page)
-        
+        const email = new RandomEmail()
+        const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(3000)
         await methods.visitPage(stageLink || GERMANY_LINK_NDB.Stag)
 
         const baseCurrentUrl = await methods.formBaseLink()
 
-        console.log(`Expecting ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}`)
-        qase.comment(`Expecting ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}`)
+        console.log(`Expecting ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}`)
+        qase.comment(`Expecting ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}`)
 
-        if (baseCurrentUrl === EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep){
+        if (baseCurrentUrl === EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep){
 
  
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB, EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB, EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep)
 
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQuerryDENDB)
 
@@ -436,8 +447,9 @@ export default class NegativeRecursionsDE {
             
         
                 // await ctx.close();
+                await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/DeNoDepStag.png`})
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINK_NDB.Stag);
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -448,7 +460,7 @@ export default class NegativeRecursionsDE {
                 const finalUrl = await regMethods.page.url()
     
                 await regMethods.openRegForm(`section.main button.button`)
-                await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+                await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
     
                 await regMethods.checkAdultCheckbox()
                 await regMethods.gotoSecondStep()
@@ -459,16 +471,16 @@ export default class NegativeRecursionsDE {
                 const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
             
     
-                qase.comment(`Registered with: ${wrongEmail}\n\n
+                qase.comment(`Registered with: ${randomEmail}\n\n
                     Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                     Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                     
-                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB}
+                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQuerryDENDB}\n Received parameters: ${receivedParameters}
                     
                     `)
     
-                console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+                console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
                 console.log('Actual btag:', actualBtag);
     
                 await regMethods.createAnAccount()
@@ -479,36 +491,37 @@ export default class NegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestDENoDepStag(wrongEmail);
+            return this.StageRecursiveTestDENoDepStag(stageLink);
         }
-
     }
 
 
-    async NegativeRecursiveTestDENDBBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageRecursiveTestDENDBBtag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
        
         const methods = new Methods(page)
         const regMethods = new RegMethods3Step(page)
+        const email = new RandomEmail()
+        const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || GERMANY_LINK_NDB.Btag)
+        await methods.visitPage(stageLink)
 
         const baseCurrentUrl = await methods.formBaseLink()
         
-        console.log(`Expecting ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}`)
-        qase.comment(`Expecting ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}`)
+        console.log(`Expecting ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}`)
+        qase.comment(`Expecting ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}`)
 
-        if (baseCurrentUrl === EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB){
+        if (baseCurrentUrl === EXPECTED_GERMANY_STAGE_NDB_LINKS .expectedUrlNDB){
 
 
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB, EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB, EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep)
 
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQuerryDENDB)
 
@@ -516,6 +529,8 @@ export default class NegativeRecursionsDE {
             
     
                 // await ctx.close();
+
+                await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/DeNDBBtag.png`})
 
                 const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINK_NDB.Btag);
                 console.log('Expected btag:', expectedBtag);
@@ -528,7 +543,7 @@ export default class NegativeRecursionsDE {
                 const finalUrl = await regMethods.page.url()
     
                 await regMethods.openRegForm(`xpath=//div[contains(@class, 'offer__button')]/button[contains(@class, 'button')]`)
-                await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+                await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
     
                 await regMethods.checkAdultCheckbox()
                 await regMethods.gotoSecondStep()
@@ -539,20 +554,19 @@ export default class NegativeRecursionsDE {
                 const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
             
     
-                qase.comment(`Registered with: ${wrongEmail}\n\n
+                qase.comment(`Registered with: ${randomEmail}\n\n
                     Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                     Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                     
-                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB}
+                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQuerryDENDB}\n Received parameters: ${receivedParameters}
                     
                     `)
     
-                console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+                console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
                 console.log('Actual btag:', actualBtag);
     
                 await regMethods.createAnAccount()
-                await regMethods.expectToBeVisible('div.error', ERROR_TEXT.DE)
                 await regMethods.page.waitForTimeout(10000)
     
                 
@@ -561,35 +575,37 @@ export default class NegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestDENDBStag(wrongEmail);
+            return this.StageRecursiveTestDENDBStag(stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestDENoDepBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageRecursiveTestDENoDepBtag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
        
         const methods = new Methods(page)
         const regMethods = new RegMethods3Step(page)
+        const email = new RandomEmail()
+        const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || GERMANY_LINK_NDB.Btag)
+        await methods.visitPage(stageLink)
 
         const baseCurrentUrl = await methods.formBaseLink()
 
-        console.log(`Expecting ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}`)
-        qase.comment(`Expecting ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}`)
+        console.log(`Expecting ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}`)
+        qase.comment(`Expecting ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB} or ${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}`)
 
-        if (baseCurrentUrl === EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep){
+        if (baseCurrentUrl === EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep){
 
  
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB, EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB, EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep)
 
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQuerryDENDB)
 
@@ -597,7 +613,7 @@ export default class NegativeRecursionsDE {
             
         
                 // await ctx.close();
-
+                await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/DeNoDepBtag.png`})
 
                 const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINK_NDB.Btag);
                 console.log('Expected btag:', expectedBtag);
@@ -610,7 +626,7 @@ export default class NegativeRecursionsDE {
                 const finalUrl = await regMethods.page.url()
     
                 await regMethods.openRegForm(`section.main button.button`)
-                await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+                await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
     
                 await regMethods.checkAdultCheckbox()
                 await regMethods.gotoSecondStep()
@@ -621,16 +637,16 @@ export default class NegativeRecursionsDE {
                 const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
             
     
-                qase.comment(`Registered with: ${wrongEmail}\n\n
+                qase.comment(`Registered with: ${randomEmail}\n\n
                     Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                     Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                     
-                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB}
+                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQuerryDENDB}\n Received parameters: ${receivedParameters}
                     
                     `)
     
-                console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+                console.log(`Registered with ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
                 console.log('Actual btag:', actualBtag);
     
                 await regMethods.createAnAccount()
@@ -641,7 +657,7 @@ export default class NegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestDENoDepStag(wrongEmail);
+            return this.StageRecursiveTestDENoDepStag(stageLink);
         }
 
     }

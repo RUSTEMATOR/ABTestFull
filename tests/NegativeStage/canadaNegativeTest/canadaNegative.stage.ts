@@ -1,5 +1,6 @@
 import {test} from 'playwright/test';
-import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
+import { LOCATIONS } from '../../../src/Data/constants';
+import { CA_STAGE_LINKS } from '../../../src/Data/Canada/canadaLinks';
 import VpnController from '../../../src/methods/VpnController/vpnController';
 import NegativeRecursionsCA from '../../../src/methods/Recursions/Negative/negativeRecursionsCA';
 
@@ -15,35 +16,35 @@ test.describe('A/B test Canada', () => {
     })
         
         test(`Landing WP Stag check page and params`, async () => {
-            await recursionsCA.NegativeRecursiveTestWelcomeStag('ross@kingbilly.xyz', STAGE_LINK)
+            await recursionsCA.NegativeRecursiveTestWelcomeStag('ross@kingbilly.xyz', CA_STAGE_LINKS.welcomeStag)
             })
         
         test(`Landing Land Stag check page and params`, async () => {
-            await recursionsCA.NegativeRecursiveTestLandStag('ross@kingbilly.xyz', STAGE_LINK)
+            await recursionsCA.NegativeRecursiveTestLandStag('ross@kingbilly.xyz', CA_STAGE_LINKS.welcomeStag)
             })
 
         test(`Landing WP Btag check page and params`, async () => {
-            await recursionsCA.NegativeRecursiveTestWelcomeBtag('ross@kingbilly.xyz', STAGE_LINK)
+            await recursionsCA.NegativeRecursiveTestWelcomeBtag('ross@kingbilly.xyz', CA_STAGE_LINKS.welcomeBtag)
             })
         
         test(`Landing Land Btag check page and params`, async () => {
-            await recursionsCA.NegativeRecursiveTestLandBtag('ross@kingbilly.xyz', STAGE_LINK)
+            await recursionsCA.NegativeRecursiveTestLandBtag('ross@kingbilly.xyz', CA_STAGE_LINKS.welcomeBtag)
             })
 
         test('CA NDB Stag', async () => {
-            await recursionsCA.NegativeRecursiveTestCANDBStag('ross@kingbilly.xyz', STAGE_LINK)
+            await recursionsCA.NegativeRecursiveTestCANDBStag('ross@kingbilly.xyz', CA_STAGE_LINKS.NDBstag)
         })
 
         test('CA NDB Btag', async () => {
-            await recursionsCA.NegativeRecursiveTestCANDBBtag('ross@kingbilly.xyz', STAGE_LINK)
+            await recursionsCA.NegativeRecursiveTestCANDBBtag('ross@kingbilly.xyz', CA_STAGE_LINKS.NDBbtag)
         })
 
         test('CA NoDep Stag', async () => {
-            await recursionsCA.NegativeRecursiveTestCANoDepStag('ross@kingbilly.xyz', STAGE_LINK)
+            await recursionsCA.NegativeRecursiveTestCANoDepStag('ross@kingbilly.xyz', CA_STAGE_LINKS.NDBstag)
         })
 
         test('CA NoDep Btag', async () => {
-            await recursionsCA.NegativeRecursiveTestCANoDepBtag('ross@kingbilly.xyz', STAGE_LINK)
+            await recursionsCA.NegativeRecursiveTestCANoDepBtag('ross@kingbilly.xyz', CA_STAGE_LINKS.NDBbtag)
         })
 
 

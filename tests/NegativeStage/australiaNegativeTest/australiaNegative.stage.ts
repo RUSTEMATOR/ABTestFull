@@ -1,15 +1,16 @@
 
 import {test} from 'playwright/test';
-import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
+import { LOCATIONS } from '../../../src/Data/constants';
+import { AU_STAGE_LINKS } from '../../../src/Data/Australia/australiaLinks';
 import VpnController from '../../../src/methods/VpnController/vpnController';
-import NegativeRecursionsAU from '../../../src/methods/Recursions/Negative/negativeRecursionsAU';
+import StageNegativeRecursionsAU from '../../../src/methods/Recursions/NegativeStage/StageNegativeRecursionsAU';
 
 
 
 
 test.describe('A/B NDB Australia', async  () => {
     const vpnController = new VpnController()
-    const recursionsAU = new NegativeRecursionsAU()
+    const recursionsAU = new StageNegativeRecursionsAU()
     
     
     
@@ -28,37 +29,37 @@ test.describe('A/B NDB Australia', async  () => {
     // })
 
     test('AU Welcome Stag', async () => {    
-        await recursionsAU.NegativeRecursiveTestWelcomeAUStag('ross@kingbilly.xyz', STAGE_LINK)
+        await recursionsAU.StageNegativeRecursiveTestWelcomeAUStag('ross@kingbilly.xyz', AU_STAGE_LINKS.welcomeStag)
     
     })
 
     test('AU Welcome Btag', async () => {
-        await recursionsAU.NegativeRecursiveTestWelcomeAUBtag('ross@kingbilly.xyz', STAGE_LINK)
+        await recursionsAU.StageNegativeRecursiveTestWelcomeAUBtag('ross@kingbilly.xyz', AU_STAGE_LINKS.welcomeBtag)
     })
 
     test('AU Land Stag', async () => {
-        await recursionsAU.NegativeRecursiveTestWorldAUStag('ross@kingbilly.xyz', STAGE_LINK)
+        await recursionsAU.StageNegativeRecursiveTestWorldAUStag('ross@kingbilly.xyz', AU_STAGE_LINKS.welcomeStag)
     })
 
     test('AU Land Btag', async () => {
-        await recursionsAU.NegativeRecursiveTestWorldAUBtag('ross@kingbilly.xyz', STAGE_LINK)
+        await recursionsAU.StageNegativeRecursiveTestWorldAUBtag('ross@kingbilly.xyz', AU_STAGE_LINKS.welcomeBtag)
     })
 
     test('Landing No Dep Australia Stag', async () => {
-        await recursionsAU.NegativeRecursiveTestAUNoDepStag('ross@kingbilly.xyz', STAGE_LINK)
+        await recursionsAU.StageNegativeRecursiveTestAUNoDepStag('ross@kingbilly.xyz', AU_STAGE_LINKS.NDBstag)
         
     })
 
     test('Landing NDB Stag', async () => {
-        await recursionsAU.NegativeRecursiveTestAUNDBStag('ross@kingbilly.xyz', STAGE_LINK)
+        await recursionsAU.StageNegativeRecursiveTestAUNDBStag('ross@kingbilly.xyz', AU_STAGE_LINKS.NDBstag)
     })
 
     test('Landing No Dep Australia Btag', async () => {
-        await recursionsAU.NegativeRecursiveTestAUNoDepBtag('ross@kingbilly.xyz', STAGE_LINK)
+        await recursionsAU.StageNegativeRecursiveTestAUNoDepBtag('ross@kingbilly.xyz', AU_STAGE_LINKS.NDBbtag)
     })
 
     test('Landing NDB Btag', async () => {
-        await recursionsAU.NegativeRecursiveTestAUNDBBtag('ross@kingbilly.xyz', STAGE_LINK)
+        await recursionsAU.StageNegativeRecursiveTestAUNDBBtag('ross@kingbilly.xyz', AU_STAGE_LINKS.NDBbtag)
     })
 
 

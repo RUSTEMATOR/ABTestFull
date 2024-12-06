@@ -1,13 +1,14 @@
 import {test} from 'playwright/test';
-import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
+import { LOCATIONS } from '../../../src/Data/constants';
+import { DE_STAGE_LINKS } from '../../../src/Data/Germany/germanyLinks';
 import VpnController from '../../../src/methods/VpnController/vpnController';
-import RecursionsDE from '../../../src/methods/Recursions/Positive/recursionsDE';
+import StageRecursionsDE from '../../../src/methods/Recursions/PositiveStage/StageRecursionsDE';
 
 
 
 test.describe('A/B test GermanyWP', () => {
     const vpnController = new VpnController()
-    const recursionsDE = new RecursionsDE()
+    const recursionsDE = new StageRecursionsDE()
 
 
     test.beforeAll(async () => {
@@ -18,19 +19,19 @@ test.describe('A/B test GermanyWP', () => {
     })
 
         test(`Landing WP DE Stag check page and params`, async () => {
-            await recursionsDE.recursiveTestWelcomeDEStag(STAGE_LINK)
+            await recursionsDE.StageRecursiveTestWelcomeDEStag(DE_STAGE_LINKS.welcomeStag)
         })
 
         test(`Landing WP DE Btag check page and params`, async () => {
-            await recursionsDE.recursiveTestWelcomeDEBtag(STAGE_LINK)
+            await recursionsDE.StageRecursiveTestWelcomeDEBtag(DE_STAGE_LINKS.welcomeBtag)
         })
 
         test(`Landing Land DE Stag check page and params`, async () => {
-            await recursionsDE.recursiveTestLandDEStag(STAGE_LINK)
+            await recursionsDE.StageRecursiveTestLandDEStag(DE_STAGE_LINKS.welcomeStag)
         })
 
         test(`Landing Land DE Btag check page and params`, async () => {
-            await recursionsDE.recursiveTestLandDEBtag(STAGE_LINK)
+            await recursionsDE.StageRecursiveTestLandDEBtag(DE_STAGE_LINKS.welcomeBtag)
         })
 
 
@@ -44,7 +45,7 @@ test.describe('A/B test GermanyWP', () => {
 
 test.describe('A/B NDB Germany', () => {
     const vpnController = new VpnController()
-    const recursionsDE = new RecursionsDE()
+    const recursionsDE = new StageRecursionsDE()
 
 
     test.beforeAll(async () => {
@@ -53,19 +54,19 @@ test.describe('A/B NDB Germany', () => {
     })
 
     test('Landing No Dep Germany Stag', async () => {
-        await recursionsDE.recursiveTestDENoDepStag(STAGE_LINK)
+        await recursionsDE.StageRecursiveTestDENoDepStag(DE_STAGE_LINKS.NDBstag)
     })
 
     test('Landing NDB Stag', async () => {
-        await recursionsDE.recursiveTestDENDBStag(STAGE_LINK)
+        await recursionsDE.StageRecursiveTestDENDBStag(DE_STAGE_LINKS.NDBstag)
     })
 
     test('Landing No dep Germany Btag', async () => {
-        await recursionsDE.recursiveTestDENoDepBtag(STAGE_LINK)
+        await recursionsDE.StageRecursiveTestDENoDepBtag(DE_STAGE_LINKS.NDBbtag)
     })
 
     test('Landing NDB Btag', async () => {
-        await recursionsDE.recursiveTestDENDBBtag(STAGE_LINK)
+        await recursionsDE.StageRecursiveTestDENDBBtag(DE_STAGE_LINKS.NDBbtag)
     })
 
     test.afterAll(async () => {

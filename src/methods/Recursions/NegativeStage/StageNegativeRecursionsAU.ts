@@ -1,15 +1,15 @@
-import { chromium, type Browser, expect } from '@playwright/test';
-import { qase } from 'playwright-qase-reporter';
+import RandomEmail from '../../../randomEmail/randomEmail';
+import { chromium, type Browser } from '@playwright/test';
 import { Methods } from '../../methods';
-import { CANADA_LINKS, CANADA_LINKS_NDB } from '../../../Data/Canada/canadaLinks';
-import { EXPECTED_CANADA_LINKS, EXPECTED_CANADA_LINKS_NDB } from '../../../Data/Canada/expectedCanadaResults.';
 import { ERROR_TEXT, EXPECTED_QUERY, PHONE_NUMBERS } from '../../../Data/constants';
+import { EXPECTED_AUSTRALIA_STAGE_NDB_LINKS, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS } from '../../../Data/Australia/expectedAustraliaResults';
+import { AUSTRALIA_LINKNDB } from '../../../Data/Australia/australiaLinks';
+import { AUSTRALIA_LINKS_WELCOME } from '../../../Data/Australia/australiaLinks';
+import { qase } from 'playwright-qase-reporter';
 import { RegMethods3Step } from '../../regMethods3step';
 import { RegMethods1Step } from '../../regMethods1step';
-import RandomEmail from '../../../randomEmail/randomEmail';
+import { expect } from '@playwright/test';
 import moment from 'moment';
-
-
 
 
 let browser: Browser
@@ -22,108 +22,41 @@ async function startBrowser() {
   }
 
 
-export default class NegativeRecursionsCA {
+export default class StageNegativeRecursionsAU {
 
     constructor(){}
 
-    async NegativeRecursiveTestWelcomeStag(wrongEmail: string, stageLink?: string): Promise<any>{
-        
-        let browser = await startBrowser()
-        let ctx = await browser.newContext()
-        let page = await ctx.newPage()
-       
-        const methods = new Methods(page) 
-        
-        const regMethods = new RegMethods1Step(page)
-        
-    
-        await methods.sleep(1000)
-        await methods.visitPage(stageLink || CANADA_LINKS.UrlStag)
-        const baseCurrentUrl = await methods.formBaseLink()
-    
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS.expectedUrlWelcome){
-            
-            const baseCurrentUrl = await methods.formBaseLink()
-            const receivedParameters = await methods.formQueryParameters()
-    
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS.expectedUrlWelcome, EXPECTED_CANADA_LINKS.expectedUrlLand)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCA)
-    
-            await page.waitForTimeout(1000)
-
-
-                // await page.screenshot({path: './screenshots/screeenshot.png'}
-
-                const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS.UrlStag);
-                console.log('Expected btag:', expectedBtag);
-                
-    
-                const currentUrl = await regMethods.page.url()
-                const actualBtag = await regMethods.extractBtag(currentUrl);
-                expect(actualBtag).toEqual(expectedBtag)
-    
-                const finalUrl = await regMethods.page.url()
-    
-                await regMethods.openRegForm(`div.main__button button.button`)
-                await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
-    
-                await regMethods.checkAdultCheckbox()
-                const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
-        
-                qase.comment(`Registered with: ${wrongEmail}\n\n
-                    Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
-                    Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
-                    
-                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}
-                    \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}
-                    
-                    `)
-    
-                console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
-                console.log('Actual btag:', actualBtag);
-    
-                await regMethods.createAnAccount()
-                await regMethods.expectToBeVisible('div.error', ERROR_TEXT.EN)
-                await regMethods.page.waitForTimeout(10000)        
-            
-                await ctx.close();
-    
-                
-              
-        } else {
-            await methods.sleep(1000)
-            // await page.screenshot({path: './screenshots/screeenshot.png'})
-            await ctx.close();
-            return this.NegativeRecursiveTestWelcomeStag(wrongEmail);
-        }
-    }
-
-    async NegativeRecursiveTestWelcomeBtag(wrongEmail: string, stageLink?: string): Promise<any>{
+    async StageNegativeRecursiveTestWelcomeAUStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
        
         const methods = new Methods(page)
+
         const regMethods = new RegMethods1Step(page)
+       
         
-    
+
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || CANADA_LINKS.UrlBtag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
-    
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS.expectedUrlWelcome){
+
+
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
-    
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS.expectedUrlWelcome, EXPECTED_CANADA_LINKS.expectedUrlLand)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCA)
-    
-            await page.waitForTimeout(1000)
-            qase.comment(`Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_LINKS.expectedUrlLand}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}`)
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS.UrlBtag);
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAU)
+
+            await page.waitForTimeout(1000)
+            
+            
+
+           
+
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -143,8 +76,8 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_LINKS.expectedUrlLand}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAU}\n Received parameters: ${receivedParameters}
                 
                 `)
 
@@ -152,114 +85,51 @@ export default class NegativeRecursionsCA {
             console.log('Actual btag:', actualBtag);
 
             await regMethods.createAnAccount()
+            await regMethods.expectToBeVisible(`div.error`, ERROR_TEXT.EN)
             await regMethods.page.waitForTimeout(10000)
-    
+
             await ctx.close();
-    
-                
+
         } else {
-            await methods.sleep(1000)
+            methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestWelcomeBtag(wrongEmail);
+            return this.StageNegativeRecursiveTestWelcomeAUStag(wrongEmail, stageLink);
         }
+
     }
 
-
-
-    async NegativeRecursiveTestLandStag(wrongEmail: string, stageLink?: string): Promise<any> {
-
+    async StageNegativeRecursiveTestWelcomeAUBtag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
-       
+
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
+     
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || CANADA_LINKS.UrlStag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
-    
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS.expectedUrlLand){
+
+
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
-    
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS.expectedUrlWelcome, EXPECTED_CANADA_LINKS.expectedUrlLand)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCA)
-    
+
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAU)
+
             await page.waitForTimeout(1000)
-          
-
-                const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS.UrlStag);
-                console.log('Expected btag:', expectedBtag);
-                
-    
-                const currentUrl = await regMethods.page.url()
-                const actualBtag = await regMethods.extractBtag(currentUrl);
-                expect(actualBtag).toEqual(expectedBtag)
-    
-                const finalUrl = await regMethods.page.url()
-    
-                await regMethods.openRegForm(`div.main__button .button`)
-                await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
-    
-                await regMethods.checkAdultCheckbox()
-                const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
-        
-                qase.comment(`Registered with: ${wrongEmail}\n\n
-                    Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
-                    Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
-                    
-                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_LINKS.expectedUrlLand}
-                    \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}
-                    
-                    `)
-    
-                console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
-                console.log('Actual btag:', actualBtag);
-    
-                await regMethods.createAnAccount()
-                await regMethods.expectToBeVisible('div.error', ERROR_TEXT.EN)
-                await regMethods.page.waitForTimeout(10000)
-    
-                await ctx.close();
-                
-        } else {
-            await methods.sleep(1000)
-            await ctx.close();
-            return this.NegativeRecursiveTestLandStag(wrongEmail);
-        }
-
-    }
-
-
-
-    async NegativeRecursiveTestLandBtag(wrongEmail: string, stageLink?: string): Promise<any> {
-
-
-        let browser = await startBrowser()
-        let ctx = await browser.newContext()
-        let page = await ctx.newPage()
-       
-        const methods = new Methods(page)
-        const regMethods = new RegMethods1Step(page)
-        
-        await methods.sleep(7000)
-        await methods.visitPage(stageLink || CANADA_LINKS.UrlBtag)
-        const baseCurrentUrl = await methods.formBaseLink()
-    
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS.expectedUrlLand){
             
-            const baseCurrentUrl = await methods.formBaseLink()
-            const receivedParameters = await methods.formQueryParameters()
+            
     
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS.expectedUrlWelcome, EXPECTED_CANADA_LINKS.expectedUrlLand)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCA)
+                // await ctx.close();
     
-            await page.waitForTimeout(1000)
+                
+            
 
-
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS.UrlBtag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -269,7 +139,7 @@ export default class NegativeRecursionsCA {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`div.main__button .button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -279,8 +149,8 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_LINKS.expectedUrlLand}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAU}\n Received parameters: ${receivedParameters}
                 
                 `)
 
@@ -288,50 +158,203 @@ export default class NegativeRecursionsCA {
             console.log('Actual btag:', actualBtag);
 
             await regMethods.createAnAccount()
-            await regMethods.expectToBeVisible('div.error', ERROR_TEXT.EN)
+            await regMethods.expectToBeVisible(`div.error`, ERROR_TEXT.EN)
             await regMethods.page.waitForTimeout(10000)
-    
-                await ctx.close();
-                        
-        } else {
-            await methods.sleep(1000)
+
+
             await ctx.close();
-            return this.NegativeRecursiveTestLandStag(wrongEmail);
+        } else {
+            methods.sleep(1000)
+            await ctx.close();
+            return this.StageNegativeRecursiveTestWelcomeAUBtag(wrongEmail, stageLink);
         }
 
     }
 
 
-    // ---------------------------------------------------------------------------------------------------------------------------------------------
-    //----------------------------------------------------------------------------------------------------------------------------------------------
+    async StageNegativeRecursiveTestWorldAUStag(wrongEmail: string, stageLink: string): Promise<any> {
+        let browser = await startBrowser()
+        let ctx = await browser.newContext()
+        let page = await ctx.newPage()
+       
+        const methods = new Methods(page)
+        const regMethods = new RegMethods1Step(page)
+        
+
+        await methods.sleep(1000)
+        await methods.visitPage(stageLink)
+        const baseCurrentUrl = await methods.formBaseLink()
 
 
-    async NegativeRecursiveTestCANoDepBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World){
+            
+            const baseCurrentUrl = await methods.formBaseLink()
+            const receivedParameters = await methods.formQueryParameters()
+
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAU)
+
+            await page.waitForTimeout(1000)
+            
+        
+    
+                // await ctx.close();
+
+            
+            const expectedBtag = await regMethods.extractBtag(stageLink);
+            console.log('Expected btag:', expectedBtag);
+            
+
+            const currentUrl = await regMethods.page.url()
+            const actualBtag = await regMethods.extractBtag(currentUrl);
+            expect(actualBtag).toEqual(expectedBtag)
+
+            const finalUrl = await regMethods.page.url()
+
+            // await regMethods.openRegForm(`div.main__button > button`)
+            await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+
+            await regMethods.checkAdultCheckbox()
+            const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
+    
+            qase.comment(`Registered with: ${wrongEmail}\n\n
+                Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
+                Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
+                
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAU}\n Received parameters: ${receivedParameters}
+                
+                `)
+
+            console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+            console.log('Actual btag:', actualBtag);
+
+            await regMethods.createAnAccount()
+            await regMethods.expectToBeVisible(`div.error`, ERROR_TEXT.EN)
+            await regMethods.page.waitForTimeout(10000)
+
+
+            await ctx.close();
+                
+               
+        } else {
+            await methods.sleep(1000)
+            await ctx.close();
+            return this.StageNegativeRecursiveTestWorldAUStag(wrongEmail, stageLink);
+        }
+
+    }
+
+    async StageNegativeRecursiveTestWorldAUBtag(wrongEmail: string, stageLink: string): Promise<any> {
+
+        let browser = await startBrowser()
+        let ctx = await browser.newContext()
+        let page = await ctx.newPage()
+       
+        const methods = new Methods(page)
+        const regMethods = new RegMethods1Step(page)
+       
+
+        await methods.sleep(1000)
+        await methods.visitPage(stageLink)
+        const baseCurrentUrl = await methods.formBaseLink()
+
+
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World){
+            
+            const baseCurrentUrl = await methods.formBaseLink()
+            const receivedParameters = await methods.formQueryParameters()
+
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAU)
+
+            await page.waitForTimeout(1000)
+            
+            
+
+            qase.comment(`Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAU}\n Received parameters: ${receivedParameters}`)
+    
+                // await ctx.close();
+
+            
+
+            const expectedBtag = await regMethods.extractBtag(stageLink);
+            console.log('Expected btag:', expectedBtag);
+            
+
+            const currentUrl = await regMethods.page.url()
+            const actualBtag = await regMethods.extractBtag(currentUrl);
+            expect(actualBtag).toEqual(expectedBtag)
+
+            const finalUrl = await regMethods.page.url()
+
+            // await regMethods.openRegForm(`div.main__button > button`)
+            await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
+
+            await regMethods.checkAdultCheckbox()
+            const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
+    
+            qase.comment(`Registered with: ${wrongEmail}\n\n
+                Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
+                Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
+                
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAU}\n Received parameters: ${receivedParameters}
+                
+                `)
+
+            console.log(`Registered with ${wrongEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
+            console.log('Actual btag:', actualBtag);
+
+            await regMethods.createAnAccount()
+            await regMethods.expectToBeVisible(`div.error`, ERROR_TEXT.EN)
+            await regMethods.page.waitForTimeout(10000)
+
+
+            await ctx.close();
+    
+                
+        } else {
+            await methods.sleep(1000)
+            await ctx.close();
+            return this.StageNegativeRecursiveTestWorldAUBtag(wrongEmail, stageLink);
+        }
+
+    }
+
+
+    //-------------------------------------------------------------------------------------------------------------------
+    //-------------------------------------------------------------------------------------------------------------------
+
+    async StageNegativeRecursiveTestAUNoDepBtag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
        
         const methods = new Methods(page)
         const regMethods = new RegMethods3Step(page)
-        
+       
+
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || CANADA_LINKS_NDB.Btag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep, EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCANDB)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAUNDB)
 
             await page.waitForTimeout(1000)
             
                 // await ctx.close();
+            
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS_NDB.Btag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -348,7 +371,7 @@ export default class NegativeRecursionsCA {
             await regMethods.gotoSecondStep()
             await regMethods.fillPersonalInfo()
             await regMethods.gotoThirdStep()
-            await regMethods.fillLocationCreds(PHONE_NUMBERS.Canada)
+            await regMethods.fillLocationCreds(PHONE_NUMBERS.Australia)
 
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
         
@@ -357,8 +380,8 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep}\n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCANDB}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAUNDB}\n Received parameters: ${receivedParameters}
                 
                 `)
 
@@ -366,7 +389,7 @@ export default class NegativeRecursionsCA {
             console.log('Actual btag:', actualBtag);
 
             await regMethods.createAnAccount()
-            await regMethods.expectToBeVisible('div.error', ERROR_TEXT.EN)
+            await regMethods.expectToBeVisible(`div.error`, ERROR_TEXT.EN)
             await regMethods.page.waitForTimeout(10000)
                 
             await ctx.close();
@@ -374,12 +397,12 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestCANoDepBtag(wrongEmail);
+            return this.StageNegativeRecursiveTestAUNoDepBtag(wrongEmail, stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestCANDBBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageNegativeRecursiveTestAUNDBBtag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -387,27 +410,29 @@ export default class NegativeRecursionsCA {
         const methods = new Methods(page)
 
         const regMethods = new RegMethods3Step(page)
+        
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || CANADA_LINKS_NDB.Btag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB, EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep)
 
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCANDB)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAUNDB)
 
             await page.waitForTimeout(1000)
             
             
                 // await ctx.close();
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS_NDB.Btag);
+
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -424,7 +449,7 @@ export default class NegativeRecursionsCA {
             await regMethods.gotoSecondStep()
             await regMethods.fillPersonalInfo()
             await regMethods.gotoThirdStep()
-            await regMethods.fillLocationCreds(PHONE_NUMBERS.Canada)
+            await regMethods.fillLocationCreds(PHONE_NUMBERS.Australia)
 
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
         
@@ -433,8 +458,8 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep}\n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCANDB}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAUNDB}\n Received parameters: ${receivedParameters}
                 
                 `)
 
@@ -451,13 +476,13 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestCANDBBtag(wrongEmail);
+            return this.StageNegativeRecursiveTestAUNDBBtag(wrongEmail, stageLink);
         }
 
     }
 
 
-    async NegativeRecursiveTestCANoDepStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageNegativeRecursiveTestAUNoDepStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -467,23 +492,24 @@ export default class NegativeRecursionsCA {
         
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || CANADA_LINKS_NDB.Stag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep, EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB)
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCANDB)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAUNDB)
 
             await page.waitForTimeout(1000)
             
                 // await ctx.close();
+            
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS_NDB.Stag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -500,7 +526,7 @@ export default class NegativeRecursionsCA {
             await regMethods.gotoSecondStep()
             await regMethods.fillPersonalInfo()
             await regMethods.gotoThirdStep()
-            await regMethods.fillLocationCreds(PHONE_NUMBERS.Canada)
+            await regMethods.fillLocationCreds(PHONE_NUMBERS.Australia)
 
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
         
@@ -509,8 +535,8 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep}\n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCANDB}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAUNDB}\n Received parameters: ${receivedParameters}
                 
                 `)
 
@@ -526,12 +552,12 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestCANoDepStag(wrongEmail);
+            return this.StageNegativeRecursiveTestAUNoDepStag(wrongEmail, stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestCANDBStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageNegativeRecursiveTestAUNDBStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -539,28 +565,28 @@ export default class NegativeRecursionsCA {
         const methods = new Methods(page)
 
         const regMethods = new RegMethods3Step(page)
-        
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || CANADA_LINKS_NDB.Stag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB, EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep)
 
-            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCANDB)
+            await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAUNDB)
 
             await page.waitForTimeout(1000)
             
             
                 // await ctx.close();
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS_NDB.Stag);
+
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -577,7 +603,7 @@ export default class NegativeRecursionsCA {
             await regMethods.gotoSecondStep()
             await regMethods.fillPersonalInfo()
             await regMethods.gotoThirdStep()
-            await regMethods.fillLocationCreds(PHONE_NUMBERS.Canada)
+            await regMethods.fillLocationCreds(PHONE_NUMBERS.Australia)
 
             const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
         
@@ -586,8 +612,8 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep}\n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB}
-                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB}
+                \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAUNDB}\n Received parameters: ${receivedParameters}
                 
                 `)
 
@@ -604,9 +630,8 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestCANDBStag(wrongEmail);
+            return this.StageNegativeRecursiveTestAUNDBBtag(wrongEmail, stageLink);
         }
 
     }
-
 }

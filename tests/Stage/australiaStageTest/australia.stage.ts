@@ -1,13 +1,14 @@
 import {test} from 'playwright/test';
-import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
+import { LOCATIONS } from '../../../src/Data/constants';
+import { AU_STAGE_LINKS } from '../../../src/Data/Australia/australiaLinks';
 import VpnController from '../../../src/methods/VpnController/vpnController';
 import { Methods } from '../../../src/methods/methods';
-import RecursionsAU from '../../../src/methods/Recursions/Positive/recursionsAU';
+import StageRecursionsAU from '../../../src/methods/Recursions/PositiveStage/StageRecursionsAU';
 
 
 test.describe('A/B NDB Australia', () => {
     const vpnController = new VpnController()
-    const recursionsAU = new RecursionsAU()
+    const recursionsAU = new StageRecursionsAU()
     
 
     test.beforeAll(async () => {
@@ -22,36 +23,36 @@ test.describe('A/B NDB Australia', () => {
     // })
 
     test('AU Welcome Stag', async () => {
-        await recursionsAU.recursiveTestWelcomeAUStag(STAGE_LINK)
+        await recursionsAU.StageRecursiveTestWelcomeAUStag(AU_STAGE_LINKS.welcomeStag)
     })
 
     test('AU Welcome Btag', async () => {
-        await recursionsAU.recursiveTestWelcomeAUBtag(STAGE_LINK)
+        await recursionsAU.StageRecursiveTestWelcomeAUBtag(AU_STAGE_LINKS.welcomeBtag)
     })
 
     test('AU Land Stag', async () => {
-        await recursionsAU.recursiveTestWorldAUStag(STAGE_LINK)
+        await recursionsAU.StageRecursiveTestWorldAUStag(AU_STAGE_LINKS.welcomeStag)
     })
 
     test('AU Land Btag', async () => {
-        await recursionsAU.recursiveTestWorldAUBtag(STAGE_LINK)
+        await recursionsAU.StageRecursiveTestWorldAUBtag(AU_STAGE_LINKS.welcomeBtag)
     })
 
     test('Landing No Dep Australia Stag', async () => {
-        await recursionsAU.recursiveTestAUNoDepStag(STAGE_LINK)
+        await recursionsAU.StageRecursiveTestAUNoDepStag(AU_STAGE_LINKS.NDBstag)
         
     })
 
     test('Landing NDB Stag', async () => {
-        await recursionsAU.recursiveTestAUNDBStag(STAGE_LINK)
+        await recursionsAU.StageRecursiveTestAUNDBStag(AU_STAGE_LINKS.NDBstag)
     })
 
     test('Landing No Dep Australia Btag', async () => {
-        await recursionsAU.recursiveTestAUNoDepBtag(STAGE_LINK)
+        await recursionsAU.StageRecursiveTestAUNoDepBtag(AU_STAGE_LINKS.NDBbtag)
     })
 
     test('Landing NDB Btag', async () => {
-        await recursionsAU.recursiveTestAUNDBBtag(STAGE_LINK)
+        await recursionsAU.StageRecursiveTestAUNDBBtag(AU_STAGE_LINKS.NDBbtag)
     })
 
     test.afterAll(async () => {

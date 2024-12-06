@@ -2,7 +2,7 @@ import { chromium, type Browser, expect } from '@playwright/test';
 import { qase } from 'playwright-qase-reporter';
 import { Methods } from '../../methods';
 import { CANADA_LINKS, CANADA_LINKS_NDB } from '../../../Data/Canada/canadaLinks';
-import { EXPECTED_CANADA_LINKS, EXPECTED_CANADA_LINKS_NDB } from '../../../Data/Canada/expectedCanadaResults.';
+import { EXPECTED_CANADA_STAGE_NDB_LINKS, EXPECTED_CANADA_STAGE_WELCOME_LINKS } from '../../../Data/Canada/expectedCanadaResults.';
 import { ERROR_TEXT, EXPECTED_QUERY, PHONE_NUMBERS } from '../../../Data/constants';
 import { RegMethods3Step } from '../../regMethods3step';
 import { RegMethods1Step } from '../../regMethods1step';
@@ -22,11 +22,11 @@ async function startBrowser() {
   }
 
 
-export default class NegativeRecursionsCA {
+export default class StageNegativeRecursionsCA {
 
     constructor(){}
 
-    async NegativeRecursiveTestWelcomeStag(wrongEmail: string, stageLink?: string): Promise<any>{
+    async StageNegativeRecursiveTestWelcomeStag(wrongEmail: string, stageLink: string): Promise<any>{
         
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -38,15 +38,15 @@ export default class NegativeRecursionsCA {
         
     
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || CANADA_LINKS.UrlStag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
     
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS.expectedUrlWelcome){
+        if (baseCurrentUrl === EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
     
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS.expectedUrlWelcome, EXPECTED_CANADA_LINKS.expectedUrlLand)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome, EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCA)
     
             await page.waitForTimeout(1000)
@@ -54,7 +54,7 @@ export default class NegativeRecursionsCA {
 
                 // await page.screenshot({path: './screenshots/screeenshot.png'}
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS.UrlStag);
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -74,7 +74,7 @@ export default class NegativeRecursionsCA {
                     Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                     Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                     
-                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}
+                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome}
                     \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}
                     
                     `)
@@ -94,11 +94,11 @@ export default class NegativeRecursionsCA {
             await methods.sleep(1000)
             // await page.screenshot({path: './screenshots/screeenshot.png'})
             await ctx.close();
-            return this.NegativeRecursiveTestWelcomeStag(wrongEmail);
+            return this.StageNegativeRecursiveTestWelcomeStag(wrongEmail, stageLink);
         }
     }
 
-    async NegativeRecursiveTestWelcomeBtag(wrongEmail: string, stageLink?: string): Promise<any>{
+    async StageNegativeRecursiveTestWelcomeBtag(wrongEmail: string, stageLink: string): Promise<any>{
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -108,19 +108,19 @@ export default class NegativeRecursionsCA {
         
     
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || CANADA_LINKS.UrlBtag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
     
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS.expectedUrlWelcome){
+        if (baseCurrentUrl === EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
     
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS.expectedUrlWelcome, EXPECTED_CANADA_LINKS.expectedUrlLand)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome, EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCA)
     
             await page.waitForTimeout(1000)
-            qase.comment(`Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_LINKS.expectedUrlLand}
+            qase.comment(`Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}`)
 
             const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS.UrlBtag);
@@ -143,7 +143,7 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_LINKS.expectedUrlLand}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -160,13 +160,13 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestWelcomeBtag(wrongEmail);
+            return this.StageNegativeRecursiveTestWelcomeBtag(wrongEmail, stageLink);
         }
     }
 
 
 
-    async NegativeRecursiveTestLandStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageNegativeRecursiveTestLandStag(wrongEmail: string, stageLink: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -176,21 +176,21 @@ export default class NegativeRecursionsCA {
         const regMethods = new RegMethods1Step(page)
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || CANADA_LINKS.UrlStag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
     
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS.expectedUrlLand){
+        if (baseCurrentUrl === EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
     
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS.expectedUrlWelcome, EXPECTED_CANADA_LINKS.expectedUrlLand)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome, EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCA)
     
             await page.waitForTimeout(1000)
           
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS.UrlStag);
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -210,7 +210,7 @@ export default class NegativeRecursionsCA {
                     Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                     Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                     
-                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_LINKS.expectedUrlLand}
+                    Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand}
                     \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}
                     
                     `)
@@ -227,14 +227,14 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestLandStag(wrongEmail);
+            return this.StageNegativeRecursiveTestLandStag(wrongEmail, stageLink);
         }
 
     }
 
 
 
-    async NegativeRecursiveTestLandBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageNegativeRecursiveTestLandBtag(wrongEmail: string, stageLink: string): Promise<any> {
 
 
         let browser = await startBrowser()
@@ -245,21 +245,21 @@ export default class NegativeRecursionsCA {
         const regMethods = new RegMethods1Step(page)
         
         await methods.sleep(7000)
-        await methods.visitPage(stageLink || CANADA_LINKS.UrlBtag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
     
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS.expectedUrlLand){
+        if (baseCurrentUrl === EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
     
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS.expectedUrlWelcome, EXPECTED_CANADA_LINKS.expectedUrlLand)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome, EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCA)
     
             await page.waitForTimeout(1000)
 
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS.UrlBtag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -279,7 +279,7 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_LINKS.expectedUrlLand}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome}\n${EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -296,7 +296,7 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestLandStag(wrongEmail);
+            return this.StageNegativeRecursiveTestLandStag(wrongEmail, stageLink);
         }
 
     }
@@ -306,7 +306,7 @@ export default class NegativeRecursionsCA {
     //----------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    async NegativeRecursiveTestCANoDepBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageNegativeRecursiveTestCANoDepBtag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -315,23 +315,23 @@ export default class NegativeRecursionsCA {
         const regMethods = new RegMethods3Step(page)
         
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || CANADA_LINKS_NDB.Btag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep){
+        if (baseCurrentUrl === EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep, EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep, EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCANDB)
 
             await page.waitForTimeout(1000)
             
                 // await ctx.close();
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS_NDB.Btag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -357,7 +357,7 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep}\n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCANDB}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -374,12 +374,12 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestCANoDepBtag(wrongEmail);
+            return this.StageNegativeRecursiveTestCANoDepBtag(wrongEmail, stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestCANDBBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageNegativeRecursiveTestCANDBBtag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -389,16 +389,16 @@ export default class NegativeRecursionsCA {
         const regMethods = new RegMethods3Step(page)
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || CANADA_LINKS_NDB.Btag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB){
+        if (baseCurrentUrl === EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB, EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB, EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep)
 
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCANDB)
 
@@ -407,7 +407,7 @@ export default class NegativeRecursionsCA {
             
                 // await ctx.close();
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS_NDB.Btag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -433,7 +433,7 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep}\n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCANDB}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -451,13 +451,13 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestCANDBBtag(wrongEmail);
+            return this.StageNegativeRecursiveTestCANDBBtag(wrongEmail, stageLink);
         }
 
     }
 
 
-    async NegativeRecursiveTestCANoDepStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageNegativeRecursiveTestCANoDepStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -467,23 +467,23 @@ export default class NegativeRecursionsCA {
         
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || CANADA_LINKS_NDB.Stag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep){
+        if (baseCurrentUrl === EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep, EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep, EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCANDB)
 
             await page.waitForTimeout(1000)
             
                 // await ctx.close();
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS_NDB.Stag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -509,7 +509,7 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep}\n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCANDB}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -526,12 +526,12 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestCANoDepStag(wrongEmail);
+            return this.StageNegativeRecursiveTestCANoDepStag(wrongEmail, stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestCANDBStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async StageNegativeRecursiveTestCANDBStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -542,16 +542,16 @@ export default class NegativeRecursionsCA {
         
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || CANADA_LINKS_NDB.Stag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB){
+        if (baseCurrentUrl === EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB, EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB, EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep)
 
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryCANDB)
 
@@ -560,7 +560,7 @@ export default class NegativeRecursionsCA {
             
                 // await ctx.close();
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || CANADA_LINKS_NDB.Stag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -586,7 +586,7 @@ export default class NegativeRecursionsCA {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNoDep}\n${EXPECTED_CANADA_LINKS_NDB.expectedUrlNDB}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryCA}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -604,7 +604,7 @@ export default class NegativeRecursionsCA {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestCANDBStag(wrongEmail);
+            return this.StageNegativeRecursiveTestCANDBStag(wrongEmail, stageLink);
         }
 
     }

@@ -19,7 +19,7 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 3,
+  retries: 2,
   timeout: 120000,
   /* Opt out of parallel tests on CI. */
   workers: 1,
@@ -39,7 +39,7 @@ export default defineConfig({
                   uploadAttachments: true,
                   run: {
                     complete: true,
-                    title: 'A/B test Prod', 
+                    title: 'A/B test Stage rerun', 
                     description: 'Prod'
 
                   }
@@ -70,14 +70,21 @@ export default defineConfig({
     {
       name: 'prod',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/*.spec.ts',
+      testMatch: '**/tests/Prod/**/*.spec.ts'
     },
 
-    // {
-    //   name: 'stage',
-    //   use: { ...devices['Desktop Chrome'] },
-    //   testMatch: '**/*.stage.ts'
-    // },
+    {
+      name: 'stage',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/Stage/**/*.stage.ts'
+    },
+
+    {
+      name: 'negative-prod',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/NegativeProd/**/*.spec.ts'
+    },
+
 
     // {
     //   name: 'firefox',

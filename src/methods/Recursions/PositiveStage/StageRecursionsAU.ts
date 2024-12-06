@@ -2,7 +2,7 @@ import RandomEmail from '../../../randomEmail/randomEmail';
 import { chromium, type Browser } from '@playwright/test';
 import { Methods } from '../../methods';
 import { EXPECTED_QUERY, PHONE_NUMBERS } from '../../../Data/constants';
-import { EXPECTED_AUSTRALIA_WELCOME_LINKS, EXPECTED_AUSTRALIA_NDB_LINKS } from '../../../Data/Australia/expectedAustraliaResults';
+import { EXPECTED_AUSTRALIA_STAGE_NDB_LINKS, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS } from '../../../Data/Australia/expectedAustraliaResults';
 import { AUSTRALIA_LINKNDB } from '../../../Data/Australia/australiaLinks';
 import { AUSTRALIA_LINKS_WELCOME } from '../../../Data/Australia/australiaLinks';
 import { qase } from 'playwright-qase-reporter';
@@ -22,11 +22,11 @@ async function startBrowser() {
   }
 
 
-export default class RecursionsAU {
+export default class StageRecursionsAU {
 
     constructor(){}
 
-    async recursiveTestWelcomeAUStag(stageLink?: string): Promise<any> {
+    async StageRecursiveTestWelcomeAUStag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -38,16 +38,16 @@ export default class RecursionsAU {
         const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || AUSTRALIA_LINKS_WELCOME.Stag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_WELCOME_LINKS.World)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAU)
 
             await page.waitForTimeout(1000)
@@ -56,7 +56,7 @@ export default class RecursionsAU {
 
             await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/WelcomeAuWelcomeStag.png`})
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || AUSTRALIA_LINKS_WELCOME.Stag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -76,7 +76,7 @@ export default class RecursionsAU {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_WELCOME_LINKS.World}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAU}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -92,12 +92,12 @@ export default class RecursionsAU {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestWelcomeAUStag(stageLink);
+            return this.StageRecursiveTestWelcomeAUStag(stageLink);
         }
 
     }
 
-    async recursiveTestWelcomeAUBtag(stageLink?: string): Promise<any> {
+    async StageRecursiveTestWelcomeAUBtag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -108,16 +108,16 @@ export default class RecursionsAU {
         const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || AUSTRALIA_LINKS_WELCOME.Btag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_WELCOME_LINKS.World)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAU)
 
             await page.waitForTimeout(1000)
@@ -129,7 +129,7 @@ export default class RecursionsAU {
                 
             await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/WelcomeAuBtag.png`})
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || AUSTRALIA_LINKS_WELCOME.Btag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -149,7 +149,7 @@ export default class RecursionsAU {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_WELCOME_LINKS.World}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAU}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -165,13 +165,13 @@ export default class RecursionsAU {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestWelcomeAUBtag(stageLink);
+            return this.StageRecursiveTestWelcomeAUBtag(stageLink);
         }
 
     }
 
 
-    async recursiveTestWorldAUStag(stageLink?: string): Promise<any> {
+    async StageRecursiveTestWorldAUStag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -182,16 +182,16 @@ export default class RecursionsAU {
         const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || AUSTRALIA_LINKS_WELCOME.Stag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_AUSTRALIA_WELCOME_LINKS.World){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_WELCOME_LINKS.World)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAU)
 
             await page.waitForTimeout(1000)
@@ -203,7 +203,7 @@ export default class RecursionsAU {
                 
             await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/WorldAUStag.png`})
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || AUSTRALIA_LINKS_WELCOME.Stag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -213,7 +213,7 @@ export default class RecursionsAU {
 
             const finalUrl = await regMethods.page.url()
 
-            // await regMethods.openRegForm(`div.main__button > button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -223,7 +223,7 @@ export default class RecursionsAU {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_WELCOME_LINKS.World}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAU}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -241,12 +241,12 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestWorldAUStag(stageLink);
+            return this.StageRecursiveTestWorldAUStag(stageLink);
         }
 
     }
 
-    async recursiveTestWorldAUBtag(stageLink?: string): Promise<any> {
+    async StageRecursiveTestWorldAUBtag(stageLink: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -258,23 +258,23 @@ export default class RecursionsAU {
         const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || AUSTRALIA_LINKS_WELCOME.Btag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_AUSTRALIA_WELCOME_LINKS.World){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_WELCOME_LINKS.World)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAU)
 
             await page.waitForTimeout(1000)
             
             
 
-            qase.comment(`Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_WELCOME_LINKS.World}
+            qase.comment(`Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAU}\n Received parameters: ${receivedParameters}`)
     
                 // await ctx.close();
@@ -292,7 +292,7 @@ export default class RecursionsAU {
 
             const finalUrl = await regMethods.page.url()
 
-            // await regMethods.openRegForm(`div.main__button > button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -302,7 +302,7 @@ export default class RecursionsAU {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_WELCOME_LINKS.World}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome}\n${EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAU}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -320,7 +320,7 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestWorldAUBtag(stageLink);
+            return this.StageRecursiveTestWorldAUBtag(stageLink);
         }
 
     }
@@ -329,7 +329,7 @@ export default class RecursionsAU {
     //-------------------------------------------------------------------------------------------------------------------
     //-------------------------------------------------------------------------------------------------------------------
 
-    async recursiveTestAUNoDepBtag(stageLink?: string): Promise<any> {
+    async StageRecursiveTestAUNoDepBtag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -344,12 +344,12 @@ export default class RecursionsAU {
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep, EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAUNDB)
 
             await page.waitForTimeout(1000)
@@ -384,7 +384,7 @@ export default class RecursionsAU {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAUNDB}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -400,12 +400,12 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestAUNoDepBtag(stageLink);
+            return this.StageRecursiveTestAUNoDepBtag(stageLink);
         }
 
     }
 
-    async recursiveTestAUNDBBtag(stageLink?: string): Promise<any> {
+    async StageRecursiveTestAUNDBBtag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -417,16 +417,16 @@ export default class RecursionsAU {
         const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || AUSTRALIA_LINKNDB.Btag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB, EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep)
 
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAUNDB)
 
@@ -438,7 +438,7 @@ export default class RecursionsAU {
 
             await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/AuNDBBtag.png`})
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || AUSTRALIA_LINKNDB.Btag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -464,7 +464,7 @@ export default class RecursionsAU {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAUNDB}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -481,13 +481,13 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestAUNDBBtag(stageLink);
+            return this.StageRecursiveTestAUNDBBtag(stageLink);
         }
 
     }
 
 
-    async recursiveTestAUNoDepStag(stageLink?: string): Promise<any> {
+    async StageRecursiveTestAUNoDepStag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -498,16 +498,16 @@ export default class RecursionsAU {
         const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || AUSTRALIA_LINKNDB.Stag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep, EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB)
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAUNDB)
 
             await page.waitForTimeout(1000)
@@ -542,7 +542,7 @@ export default class RecursionsAU {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAUNDB}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -558,12 +558,12 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestAUNoDepStag(stageLink);
+            return this.StageRecursiveTestAUNoDepStag(stageLink);
         }
 
     }
 
-    async recursiveTestAUNDBStag(stageLink?: string): Promise<any> {
+    async StageRecursiveTestAUNDBStag(stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -575,16 +575,16 @@ export default class RecursionsAU {
         const randomEmail = await email.generateRandomEmail()
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || AUSTRALIA_LINKNDB.Stag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
-        if (baseCurrentUrl === EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB){
+        if (baseCurrentUrl === EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB){
             
             const baseCurrentUrl = await methods.formBaseLink()
             const receivedParameters = await methods.formQueryParameters()
 
-            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB, EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep)
+            await methods.checkUrl(baseCurrentUrl, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB, EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep)
 
             await methods.checkQueryParameters(receivedParameters, EXPECTED_QUERY.expectedQueryAUNDB)
 
@@ -596,7 +596,7 @@ export default class RecursionsAU {
 
             await regMethods.makeFullScreenshot({fullPage: true, path: `Screenshots/AuNDBStag.png`})
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || AUSTRALIA_LINKNDB.Stag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -622,7 +622,7 @@ export default class RecursionsAU {
                 Date: ${currentTime}\n\n URL: ${finalUrl}\n\n
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
-                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB}
+                Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep}\n${EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryAUNDB}\n Received parameters: ${receivedParameters}
                 
                 `)
@@ -639,7 +639,7 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestAUNDBBtag(stageLink);
+            return this.StageRecursiveTestAUNDBBtag(stageLink);
         }
 
     }

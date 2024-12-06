@@ -20,3 +20,16 @@ export const EXPECTED_AUSTRALIA_NDB_LINKS: IExpectedLinksNDB = {
     expectedUrlNoDep: 'https://www.kingbillywin20.com/land/en-AU/kings_no_dep_2'
 
 }
+
+
+export const EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS: IExpectedLinksWelcome = {
+    Welcome: 'https://www.kingbillycasino1.com/land/en-AU/kings_welcome_pack_1',
+    World: 'https://www.kingbillycasino1.com/land/en-AU/kings_world_welcome_pack_1'
+}
+
+
+ export const EXPECTED_AUSTRALIA_STAGE_NDB_LINKS: IExpectedLinksNDB = {
+    expectedUrlNDB: 'https://www.kingbillycasino1.com/land/en-AU/ndb_2',
+    expectedUrlNoDep: 'https://www.kingbillycasino1.com/land/en-AU/kings_no_dep_2'
+}
+

@@ -3,16 +3,15 @@ import { LOCATIONS } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/VpnController/vpnController';
 import RecursionsNZ from '../../../src/methods/Recursions/Positive/recursionsNZ';
 
+test.beforeAll(async () => {
+    const vpnController = new VpnController()
+    vpnController.vpnConnnect(LOCATIONS.NewZealand)
+})
 
 test.describe('A/B test New Zealand', () => {
-    const vpnController = new VpnController()
+    
     const recursionsNZ = new RecursionsNZ()
     
-    
-
-    test.beforeAll(async () => {
-        vpnController.vpnConnnect(LOCATIONS.NewZealand)
-    })
         
         test(`Landing WP Stag check page and params`, async () => {
             await recursionsNZ.recursiveTestWelcomeStag()
@@ -46,10 +45,10 @@ test.describe('A/B test New Zealand', () => {
             await recursionsNZ.recursiveTestNZNoDepBtag()
         })
 
+})
 
-    test.afterAll(async () => {
-        vpnController.vpnDisconnect()
-       
-        })
-
+test.afterAll(async () => {
+    const vpnController = new VpnController()
+    vpnController.vpnDisconnect()
+   
 })

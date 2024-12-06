@@ -21,7 +21,7 @@ async function startBrowser() {
   }
 
 
-export default class NegativeRecursionsDE {
+export default class StageNegativeRecursionsDE {
 
     constructor(){}
 

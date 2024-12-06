@@ -1,12 +1,13 @@
 import {test} from 'playwright/test';
-import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
+import { LOCATIONS } from '../../../src/Data/constants';
+import { CA_STAGE_LINKS } from '../../../src/Data/Canada/canadaLinks';
 import VpnController from '../../../src/methods/VpnController/vpnController';
-import RecursionsCA from '../../../src/methods/Recursions/Positive/recursionsCA';
+import StageRecursionsCA from '../../../src/methods/Recursions/PositiveStage/StageRecursionsCA';
 
 
 test.describe('A/B test Canada', () => {
     const vpnController = new VpnController()
-    const recursionsCA = new RecursionsCA()
+    const recursionsCA = new StageRecursionsCA()
     
     
 
@@ -15,35 +16,35 @@ test.describe('A/B test Canada', () => {
     })
         
         test(`Landing WP Stag check page and params`, async () => {
-            await recursionsCA.recursiveTestWelcomeStag(STAGE_LINK)
+            await recursionsCA.StageRecursiveTestWelcomeStag(CA_STAGE_LINKS.welcomeStag)
             })
         
         test(`Landing Land Stag check page and params`, async () => {
-            await recursionsCA.recursiveTestLandStag(STAGE_LINK)
+            await recursionsCA.StageRecursiveTestLandStag(CA_STAGE_LINKS.welcomeBtag)
             })
 
         test(`Landing WP Btag check page and params`, async () => {
-            await recursionsCA.recursiveTestWelcomeBtag(STAGE_LINK)
+            await recursionsCA.StageRecursiveTestWelcomeBtag(CA_STAGE_LINKS.welcomeBtag)
             })
         
         test(`Landing Land Btag check page and params`, async () => {
-            await recursionsCA.recursiveTestLandBtag(STAGE_LINK)
+            await recursionsCA.StageRecursiveTestLandBtag(CA_STAGE_LINKS.welcomeBtag)
             })
 
         test('CA NDB Stag', async () => {
-            await recursionsCA.recursiveTestCANDBStag(STAGE_LINK)
+            await recursionsCA.StageRecursiveTestCANDBStag(CA_STAGE_LINKS.NDBstag)
         })
 
         test('CA NDB Btag', async () => {
-            await recursionsCA.recursiveTestCANDBBtag(STAGE_LINK)
+            await recursionsCA.StageRecursiveTestCANDBBtag(CA_STAGE_LINKS.NDBbtag)
         })
 
         test('CA NoDep Stag', async () => {
-            await recursionsCA.recursiveTestCANoDepStag(STAGE_LINK)
+            await recursionsCA.StageRecursiveTestCANoDepStag(CA_STAGE_LINKS.NDBstag)
         })
 
         test('CA NoDep Btag', async () => {
-            await recursionsCA.recursiveTestCANoDepBtag(STAGE_LINK)
+            await recursionsCA.StageRecursiveTestCANoDepBtag(CA_STAGE_LINKS.NDBbtag)
         })
 
 
