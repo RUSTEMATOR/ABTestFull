@@ -4,23 +4,23 @@ import { LOCATIONS } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/VpnController/vpnController';
 import RecursionsAU from '../../../src/methods/Recursions/Positive/recursionsAU';
 
+    
+    
+
+test.beforeAll(async () => {
+    const vpnController = new VpnController()
+    await vpnController.vpnConnnect(LOCATIONS.Australia)
+    
+   
+})
 
 
 
 test.describe('A/B NDB Australia', async  () => {
-    const vpnController = new VpnController()
+   
     const recursionsAU = new RecursionsAU()
     
-    
-    
-    
 
-    test.beforeAll(async () => {
-       
-        await vpnController.vpnConnnect(LOCATIONS.Australia)
-        
-       
-    })
 
     // test.beforeEach(async ({page}) => {
     //    const methods = new Methods(page)
@@ -61,8 +61,10 @@ test.describe('A/B NDB Australia', async  () => {
         await recursionsAU.recursiveTestAUNDBBtag()
     })
 
+})
 
-    test.afterAll(async () => {
-        vpnController.vpnDisconnect()
-    })
+
+test.afterAll(async () => {
+    const vpnController = new VpnController()
+    vpnController.vpnDisconnect()
 })

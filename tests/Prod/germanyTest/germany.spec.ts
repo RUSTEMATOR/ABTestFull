@@ -3,19 +3,17 @@ import { LOCATIONS } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/VpnController/vpnController';
 import RecursionsDE from '../../../src/methods/Recursions/Positive/recursionsDE';
 
+test.beforeAll(async () => {
+    const vpnController = new VpnController()
+    await vpnController.vpnConnnect(LOCATIONS.Germany)
 
+    
+})
 
 test.describe('A/B test GermanyWP', () => {
-    const vpnController = new VpnController()
+    
     const recursionsDE = new RecursionsDE()
 
-
-    test.beforeAll(async () => {
-
-        await vpnController.vpnConnnect(LOCATIONS.Germany)
-    
-        
-    })
 
         test(`Landing WP DE Stag check page and params`, async () => {
             await recursionsDE.recursiveTestWelcomeDEStag()
@@ -36,21 +34,17 @@ test.describe('A/B test GermanyWP', () => {
 
 
     test.afterAll(async () => {
+        const vpnController = new VpnController()
         await vpnController.vpnDisconnect()
       
     })
 
 })
 
+
 test.describe('A/B NDB Germany', () => {
-    const vpnController = new VpnController()
-    const recursionsDE = new RecursionsDE()
-
-
-    test.beforeAll(async () => {
-        vpnController.vpnConnnect(LOCATIONS.Germany)
     
-    })
+    const recursionsDE = new RecursionsDE()
 
     test('Landing No Dep Germany Stag', async () => {
         await recursionsDE.recursiveTestDENoDepStag()
@@ -68,9 +62,11 @@ test.describe('A/B NDB Germany', () => {
         await recursionsDE.recursiveTestDENDBBtag()
     })
 
-    test.afterAll(async () => {
-        vpnController.vpnDisconnect()
-        
-    })
+})
 
+
+test.afterAll(async () => {
+    const vpnController = new VpnController()
+    await vpnController.vpnDisconnect()
+  
 })

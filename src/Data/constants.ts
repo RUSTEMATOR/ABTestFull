@@ -27,13 +27,13 @@ export const LOCATIONS: ILocation = {
 
 
 export const EXPECTED_QUERY: IExpectedQuery = {
-    expectedQueryDE: "utm_source=Welcome&utm_medium=DE&utm_campaign=w1&utm_content=02_10_24&utm_term=Original",
+    expectedQueryDE: "utm_source=Welcome&utm_medium=DE&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
     expectedQuerryDENDB: "utm_source=NDB&utm_medium=DE&utm_campaign=n2&utm_content=07_11_24&utm_term=Content2",
-    expectedQueryCA: "utm_source=Welcome&utm_medium=CA&utm_campaign=w1&utm_content=02_10_24&utm_term=Original",
+    expectedQueryCA: "utm_source=Welcome&utm_medium=CA&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
     expectedQueryCANDB: 'utm_source=NDB&utm_medium=CA&utm_campaign=n2&utm_content=13_11_24&utm_term=Content2',
-    expectedQueryAU: "utm_source=Welcome&utm_medium=AU&utm_campaign=w2&utm_content=07_11_24&utm_term=Original",
+    expectedQueryAU: "utm_source=Welcome&utm_medium=AU&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
     expectedQueryAUNDB: 'utm_source=NDB&utm_medium=AU&utm_campaign=n2&utm_content=13_11_24&utm_term=Content2',
-    expectedQueryNZ: "utm_source=Welcome&utm_medium=NZ&utm_campaign=w1&utm_content=02_10_24&utm_term=Original", 
+    expectedQueryNZ: "utm_source=Welcome&utm_medium=NZ&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome", 
     expectedQueryNZNDB: 'utm_source=NDB&utm_medium=NZ&utm_campaign=n1&utm_content=10_10_24&utm_term=Original',
 }
 

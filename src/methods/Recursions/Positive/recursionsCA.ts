@@ -67,7 +67,7 @@ export default class RecursionsCA {
     
                 const finalUrl = await regMethods.page.url()
     
-                await regMethods.openRegForm(`div.offer_block-button`)
+                await regMethods.openRegForm(`div.main__button button.button`)
                 await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
     
                 await regMethods.checkAdultCheckbox()
@@ -143,7 +143,7 @@ export default class RecursionsCA {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`div.offer_block-button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()

@@ -3,6 +3,13 @@ import { LOCATIONS } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/VpnController/vpnController';
 import RecursionsCA from '../../../src/methods/Recursions/Positive/recursionsCA';
 
+    
+
+test.beforeAll(async () => {
+    const vpnController = new VpnController()
+    vpnController.vpnConnnect(LOCATIONS.Canada)
+})
+    
 
 test.describe('A/B test Canada', () => {
     const vpnController = new VpnController()
@@ -47,9 +54,13 @@ test.describe('A/B test Canada', () => {
         })
 
 
-    test.afterAll(async () => {
-        vpnController.vpnDisconnect()
-       
-        })
+   
 
 })
+
+
+test.afterAll(async () => {
+    const vpnController = new VpnController()
+    vpnController.vpnDisconnect()
+   
+    })

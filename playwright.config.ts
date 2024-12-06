@@ -20,7 +20,7 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 3,
+  retries: 2,
   timeout: 120000,
   /* Opt out of parallel tests on CI. */
   workers: 1,
@@ -28,26 +28,26 @@ export default defineConfig({
   reporter: [
     ['html'],
               ['list'],
-            //   ['playwright-qase-reporter', {
-            //     debug: true,
-            //     mode: 'testops',
-            //     logging: true,
-            //     testops: {
-            //       api: {
-            //         token: '2b3e65ab1ee17f1440a13c94b9d1da5429f590fdbcc8d080ddc41268ae50305b',
-            //       },
-            //       project: 'AUTOMATION',
-            //       uploadAttachments: true,
-            //       run: {
-            //         complete: true,
-            //         title: 'A/B test Prod', 
-            //         description: 'Prod'
+              ['playwright-qase-reporter', {
+                debug: true,
+                mode: 'testops',
+                logging: true,
+                testops: {
+                  api: {
+                    token: '2b3e65ab1ee17f1440a13c94b9d1da5429f590fdbcc8d080ddc41268ae50305b',
+                  },
+                  project: 'AUTOMATION',
+                  uploadAttachments: true,
+                  run: {
+                    complete: true,
+                    title: 'A/B test Prod Negative', 
+                    description: 'Prod'
 
-            //       }
+                  }
 
-            //     }
-            //   }
-            // ]
+                }
+              }
+            ]
          ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -71,13 +71,21 @@ export default defineConfig({
     {
       name: 'prod',
       use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/Prod/**/*.spec.ts'
     },
 
     {
       name: 'stage',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/*.spec.stage.ts'
+      testMatch: '**/tests/Stage/**/*.spec.stage.ts'
     },
+
+    {
+      name: 'negative-prod',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/NegativeProd/**/*.spec.ts'
+    },
+
 
     // {
     //   name: 'firefox',

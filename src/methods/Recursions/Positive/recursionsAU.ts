@@ -66,7 +66,7 @@ export default class RecursionsAU {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`div.offer_block-button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -92,7 +92,7 @@ export default class RecursionsAU {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestWelcomeAUStag();
+            return this.recursiveTestWelcomeAUStag(stageLink);
         }
 
     }
@@ -139,7 +139,7 @@ export default class RecursionsAU {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`div.offer_block-button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: randomEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -165,7 +165,7 @@ export default class RecursionsAU {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestWelcomeAUBtag();
+            return this.recursiveTestWelcomeAUBtag(stageLink);
         }
 
     }
@@ -241,7 +241,7 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestWorldAUStag();
+            return this.recursiveTestWorldAUStag(stageLink);
         }
 
     }
@@ -320,7 +320,7 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestWorldAUBtag();
+            return this.recursiveTestWorldAUBtag(stageLink);
         }
 
     }
@@ -400,7 +400,7 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestAUNoDepBtag();
+            return this.recursiveTestAUNoDepBtag(stageLink);
         }
 
     }
@@ -481,7 +481,7 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestAUNDBBtag();
+            return this.recursiveTestAUNDBBtag(stageLink);
         }
 
     }
@@ -558,7 +558,7 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestAUNoDepStag();
+            return this.recursiveTestAUNoDepStag(stageLink);
         }
 
     }
@@ -639,7 +639,7 @@ export default class RecursionsAU {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.recursiveTestAUNDBBtag();
+            return this.recursiveTestAUNDBBtag(stageLink);
         }
 
     }
