@@ -1,7 +1,7 @@
 import {test} from 'playwright/test';
 import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/VpnController/vpnController';
-import RecursionsDE from '../../../src/methods/Recursions/recursionsDE';
+import RecursionsDE from '../../../src/methods/Recursions/Positive/recursionsDE';
 
 
 

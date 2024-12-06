@@ -64,7 +64,7 @@ export default class NegativeRecursionsCA {
     
                 const finalUrl = await regMethods.page.url()
     
-                await regMethods.openRegForm(`div.offer_block-button`)
+                await regMethods.openRegForm(`div.main__button .button`)
                 await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
     
                 await regMethods.checkAdultCheckbox()
@@ -133,7 +133,7 @@ export default class NegativeRecursionsCA {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`div.offer_block-button`)
+            await regMethods.openRegForm(`div.main__button .button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -200,7 +200,7 @@ export default class NegativeRecursionsCA {
     
                 const finalUrl = await regMethods.page.url()
     
-                await regMethods.openRegForm(`div.main__button > button`)
+                await regMethods.openRegForm(`div.main__button .button`)
                 await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
     
                 await regMethods.checkAdultCheckbox()
@@ -269,7 +269,7 @@ export default class NegativeRecursionsCA {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`div.main__button > button`)
+            await regMethods.openRegForm(`div.main__button .button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()

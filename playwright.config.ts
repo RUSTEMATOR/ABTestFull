@@ -13,7 +13,6 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './tests',
-  testMatch: '**/*.spec.ts',
   /* Run tests in files in parallel */
   fullyParallel: true,
 
@@ -28,26 +27,26 @@ export default defineConfig({
   reporter: [
     ['html'],
               ['list'],
-            //   ['playwright-qase-reporter', {
-            //     debug: true,
-            //     mode: 'testops',
-            //     logging: true,
-            //     testops: {
-            //       api: {
-            //         token: '2b3e65ab1ee17f1440a13c94b9d1da5429f590fdbcc8d080ddc41268ae50305b',
-            //       },
-            //       project: 'AUTOMATION',
-            //       uploadAttachments: true,
-            //       run: {
-            //         complete: true,
-            //         title: 'A/B test Prod', 
-            //         description: 'Prod'
+              ['playwright-qase-reporter', {
+                debug: true,
+                mode: 'testops',
+                logging: true,
+                testops: {
+                  api: {
+                    token: '2b3e65ab1ee17f1440a13c94b9d1da5429f590fdbcc8d080ddc41268ae50305b',
+                  },
+                  project: 'AUTOMATION',
+                  uploadAttachments: true,
+                  run: {
+                    complete: true,
+                    title: 'A/B test Prod', 
+                    description: 'Prod'
 
-            //       }
+                  }
 
-            //     }
-            //   }
-            // ]
+                }
+              }
+            ]
          ],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
@@ -71,13 +70,14 @@ export default defineConfig({
     {
       name: 'prod',
       use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/*.spec.ts',
     },
 
-    {
-      name: 'stage',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/*.spec.stage.ts'
-    },
+    // {
+    //   name: 'stage',
+    //   use: { ...devices['Desktop Chrome'] },
+    //   testMatch: '**/*.stage.ts'
+    // },
 
     // {
     //   name: 'firefox',

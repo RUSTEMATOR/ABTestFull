@@ -10,13 +10,13 @@ interface IExpectedLinksWelcome {
 }
 
 export const EXPECTED_AUSTRALIA_WELCOME_LINKS: IExpectedLinksWelcome = {
-    Welcome: 'https://www.kingbillywin19.com/land/en-AU/kings_welcome_pack_1',
-    World: 'https://www.kingbillywin19.com/land/en-AU/kings_world_welcome_pack_1'
+    Welcome: 'https://www.kingbillywin20.com/land/en-AU/kings_welcome_pack_1',
+    World: 'https://www.kingbillywin20.com/land/en-AU/kings_world_welcome_pack_1'
 }
 
 
 export const EXPECTED_AUSTRALIA_NDB_LINKS: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillywin19.com/land/en-AU/ndb_2',
-    expectedUrlNoDep: 'https://www.kingbillywin19.com/land/en-AU/kings_no_dep_2'
+    expectedUrlNDB: 'https://www.kingbillywin20.com/land/en-AU/ndb_2',
+    expectedUrlNoDep: 'https://www.kingbillywin20.com/land/en-AU/kings_no_dep_2'
 
 }

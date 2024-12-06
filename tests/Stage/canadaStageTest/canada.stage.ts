@@ -1,7 +1,7 @@
 import {test} from 'playwright/test';
 import { LOCATIONS, STAGE_LINK } from '../../../src/Data/constants';
 import VpnController from '../../../src/methods/VpnController/vpnController';
-import RecursionsCA from '../../../src/methods/Recursions/recursionsCA';
+import RecursionsCA from '../../../src/methods/Recursions/Positive/recursionsCA';
 
 
 test.describe('A/B test Canada', () => {

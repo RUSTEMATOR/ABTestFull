@@ -1,5 +1,3 @@
-import { I } from "@faker-js/faker/dist/airline-BLb3y-7w"
-
 interface ILinks {
     Stag: string
     Btag: string
