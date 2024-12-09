@@ -39,7 +39,7 @@ export default defineConfig({
                   uploadAttachments: true,
                   run: {
                     complete: true,
-                    title: 'A/B test Stage rerun', 
+                    title: 'A/B Negative Prod rerun', 
                     description: 'Prod'
 
                   }
@@ -83,6 +83,12 @@ export default defineConfig({
       name: 'negative-prod',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**/tests/NegativeProd/**/*.spec.ts'
+    },
+
+    {
+      name: 'NDB',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/Prod/**/NDB/*.spec.ts'
     },
 
 

@@ -34,7 +34,7 @@ export const EXPECTED_QUERY: IExpectedQuery = {
     expectedQueryAU: "utm_source=Welcome&utm_medium=AU&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
     expectedQueryAUNDB: 'utm_source=NDB&utm_medium=AU&utm_campaign=n2&utm_content=13_11_24&utm_term=Content2',
     expectedQueryNZ: "utm_source=Welcome&utm_medium=NZ&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome", 
-    expectedQueryNZNDB: '&utm_source=NDB&utm_medium=NZ&utm_campaign=n2&utm_content=06_12_24&utm_term=Content2',
+    expectedQueryNZNDB: 'utm_source=NDB&utm_medium=NZ&utm_campaign=n2&utm_content=09_12_24&utm_term=Content2',
 }
 
 

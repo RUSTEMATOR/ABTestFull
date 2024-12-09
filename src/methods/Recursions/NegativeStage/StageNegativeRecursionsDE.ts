@@ -26,7 +26,7 @@ export default class StageNegativeRecursionsDE {
     constructor(){}
 
 
-    async NegativeRecursiveTestWelcomeDEStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestWelcomeDEStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -37,7 +37,7 @@ export default class StageNegativeRecursionsDE {
         
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || GERMANY_LINKS.UrlStag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
@@ -52,7 +52,7 @@ export default class StageNegativeRecursionsDE {
             await page.waitForTimeout(1000)
             
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINKS.UrlStag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -89,12 +89,12 @@ export default class StageNegativeRecursionsDE {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestWelcomeDEStag(wrongEmail);
+            return this.NegativeRecursiveTestWelcomeDEStag(wrongEmail, stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestWelcomeDEBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestWelcomeDEBtag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -103,7 +103,7 @@ export default class StageNegativeRecursionsDE {
         const regMethods = new RegMethods1Step(page)
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || GERMANY_LINKS.UrlBtag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
@@ -123,7 +123,7 @@ export default class StageNegativeRecursionsDE {
     
     
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINKS.UrlBtag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -160,13 +160,13 @@ export default class StageNegativeRecursionsDE {
         } else {
             methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestWelcomeDEBtag(wrongEmail);
+            return this.NegativeRecursiveTestWelcomeDEBtag(wrongEmail, stageLink);
         }
 
     }
 
 
-    async NegativeRecursiveTestLandDEStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestLandDEStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -176,7 +176,7 @@ export default class StageNegativeRecursionsDE {
        
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || GERMANY_LINKS.UrlStag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
@@ -197,7 +197,7 @@ export default class StageNegativeRecursionsDE {
                 
             
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINKS.UrlStag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -236,12 +236,12 @@ export default class StageNegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestLandDEStag(wrongEmail);
+            return this.NegativeRecursiveTestLandDEStag(wrongEmail, stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestLandDEBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestLandDEBtag(wrongEmail: string, stageLink: string): Promise<any> {
 
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -252,7 +252,7 @@ export default class StageNegativeRecursionsDE {
        
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || GERMANY_LINKS.UrlBtag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
@@ -274,7 +274,7 @@ export default class StageNegativeRecursionsDE {
                 // await ctx.close();
 
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINKS.UrlBtag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -312,7 +312,7 @@ export default class StageNegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestLandDEBtag(wrongEmail);
+            return this.NegativeRecursiveTestLandDEBtag(wrongEmail, stageLink);
         }
 
     }
@@ -321,7 +321,7 @@ export default class StageNegativeRecursionsDE {
     //------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
     
-    async NegativeRecursiveTestDENDBStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestDENDBStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -331,7 +331,7 @@ export default class StageNegativeRecursionsDE {
        
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || GERMANY_LINK_NDB.Stag)
+        await methods.visitPage(stageLink)
 
         const baseCurrentUrl = await methods.formBaseLink()
         
@@ -354,7 +354,7 @@ export default class StageNegativeRecursionsDE {
     
                 // await ctx.close();
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINK_NDB.Stag);
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -364,7 +364,7 @@ export default class StageNegativeRecursionsDE {
     
                 const finalUrl = await regMethods.page.url()
     
-                await regMethods.openRegForm(`xpath=//div[contains(@class, 'offer__button')]/button[contains(@class, 'button')]`)
+                await regMethods.openRegForm(`div.main__button .button`)
                 await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
     
                 await regMethods.checkAdultCheckbox()
@@ -398,13 +398,13 @@ export default class StageNegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestDENDBStag(wrongEmail);
+            return this.NegativeRecursiveTestDENDBStag(wrongEmail, stageLink);
         }
 
     }
 
 
-    async NegativeRecursiveTestDENoDepStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestDENoDepStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -414,7 +414,7 @@ export default class StageNegativeRecursionsDE {
         
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || GERMANY_LINK_NDB.Stag)
+        await methods.visitPage(stageLink)
 
         const baseCurrentUrl = await methods.formBaseLink()
 
@@ -437,7 +437,7 @@ export default class StageNegativeRecursionsDE {
         
                 // await ctx.close();
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINK_NDB.Stag);
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -479,13 +479,13 @@ export default class StageNegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestDENoDepStag(wrongEmail);
+            return this.NegativeRecursiveTestDENoDepStag(wrongEmail, stageLink);
         }
 
     }
 
 
-    async NegativeRecursiveTestDENDBBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestDENDBBtag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -494,7 +494,7 @@ export default class StageNegativeRecursionsDE {
         const regMethods = new RegMethods3Step(page)
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || GERMANY_LINK_NDB.Btag)
+        await methods.visitPage(stageLink)
 
         const baseCurrentUrl = await methods.formBaseLink()
         
@@ -517,7 +517,7 @@ export default class StageNegativeRecursionsDE {
     
                 // await ctx.close();
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINK_NDB.Btag);
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -527,7 +527,7 @@ export default class StageNegativeRecursionsDE {
     
                 const finalUrl = await regMethods.page.url()
     
-                await regMethods.openRegForm(`xpath=//div[contains(@class, 'offer__button')]/button[contains(@class, 'button')]`)
+                await regMethods.openRegForm(`div.main__button .button`)
                 await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
     
                 await regMethods.checkAdultCheckbox()
@@ -561,12 +561,12 @@ export default class StageNegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestDENDBStag(wrongEmail);
+            return this.NegativeRecursiveTestDENDBStag(wrongEmail, stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestDENoDepBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestDENoDepBtag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -575,7 +575,7 @@ export default class StageNegativeRecursionsDE {
         const regMethods = new RegMethods3Step(page)
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || GERMANY_LINK_NDB.Btag)
+        await methods.visitPage(stageLink)
 
         const baseCurrentUrl = await methods.formBaseLink()
 
@@ -599,7 +599,7 @@ export default class StageNegativeRecursionsDE {
                 // await ctx.close();
 
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || GERMANY_LINK_NDB.Btag);
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -609,7 +609,7 @@ export default class StageNegativeRecursionsDE {
     
                 const finalUrl = await regMethods.page.url()
     
-                await regMethods.openRegForm(`section.main button.button`)
+                await regMethods.openRegForm(`div.main__button .button`)
                 await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
     
                 await regMethods.checkAdultCheckbox()
@@ -641,7 +641,7 @@ export default class StageNegativeRecursionsDE {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestDENoDepStag(wrongEmail);
+            return this.NegativeRecursiveTestDENoDepStag(wrongEmail, stageLink);
         }
 
     }

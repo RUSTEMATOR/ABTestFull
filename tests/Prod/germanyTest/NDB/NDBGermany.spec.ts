@@ -4,6 +4,11 @@ import VpnController from '../../../../src/methods/VpnController/vpnController';
 import RecursionsDE from '../../../../src/methods/Recursions/Positive/recursionsDE';
 
 
+test.beforeAll(async () => {
+    const vpnController = new VpnController()
+    vpnController.vpnConnnect(LOCATIONS.Germany)
+})
+
 test.describe('A/B NDB Germany', () => {
     
     const recursionsDE = new RecursionsDE()
@@ -20,7 +25,7 @@ test.describe('A/B NDB Germany', () => {
         await recursionsDE.recursiveTestDENoDepBtag()
     })
 
-    test('DE NDB Stag', async () => {
+    test('DE NDB Btag', async () => {
         await recursionsDE.recursiveTestDENDBBtag()
     })
 

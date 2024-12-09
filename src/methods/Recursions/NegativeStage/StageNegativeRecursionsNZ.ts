@@ -6,7 +6,6 @@ import { EXPECTED_NEW_ZEALAND_LINKS, EXPECTED_NEW_ZEALAND_LINKS_NDB } from '../.
 import { ERROR_TEXT, EXPECTED_QUERY, PHONE_NUMBERS } from '../../../Data/constants';
 import { RegMethods3Step } from '../../regMethods3step';
 import { RegMethods1Step } from '../../regMethods1step';
-import RandomEmail from '../../../randomEmail/randomEmail';
 import moment from 'moment';
 
 
@@ -25,7 +24,7 @@ export default class NegativeRecursionsNZ {
 
     constructor(){}
 
-    async NegativeRecursiveTestWelcomeStag(wrongEmail: string, stageLink?: string): Promise<boolean>{
+    async NegativeRecursiveTestWelcomeStag(wrongEmail: string, stageLink: string): Promise<boolean>{
         
         let browser = await startBrowser()
         let ctx = await browser.newContext()
@@ -37,7 +36,7 @@ export default class NegativeRecursionsNZ {
         
     
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || NEW_ZEALAND_LINKS.UrlStag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
     
         if (baseCurrentUrl === EXPECTED_NEW_ZEALAND_LINKS.expectedUrlWelcome){
@@ -54,7 +53,7 @@ export default class NegativeRecursionsNZ {
 
                 // await page.screenshot({path: './screenshots/screeenshot.png'})
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || NEW_ZEALAND_LINKS.UrlStag);
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -94,11 +93,11 @@ export default class NegativeRecursionsNZ {
             await methods.sleep(1000)
             // await page.screenshot({path: './screenshots/screeenshot.png'})
             await ctx.close();
-            return this.NegativeRecursiveTestWelcomeStag(wrongEmail);
+            return this.NegativeRecursiveTestWelcomeStag(wrongEmail, stageLink);
         }
     }
 
-    async NegativeRecursiveTestWelcomeBtag(wrongEmail: string, stageLink?: string): Promise<boolean>{
+    async NegativeRecursiveTestWelcomeBtag(wrongEmail: string, stageLink: string): Promise<boolean>{
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -108,7 +107,7 @@ export default class NegativeRecursionsNZ {
         
     
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || NEW_ZEALAND_LINKS.UrlBtag)
+        await methods.visitPage(stageLink )
         const baseCurrentUrl = await methods.formBaseLink()
     
         if (baseCurrentUrl === EXPECTED_NEW_ZEALAND_LINKS.expectedUrlWelcome){
@@ -126,7 +125,7 @@ export default class NegativeRecursionsNZ {
 
                 
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || NEW_ZEALAND_LINKS.UrlBtag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -166,13 +165,13 @@ export default class NegativeRecursionsNZ {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestWelcomeBtag(wrongEmail);
+            return this.NegativeRecursiveTestWelcomeBtag(wrongEmail, stageLink);
         }
     }
 
 
 
-    async NegativeRecursiveTestLandStag(wrongEmail: string, stageLink?: string): Promise<boolean> {
+    async NegativeRecursiveTestLandStag(wrongEmail: string, stageLink: string): Promise<boolean> {
 
 
         let browser = await startBrowser()
@@ -183,7 +182,7 @@ export default class NegativeRecursionsNZ {
         const regMethods = new RegMethods1Step(page)
     
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || NEW_ZEALAND_LINKS.UrlStag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
     
         if (baseCurrentUrl === EXPECTED_NEW_ZEALAND_LINKS.expectedUrlLand){
@@ -198,7 +197,7 @@ export default class NegativeRecursionsNZ {
             qase.comment(`Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_NEW_ZEALAND_LINKS.expectedUrlWelcome}\n${EXPECTED_NEW_ZEALAND_LINKS.expectedUrlLand}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryNZ}\n Received parameters: ${receivedParameters}`)
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || NEW_ZEALAND_LINKS.UrlStag);
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -236,14 +235,14 @@ export default class NegativeRecursionsNZ {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestLandStag(wrongEmail);
+            return this.NegativeRecursiveTestLandStag(wrongEmail, stageLink);
         }
 
     }
 
 
 
-    async NegativeRecursiveTestLandBtag(wrongEmail: string, stageLink?: string): Promise<boolean> {
+    async NegativeRecursiveTestLandBtag(wrongEmail: string, stageLink: string): Promise<boolean> {
 
 
         let browser = await startBrowser()
@@ -255,7 +254,7 @@ export default class NegativeRecursionsNZ {
        
     
         await methods.sleep(7000)
-        await methods.visitPage(stageLink || NEW_ZEALAND_LINKS.UrlBtag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
     
         if (baseCurrentUrl === EXPECTED_NEW_ZEALAND_LINKS.expectedUrlLand){
@@ -270,7 +269,7 @@ export default class NegativeRecursionsNZ {
             qase.comment(`Current URL: ${baseCurrentUrl}\n Expected links: \n${EXPECTED_NEW_ZEALAND_LINKS.expectedUrlWelcome}\n${EXPECTED_NEW_ZEALAND_LINKS.expectedUrlLand}
                 \n\n Expected parameters: ${EXPECTED_QUERY.expectedQueryNZ}\n Received parameters: ${receivedParameters}`)
 
-                const expectedBtag = await regMethods.extractBtag(stageLink || NEW_ZEALAND_LINKS.UrlBtag);
+                const expectedBtag = await regMethods.extractBtag(stageLink);
                 console.log('Expected btag:', expectedBtag);
                 
     
@@ -311,7 +310,7 @@ export default class NegativeRecursionsNZ {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestLandBtag(wrongEmail);
+            return this.NegativeRecursiveTestLandBtag(wrongEmail, stageLink);
         }
 
     }
@@ -323,7 +322,7 @@ export default class NegativeRecursionsNZ {
     //----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
-    async NegativeRecursiveTestNZNoDepBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestNZNoDepBtag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -333,7 +332,7 @@ export default class NegativeRecursionsNZ {
       
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || NEW_ZEALAND_LINKS_NDB.Btag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
@@ -349,7 +348,7 @@ export default class NegativeRecursionsNZ {
             
                 // await ctx.close();
         
-            const expectedBtag = await regMethods.extractBtag(stageLink || NEW_ZEALAND_LINKS_NDB.Btag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -359,7 +358,7 @@ export default class NegativeRecursionsNZ {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`section.main button.button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -392,12 +391,12 @@ export default class NegativeRecursionsNZ {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestNZNoDepBtag(wrongEmail);
+            return this.NegativeRecursiveTestNZNoDepBtag(wrongEmail, stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestNZNDBBtag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestNZNDBBtag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -408,7 +407,7 @@ export default class NegativeRecursionsNZ {
         
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || NEW_ZEALAND_LINKS_NDB.Btag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
@@ -426,7 +425,7 @@ export default class NegativeRecursionsNZ {
             
                 // await ctx.close();
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || NEW_ZEALAND_LINKS_NDB.Btag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -436,7 +435,7 @@ export default class NegativeRecursionsNZ {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`xpath=//div[contains(@class, 'offer__button')]/button[contains(@class, 'button')]`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -470,13 +469,13 @@ export default class NegativeRecursionsNZ {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestNZNDBBtag(wrongEmail);
+            return this.NegativeRecursiveTestNZNDBBtag(wrongEmail, stageLink);
         }
 
     }
 
 
-    async NegativeRecursiveTestNZNoDepStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestNZNoDepStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -485,7 +484,7 @@ export default class NegativeRecursionsNZ {
         const regMethods = new RegMethods3Step(page)
 
         await methods.sleep(1000)
-        await methods.visitPage(stageLink || NEW_ZEALAND_LINKS_NDB.Stag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
@@ -501,7 +500,7 @@ export default class NegativeRecursionsNZ {
             
                 // await ctx.close();
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || NEW_ZEALAND_LINKS_NDB.Stag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -511,7 +510,7 @@ export default class NegativeRecursionsNZ {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`section.main button.button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -544,12 +543,12 @@ export default class NegativeRecursionsNZ {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestNZNoDepStag(wrongEmail);
+            return this.NegativeRecursiveTestNZNoDepStag(wrongEmail, stageLink);
         }
 
     }
 
-    async NegativeRecursiveTestNZNDBStag(wrongEmail: string, stageLink?: string): Promise<any> {
+    async NegativeRecursiveTestNZNDBStag(wrongEmail: string, stageLink: string): Promise<any> {
         let browser = await startBrowser()
         let ctx = await browser.newContext()
         let page = await ctx.newPage()
@@ -559,7 +558,7 @@ export default class NegativeRecursionsNZ {
         const regMethods = new RegMethods3Step(page)
 
         await methods.sleep(3000)
-        await methods.visitPage(stageLink || NEW_ZEALAND_LINKS_NDB.Stag)
+        await methods.visitPage(stageLink)
         const baseCurrentUrl = await methods.formBaseLink()
 
 
@@ -577,7 +576,7 @@ export default class NegativeRecursionsNZ {
             
                 // await ctx.close();
 
-            const expectedBtag = await regMethods.extractBtag(stageLink || NEW_ZEALAND_LINKS_NDB.Stag);
+            const expectedBtag = await regMethods.extractBtag(stageLink);
             console.log('Expected btag:', expectedBtag);
             
 
@@ -587,7 +586,7 @@ export default class NegativeRecursionsNZ {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`xpath=//div[contains(@class, 'offer__button')]/button[contains(@class, 'button')]`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -621,7 +620,7 @@ export default class NegativeRecursionsNZ {
         } else {
             await methods.sleep(1000)
             await ctx.close();
-            return this.NegativeRecursiveTestNZNDBStag(wrongEmail);
+            return this.NegativeRecursiveTestNZNDBStag(wrongEmail, stageLink);
         }
 
     }

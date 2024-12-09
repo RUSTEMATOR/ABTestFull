@@ -14,8 +14,8 @@ export const EXPECTED_NEW_ZEALAND_LINKS: IExpectedLinks = {
 }
 
 export const EXPECTED_NEW_ZEALAND_LINKS_NDB: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillycasino.com/land/en-NZ/ndb_1',
-    expectedUrlNoDep: 'https://www.kingbillycasino.com/land/en-NZ/kings_no_dep_1'
+    expectedUrlNDB: 'https://www.kingbillycasino.com/land/en-NZ/ndb_2',
+    expectedUrlNoDep: 'https://www.kingbillycasino.com/land/en-NZ/kings_no_dep_2'
 }
 
 

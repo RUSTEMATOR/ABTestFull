@@ -211,7 +211,7 @@ export default class NegativeRecursionsAU {
 
             const finalUrl = await regMethods.page.url()
 
-            // await regMethods.openRegForm(`div.main__button > button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -289,7 +289,7 @@ export default class NegativeRecursionsAU {
 
             const finalUrl = await regMethods.page.url()
 
-            // await regMethods.openRegForm(`div.main__button > button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -364,7 +364,7 @@ export default class NegativeRecursionsAU {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`section.main button.button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -519,7 +519,7 @@ export default class NegativeRecursionsAU {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`section.main button.button`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
@@ -596,7 +596,7 @@ export default class NegativeRecursionsAU {
 
             const finalUrl = await regMethods.page.url()
 
-            await regMethods.openRegForm(`xpath=//div[contains(@class, 'offer__button')]/button[contains(@class, 'button')]`)
+            await regMethods.openRegForm(`div.main__button button.button`)
             await regMethods.fillEmailPass({email: wrongEmail, pass:'193786Az()'})
 
             await regMethods.checkAdultCheckbox()
