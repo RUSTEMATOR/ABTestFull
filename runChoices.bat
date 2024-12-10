@@ -10,15 +10,17 @@ echo 2. Stage
 echo 3. Negative Prod
 echo 4. Negative Stage
 echo 5. Install dependencies
-echo 6. Exit
-choice /c 123456 /m "Select an option:"
+echo 6. Install chromium
+echo 7. Exit
+choice /c 1234567 /m "Select an option:"
 
 if %errorlevel%==1 goto prodMenu
 if %errorlevel%==2 goto stageMenu
 if %errorlevel%==3 goto negativeProdMenu
 if %errorlevel%==4 goto negativeStageMenu
 if %errorlevel%==5 goto installDependencies
-if %errorlevel%==6 goto exit
+if %errorlevel%==6 goto intallChromium
+if %errorlevel%==7 goto exit
 
 :prodMenu
 cls
@@ -127,6 +129,11 @@ goto negativeStageMenu
 :installDependencies
 echo Installing dependencies...
 call npm install
+goto mainMenu
+
+:installChromium
+echo Installing Chromium
+call npx playwright install chromium
 goto mainMenu
 
 :exit
