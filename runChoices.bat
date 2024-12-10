@@ -19,7 +19,7 @@ if %errorlevel%==2 goto stageMenu
 if %errorlevel%==3 goto negativeProdMenu
 if %errorlevel%==4 goto negativeStageMenu
 if %errorlevel%==5 goto installDependencies
-if %errorlevel%==6 goto intallChromium
+if %errorlevel%==6 goto installChromium
 if %errorlevel%==7 goto exit
 
 :prodMenu
