@@ -36,7 +36,7 @@ export default class StageRecursionsCA {
         
         const regMethods = new RegMethods1Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
     
         await methods.sleep(1000)
         await methods.visitPage(stageLink)
@@ -110,7 +110,7 @@ export default class StageRecursionsCA {
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
     
         await methods.sleep(1000)
         await methods.visitPage(stageLink)
@@ -187,7 +187,7 @@ export default class StageRecursionsCA {
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
 
         await methods.sleep(1000)
         await methods.visitPage(stageLink)
@@ -261,7 +261,7 @@ export default class StageRecursionsCA {
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()  
+        const randomEmail = await email.generateRandomEmail(5)  
     
         await methods.sleep(7000)
         await methods.visitPage(stageLink)
@@ -339,7 +339,7 @@ export default class StageRecursionsCA {
         const methods = new Methods(page)
         const regMethods = new RegMethods3Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
 
         await methods.sleep(1000)
         await methods.visitPage(stageLink)
@@ -418,7 +418,7 @@ export default class StageRecursionsCA {
 
         const regMethods = new RegMethods3Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
 
         await methods.sleep(3000)
         await methods.visitPage(stageLink)
@@ -501,7 +501,7 @@ export default class StageRecursionsCA {
         const methods = new Methods(page)
         const regMethods = new RegMethods3Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
 
         await methods.sleep(1000)
         await methods.visitPage(stageLink)
@@ -580,7 +580,7 @@ export default class StageRecursionsCA {
 
         const regMethods = new RegMethods3Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
 
         await methods.sleep(3000)
         await methods.visitPage(stageLink)

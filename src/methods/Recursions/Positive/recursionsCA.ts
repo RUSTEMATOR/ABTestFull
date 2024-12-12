@@ -36,7 +36,7 @@ export default class RecursionsCA {
         
         const regMethods = new RegMethods1Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
     
         await methods.sleep(1000)
         await methods.visitPage(stageLink || CANADA_LINKS.UrlStag)
@@ -113,7 +113,7 @@ export default class RecursionsCA {
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
     
         await methods.sleep(1000)
         await methods.visitPage(stageLink || CANADA_LINKS.UrlBtag)
@@ -190,7 +190,7 @@ export default class RecursionsCA {
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
 
         await methods.sleep(1000)
         await methods.visitPage(stageLink || CANADA_LINKS.UrlStag)
@@ -264,7 +264,7 @@ export default class RecursionsCA {
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()  
+        const randomEmail = await email.generateRandomEmail(5)  
     
         await methods.sleep(7000)
         await methods.visitPage(stageLink || CANADA_LINKS.UrlBtag)
@@ -342,7 +342,7 @@ export default class RecursionsCA {
         const methods = new Methods(page)
         const regMethods = new RegMethods3Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
 
         await methods.sleep(1000)
         await methods.visitPage(stageLink || CANADA_LINKS_NDB.Btag)
@@ -421,7 +421,7 @@ export default class RecursionsCA {
 
         const regMethods = new RegMethods3Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
 
         await methods.sleep(3000)
         await methods.visitPage(stageLink || CANADA_LINKS_NDB.Btag)
@@ -504,7 +504,7 @@ export default class RecursionsCA {
         const methods = new Methods(page)
         const regMethods = new RegMethods3Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
 
         await methods.sleep(1000)
         await methods.visitPage(stageLink || CANADA_LINKS_NDB.Stag)
@@ -583,7 +583,7 @@ export default class RecursionsCA {
 
         const regMethods = new RegMethods3Step(page)
         const email = new RandomEmail()
-        const randomEmail = await email.generateRandomEmail()
+        const randomEmail = await email.generateRandomEmail(5)
 
         await methods.sleep(3000)
         await methods.visitPage(stageLink || CANADA_LINKS_NDB.Stag)

@@ -39,7 +39,7 @@ export const EXPECTED_QUERY: IExpectedQuery = {
 
 
 export const PHONE_NUMBERS = {
-    Canada: '769 346 7295',
+    Canada: '250-722-0726 ',
     Germany: '21 691530',
     Australia: '3210 16186',
     NewZealand: '4 738 5913',

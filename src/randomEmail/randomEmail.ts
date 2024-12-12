@@ -4,8 +4,16 @@ export default class RandomEmail {
 
     constructor(){}
 
-    async generateRandomEmail(domain?: string): Promise<string> {
-        const randEmail = `automaton_${randomEmail({domain: domain || 'kingbilly.xyz', length: 23})}`
-        return randEmail;
+    async generateRandomEmail(length: number): Promise<string> {
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890"
+        let result  = ''
+    
+        for (let i = 0; i < length; i++){
+            const randdomIndex = Math.floor(Math.random() * characters.length)
+            result += characters[randdomIndex]
+        }
+    
+        return `automaton_${result}@kingbilly.xyz`
     }
+
 }
