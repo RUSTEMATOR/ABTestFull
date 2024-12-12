@@ -87,9 +87,8 @@ export default class StageRecursionsCA {
     
                 await regMethods.createAnAccount()
                 await regMethods.page.waitForTimeout(10000)
-    
-            
-            
+                
+                await expect(page.locator('#deposit_play_btn')).toBeVisible()
             
                 await ctx.close();
     
@@ -163,6 +162,8 @@ export default class StageRecursionsCA {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
     
             await ctx.close();
     
@@ -234,6 +235,8 @@ export default class StageRecursionsCA {
     
                 await regMethods.createAnAccount()
                 await regMethods.page.waitForTimeout(10000)
+
+                await expect(page.locator('#deposit_play_btn')).toBeVisible()
     
                 await ctx.close();
     
@@ -307,8 +310,10 @@ export default class StageRecursionsCA {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
     
-                await ctx.close();
+            await ctx.close();
             
             
     
@@ -391,6 +396,8 @@ export default class StageRecursionsCA {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
                 
             await ctx.close();
             
@@ -471,6 +478,8 @@ export default class StageRecursionsCA {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
     
             await ctx.close();
 
@@ -549,6 +558,8 @@ export default class StageRecursionsCA {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
                 
             await ctx.close();
             
@@ -629,6 +640,8 @@ export default class StageRecursionsCA {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
     
             await ctx.close();
 

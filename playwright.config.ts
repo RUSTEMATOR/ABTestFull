@@ -19,10 +19,10 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 2,
+  retries: 4,
   timeout: 120000,
   /* Opt out of parallel tests on CI. */
-  workers: 3,
+  workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
   reporter: [
     ['html'],
@@ -39,9 +39,9 @@ export default defineConfig({
                     project: 'AUTOMATION',
                     uploadAttachments: true,
                     run: {
-                      complete: true,
-                      title: '', 
-                      id: '142'
+                      complete: false,
+                      title: 'A/B NDB Split Negative: KB-N3-AU', 
+                      // id: '145'
 
                     }
 
@@ -68,6 +68,30 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    {
+      name: 'ndb-prod',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/Prod/**/NDB/*.spec.ts'
+    },
+
+    {
+      name: 'ndb-prod-negative',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/NegativeProd/**/NDB/*.spec.ts'
+    },
+
+    {
+      name: 'ndb-stage',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/Stage/**/NDB/*.stage.ts'
+    },
+
+    {
+      name: 'ndb-stage-negative',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/NegativeStage/**/NDB/*.stage.ts'
+    },
+
     {
       name: 'prod-au-welcome',
       use: { ...devices['Desktop Chrome'] },
@@ -254,19 +278,18 @@ export default defineConfig({
       name: 'negative-st-de-ndb',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**/tests/NegativeStage/germanyNegativeTest/NDB/*.stage.ts'
-      tests\NegativeStage\germanyNegaiveTest\NDB\NDBGermanyNegative.stage.ts
     },
 
     {
       name: 'negative-st-nz-welcome',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeStage/germanyNegativeTest/Welcome/*.stage.ts'
+      testMatch: '**/tests/NegativeStage/newZealandNegativeTest/Welcome/*.stage.ts'
     },
 
     {
       name: 'negative-st-nz-ndb',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeStage/germanyNegativeTest/NDB/*.stage.ts'
+      testMatch: '**/tests/NegativeStage/newZealandNegativeTest/NDB/*.stage.ts'
     },
 
     // {

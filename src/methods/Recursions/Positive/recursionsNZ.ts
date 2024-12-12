@@ -89,6 +89,8 @@ export default class RecursionsNZ {
                 await regMethods.createAnAccount()
                 await regMethods.page.waitForTimeout(10000)
 
+                await expect(page.locator('#deposit_play_btn')).toBeVisible()
+
                 await ctx.close();
     
                 
@@ -160,9 +162,11 @@ export default class RecursionsNZ {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
     
     
-                await ctx.close();
+            await ctx.close();
     
                 
                 return true;
@@ -235,6 +239,8 @@ export default class RecursionsNZ {
                 console.log('Actual btag:', actualBtag);
     
                 await regMethods.createAnAccount()
+
+                await expect(page.locator('#deposit_play_btn')).toBeVisible()
     
                 await ctx.close();
     
@@ -312,6 +318,8 @@ export default class RecursionsNZ {
     
                 await regMethods.createAnAccount()
                 await regMethods.page.waitForTimeout(10000)
+
+                await expect(page.locator('#deposit_play_btn')).toBeVisible()
     
                 await ctx.close();
             
@@ -399,6 +407,8 @@ export default class RecursionsNZ {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
                 
             await ctx.close();
             
@@ -479,6 +489,8 @@ export default class RecursionsNZ {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
     
             await ctx.close();
 
@@ -557,6 +569,8 @@ export default class RecursionsNZ {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
                 
             await ctx.close();
             
@@ -637,6 +651,8 @@ export default class RecursionsNZ {
 
             await regMethods.createAnAccount()
             await regMethods.page.waitForTimeout(10000)
+
+            await expect(page.locator('#deposit_play_btn')).toBeVisible()
     
             await ctx.close();
 
