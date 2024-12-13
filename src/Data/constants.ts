@@ -3,6 +3,7 @@ interface ILocation {
     Germany: string
     Australia: string
     NewZealand: string
+    Austria: string
 }
 
 interface IExpectedQuery {
@@ -14,6 +15,8 @@ interface IExpectedQuery {
     expectedQueryAUNDB: string,
     expectedQueryNZ: string,
     expectedQueryNZNDB: string
+    expectedQueryAT: string,
+    expectedQueryATNDB: string
 
 }
 
@@ -22,7 +25,8 @@ export const LOCATIONS: ILocation = {
     Canada: 'Canada - Montreal',
     Germany: 'Germany - Frankfurt - 1',
     Australia: 'Australia - Melbourne',
-    NewZealand: 'New Zealand'
+    NewZealand: 'New Zealand',
+    Austria: 'Austria'
 }
 
 
@@ -35,7 +39,10 @@ export const EXPECTED_QUERY: IExpectedQuery = {
     expectedQueryAUNDB: 'utm_source=NDB&utm_medium=AU&utm_campaign=n3&utm_content=11_12_24&utm_term=Content3',
     expectedQueryNZ: "utm_source=Welcome&utm_medium=NZ&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome", 
     expectedQueryNZNDB: 'utm_source=NDB&utm_medium=NZ&utm_campaign=n2&utm_content=09_12_24&utm_term=Content2',
+    expectedQueryAT: 'utm_source=Welcome&utm_medium=AT&utm_campaign=w1&utm_content=18_10_24&utm_term=Original',
+    expectedQueryATNDB: 'utm_source=NDB&utm_medium=AT&utm_campaign=n2&utm_content=22_11_24&utm_term=Content2'
 }
+
 
 
 export const PHONE_NUMBERS = {
@@ -43,6 +50,7 @@ export const PHONE_NUMBERS = {
     Germany: '21 691530',
     Australia: '3210 16186',
     NewZealand: '4 738 5913',
+    Austria: ''
 }
 
 
