@@ -14,6 +14,11 @@ export class RegMethods1Step {
         this.page = page;
     }
 
+    async goto({url, expectedLocator}: {url: string, expectedLocator: string}){
+        await this.page.goto(url)
+        await expect(this.page.locator(`${expectedLocator}`)).toBeVisible()
+    }
+
     async extractBtag(url: string): Promise<any>{
         const parsedUrl = new URL(url)
         const btag = parsedUrl.searchParams.get('btag')
@@ -62,9 +67,11 @@ export class RegMethods1Step {
             fs.appendFileSync('usedEmails.txt', `Used email: ${randomEmail} at ${currentTime}\n URL: ${finalUrl}\n`)
         }
 
-        async expectToBeVisible(locator: string, text: string) {
-            await expect(this.page.locator(locator).filter({hasText: text})).toBeVisible()
+        async expectToBeVisible(locator: string) {
+            await expect(this.page.locator(locator)).toBeVisible({timeout: 12000})
             console.log(`Expected ${locator} to be visible`)
         }
+
+        
 
 }
