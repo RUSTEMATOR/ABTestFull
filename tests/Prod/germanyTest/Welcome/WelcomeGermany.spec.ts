@@ -1,7 +1,9 @@
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-import RecursionsDE from '../../../../src/methods/Recursions/Positive/recursionsDE';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { GERMANY_LINKS } from '../../../../src/Data/Germany/germanyLinks';
+import { EXPECTED_GERMANY_LINKS } from '../../../../src/Data/Germany/expectedGermanyResults';
 
 
 test.beforeAll(async () => {
@@ -11,23 +13,47 @@ test.beforeAll(async () => {
 
 test.describe('A/B Welcome Germany', () => {
     
-    const recursionsDE = new RecursionsDE()
+    const Abtest = new RecursiveAbTest()
 
 
         test(`DE Welcome Stag`, async () => {
-            await recursionsDE.recursiveTestWelcomeDEStag()
+            await Abtest.recursiveABTest({
+                url: GERMANY_LINKS.UrlStag,
+                expectedLink: EXPECTED_GERMANY_LINKS.expectedUrlWelcome, 
+                expectedComparisonLink1: EXPECTED_GERMANY_LINKS.expectedUrlLand, 
+                expectedComparisonLink2: EXPECTED_GERMANY_LINKS.expectedUrlWelcome, 
+                expectedQuery: EXPECTED_QUERY.expectedQueryDE 
+            })
         })
 
         test(`DE Welcome Btag`, async () => {
-            await recursionsDE.recursiveTestWelcomeDEBtag()
+            await Abtest.recursiveABTest({
+                url: GERMANY_LINKS.UrlBtag,
+                expectedLink: EXPECTED_GERMANY_LINKS.expectedUrlWelcome, 
+                expectedComparisonLink1: EXPECTED_GERMANY_LINKS.expectedUrlLand, 
+                expectedComparisonLink2: EXPECTED_GERMANY_LINKS.expectedUrlWelcome, 
+                expectedQuery: EXPECTED_QUERY.expectedQueryDE 
+            })
         })
 
         test(`DE Welcome Land Stag`, async () => {
-            await recursionsDE.recursiveTestLandDEStag()
+            await Abtest.recursiveABTest({
+                url: GERMANY_LINKS.UrlBtag,
+                expectedLink: EXPECTED_GERMANY_LINKS.expectedUrlLand, 
+                expectedComparisonLink1: EXPECTED_GERMANY_LINKS.expectedUrlLand, 
+                expectedComparisonLink2: EXPECTED_GERMANY_LINKS.expectedUrlWelcome, 
+                expectedQuery: EXPECTED_QUERY.expectedQueryDE 
+            })
         })
 
         test(`DE Welcome Land Btag`, async () => {
-            await recursionsDE.recursiveTestLandDEBtag()
+            await Abtest.recursiveABTest({
+                url: GERMANY_LINKS.UrlBtag,
+                expectedLink: EXPECTED_GERMANY_LINKS.expectedUrlLand, 
+                expectedComparisonLink1: EXPECTED_GERMANY_LINKS.expectedUrlLand, 
+                expectedComparisonLink2: EXPECTED_GERMANY_LINKS.expectedUrlWelcome, 
+                expectedQuery: EXPECTED_QUERY.expectedQueryDE 
+            })
         })
 
     test.afterAll(async () => {

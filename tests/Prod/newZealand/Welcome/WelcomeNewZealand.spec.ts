@@ -1,7 +1,9 @@
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-import RecursionsNZ from '../../../../src/methods/Recursions/Positive/recursionsNZ';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { NEW_ZEALAND_LINKS } from '../../../../src/Data/NewZealand/newZealandLinks';
+import { EXPECTED_NEW_ZEALAND_LINKS } from '../../../../src/Data/NewZealand/expectedNewZealandResults';
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
@@ -10,23 +12,47 @@ test.beforeAll(async () => {
 
 test.describe('A/B NZ Welcome', () => {
     
-    const recursionsNZ = new RecursionsNZ()
+    const Abtest = new RecursiveAbTest()
     
         
         test(`NZ Welcome Stag`, async () => {
-            await recursionsNZ.recursiveTestWelcomeStag()
+            await Abtest.recursiveABTest({
+                    url: NEW_ZEALAND_LINKS.UrlStag,
+                    expectedLink: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlWelcome, 
+                    expectedComparisonLink1: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlLand, 
+                    expectedComparisonLink2: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlWelcome, 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryNZ 
+                })
             })
         
         test(`NZ Welcome Land Stag`, async () => {
-            await recursionsNZ.recursiveTestLandStag()
+            await Abtest.recursiveABTest({
+                    url: NEW_ZEALAND_LINKS.UrlStag,
+                    expectedLink: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlLand, 
+                    expectedComparisonLink1: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlLand, 
+                    expectedComparisonLink2: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlWelcome, 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryNZ 
+                })
             })
 
         test(`NZ Welcome Btag`, async () => {
-            await recursionsNZ.recursiveTestWelcomeBtag()
+            await Abtest.recursiveABTest({
+                    url: NEW_ZEALAND_LINKS.UrlBtag,
+                    expectedLink: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlWelcome, 
+                    expectedComparisonLink1: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlLand, 
+                    expectedComparisonLink2: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlWelcome, 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryNZ 
+                })
             })
         
-        test(`NZ Welcome Land Stag`, async () => {
-            await recursionsNZ.recursiveTestLandBtag()
+        test(`NZ Welcome Land Btag`, async () => {
+            await Abtest.recursiveABTest({
+                    url: NEW_ZEALAND_LINKS.UrlBtag,
+                    expectedLink: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlLand, 
+                    expectedComparisonLink1: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlLand, 
+                    expectedComparisonLink2: EXPECTED_NEW_ZEALAND_LINKS.expectedUrlWelcome, 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryNZ 
+                })
             })
 })
 

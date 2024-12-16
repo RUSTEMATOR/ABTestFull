@@ -1,9 +1,9 @@
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import { DE_STAGE_LINKS } from '../../../../src/Data/Germany/germanyLinks';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-import StageRecursionsDE from '../../../../src/methods/Recursions/PositiveStage/StageRecursionsDE';
 import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { EXPECTED_GERMANY_STAGE_WELCOME_LINKS } from '../../../../src/Data/Germany/expectedGermanyResults';
 
 
 test.beforeAll(async () => {
@@ -15,23 +15,46 @@ test.beforeAll(async () => {
 
 
 test.describe('A/B DE Welcome', () => {
-    const vpnController = new VpnController()
-    const recursionsDE = new StageRecursionsDE()
+    const Abtest = new RecursiveAbTest()
 
         test(`DE Welcome Stag`, async () => {
-            await recursionsDE.StageRecursiveTestWelcomeDEStag(DE_STAGE_LINKS.welcomeStag)
+            await Abtest.recursiveABTest({
+                url: DE_STAGE_LINKS.welcomeStag,
+                expectedLink: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome,
+                expectedComparisonLink1: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand ,
+                expectedComparisonLink2: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome,
+                expectedQuery: EXPECTED_QUERY.expectedQueryDE
+            })
         })
 
         test(`DE Welcome Btag`, async () => {
-            await recursionsDE.StageRecursiveTestWelcomeDEBtag(DE_STAGE_LINKS.welcomeBtag)
+            await Abtest.recursiveABTest({
+                url: DE_STAGE_LINKS.welcomeBtag,
+                expectedLink: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome,
+                expectedComparisonLink1: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand ,
+                expectedComparisonLink2: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome,
+                expectedQuery: EXPECTED_QUERY.expectedQueryDE
+            })
         })
 
         test(`DE Welcome Land Stag`, async () => {
-            await recursionsDE.StageRecursiveTestLandDEStag(DE_STAGE_LINKS.welcomeStag)
+            await Abtest.recursiveABTest({
+                url: DE_STAGE_LINKS.welcomeBtag,
+                expectedLink: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand,
+                expectedComparisonLink1: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand ,
+                expectedComparisonLink2: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome,
+                expectedQuery: EXPECTED_QUERY.expectedQueryDE
+            })
         })
 
         test(`DE Welcome Land Btag`, async () => {
-            await recursionsDE.StageRecursiveTestLandDEBtag(DE_STAGE_LINKS.welcomeBtag)
+            await Abtest.recursiveABTest({
+                url: DE_STAGE_LINKS.welcomeBtag,
+                expectedLink: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand,
+                expectedComparisonLink1: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlLand ,
+                expectedComparisonLink2: EXPECTED_GERMANY_STAGE_WELCOME_LINKS.expectedUrlWelcome,
+                expectedQuery: EXPECTED_QUERY.expectedQueryDE
+            })
         })
 
 })

@@ -1,7 +1,6 @@
 import {chromium, test, expect} from "playwright/test";
 import { Methods } from "../../methods";
 import { RegMethods1Step } from "../../regMethods1step";
-import moment from "moment";
 import { qase } from "playwright-qase-reporter/playwright";
 
 export default class RecursiveAbTest{
@@ -9,7 +8,8 @@ export default class RecursiveAbTest{
 
     }
 
-    async recursiveABTest({url,
+    async recursiveABTest(
+                        {url,
                         expectedLink, 
                         expectedComparisonLink1, 
                         expectedComparisonLink2, 

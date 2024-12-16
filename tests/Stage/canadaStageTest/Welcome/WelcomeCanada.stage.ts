@@ -2,7 +2,6 @@ import {test} from 'playwright/test';
 import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import { CA_STAGE_LINKS } from '../../../../src/Data/Canada/canadaLinks';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-import StageRecursionsCA from '../../../../src/methods/Recursions/PositiveStage/StageRecursionsCA';
 import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
 import { EXPECTED_CANADA_STAGE_WELCOME_LINKS } from '../../../../src/Data/Canada/expectedCanadaResults.';
 

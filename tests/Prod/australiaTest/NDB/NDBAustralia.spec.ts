@@ -1,34 +1,60 @@
 
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-import RecursionsAU from '../../../../src/methods/Recursions/Positive/recursionsAU';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { AUSTRALIA_LINKNDB } from '../../../../src/Data/Australia/australiaLinks';
+import { EXPECTED_AUSTRALIA_NDB_LINKS } from '../../../../src/Data/Australia/expectedAustraliaResults';
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
     await vpnController.vpnConnnect(LOCATIONS.Australia)
 })
 
-test.describe('Canada', async () => {
+test.describe('Australia', async () => {
     
         test.describe('A/B NDB Australia', async  () => {
         
-            const recursionsAU = new RecursionsAU()
+            const Abtest = new RecursiveAbTest()
 
             test('AU NoDep Stag', async () => {
-                await recursionsAU.recursiveTestAUNoDepStag()
+                await Abtest.recursiveABTest({
+                    url: AUSTRALIA_LINKNDB.Stag,
+                    expectedLink: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep, 
+                    expectedComparisonLink1: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB, 
+                    expectedComparisonLink2: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep, 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB 
+                })
             })
 
             test('AU NDB Stag', async () => {
-                await recursionsAU.recursiveTestAUNDBStag()
+                await Abtest.recursiveABTest({
+                    url: AUSTRALIA_LINKNDB.Stag,
+                    expectedLink: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB, 
+                    expectedComparisonLink1: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB, 
+                    expectedComparisonLink2: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep, 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB 
+                })
             })
 
             test('AU NoDep Btag', async () => {
-                await recursionsAU.recursiveTestAUNoDepBtag()
+                await Abtest.recursiveABTest({
+                    url: AUSTRALIA_LINKNDB.Btag,
+                    expectedLink: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep, 
+                    expectedComparisonLink1: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB, 
+                    expectedComparisonLink2: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep, 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB 
+                })
             })
 
             test('AU NDB Btag', async () => {
-                await recursionsAU.recursiveTestAUNDBBtag()
+                await Abtest.recursiveABTest({
+                    url: AUSTRALIA_LINKNDB.Btag,
+                    expectedLink: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB, 
+                    expectedComparisonLink1: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNDB, 
+                    expectedComparisonLink2: EXPECTED_AUSTRALIA_NDB_LINKS.expectedUrlNoDep, 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB 
+                })
             })
 
         })

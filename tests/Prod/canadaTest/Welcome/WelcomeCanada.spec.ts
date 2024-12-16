@@ -1,7 +1,9 @@
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-import RecursionsCA from '../../../../src/methods/Recursions/Positive/recursionsCA';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { CANADA_LINKS } from '../../../../src/Data/Canada/canadaLinks';
+import { EXPECTED_CANADA_LINKS } from '../../../../src/Data/Canada/expectedCanadaResults.';
 
     
 
@@ -13,7 +15,7 @@ test.beforeAll(async () => {
 
 test.describe('A/B test Welcome Canada', () => {
     const vpnController = new VpnController()
-    const recursionsCA = new RecursionsCA()
+    const Abtest = new RecursiveAbTest()
     
     
 
@@ -22,20 +24,44 @@ test.describe('A/B test Welcome Canada', () => {
     })
         
         test(`CA Welcome Stag`, async () => {
-            await recursionsCA.recursiveTestWelcomeStag()
+            await Abtest.recursiveABTest({
+                    url: CANADA_LINKS.UrlStag,
+                    expectedLink: EXPECTED_CANADA_LINKS.expectedUrlWelcome, 
+                    expectedComparisonLink1: EXPECTED_CANADA_LINKS.expectedUrlWelcome, 
+                    expectedComparisonLink2: EXPECTED_CANADA_LINKS.expectedUrlLand, 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryCA 
+                })
             })
         
         test(`CA Welcome Land Stag`, async () => {
-            await recursionsCA.recursiveTestLandStag()
+            await Abtest.recursiveABTest({
+                    url: CANADA_LINKS.UrlStag,
+                    expectedLink: EXPECTED_CANADA_LINKS.expectedUrlLand, 
+                    expectedComparisonLink1: EXPECTED_CANADA_LINKS.expectedUrlWelcome, 
+                    expectedComparisonLink2: EXPECTED_CANADA_LINKS.expectedUrlLand, 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryCA 
+                })
             })
 
         test(`CA Welcome Btag`, async () => {
-            await recursionsCA.recursiveTestWelcomeBtag()
+            await Abtest.recursiveABTest({
+                url: CANADA_LINKS.UrlBtag,
+                expectedLink: EXPECTED_CANADA_LINKS.expectedUrlWelcome, 
+                expectedComparisonLink1: EXPECTED_CANADA_LINKS.expectedUrlWelcome, 
+                expectedComparisonLink2: EXPECTED_CANADA_LINKS.expectedUrlLand, 
+                expectedQuery: EXPECTED_QUERY.expectedQueryCA 
+            })
             })
         
         test(`CA Welcome Land Btag`, async () => {
-            await recursionsCA.recursiveTestLandBtag()
+            await Abtest.recursiveABTest({
+                url: CANADA_LINKS.UrlBtag,
+                expectedLink: EXPECTED_CANADA_LINKS.expectedUrlWelcome, 
+                expectedComparisonLink1: EXPECTED_CANADA_LINKS.expectedUrlWelcome, 
+                expectedComparisonLink2: EXPECTED_CANADA_LINKS.expectedUrlLand, 
+                expectedQuery: EXPECTED_QUERY.expectedQueryCA 
             })
+    })
 })
 
 

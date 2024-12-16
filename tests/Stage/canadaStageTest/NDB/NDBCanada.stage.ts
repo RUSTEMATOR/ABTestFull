@@ -20,7 +20,7 @@ test.describe('A/B CA NDB', () => {
                 expectedLink: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB,
                 expectedComparisonLink1: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB ,
                 expectedComparisonLink2: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
-                expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+                expectedQuery: EXPECTED_QUERY.expectedQueryCANDB
             })
         })
 
@@ -30,7 +30,7 @@ test.describe('A/B CA NDB', () => {
                 expectedLink: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB,
                 expectedComparisonLink1: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB ,
                 expectedComparisonLink2: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
-                expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+                expectedQuery: EXPECTED_QUERY.expectedQueryCANDB
             })
         })
 
@@ -40,7 +40,7 @@ test.describe('A/B CA NDB', () => {
                 expectedLink: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
                 expectedComparisonLink1: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB ,
                 expectedComparisonLink2: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
-                expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+                expectedQuery: EXPECTED_QUERY.expectedQueryCANDB
             })
         })
 
@@ -50,7 +50,7 @@ test.describe('A/B CA NDB', () => {
                 expectedLink: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
                 expectedComparisonLink1: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB ,
                 expectedComparisonLink2: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
-                expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+                expectedQuery: EXPECTED_QUERY.expectedQueryCANDB
             })
         })
 

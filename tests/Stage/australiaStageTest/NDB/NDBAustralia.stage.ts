@@ -2,9 +2,7 @@ import {test} from 'playwright/test';
 import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import { AU_STAGE_LINKS } from '../../../../src/Data/Australia/australiaLinks';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-import StageRecursionsAU from '../../../../src/methods/Recursions/PositiveStage/StageRecursionsAU';
 import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
-import { EXPECTED_AUSTRIA_STAGE_NDB_LINKS, EXPECTED_AUSTRIA_STAGE_WELCOME_LINKS } from '../../../../src/Data/Austria/expectedAustriaLinks';
 import { EXPECTED_AUSTRALIA_STAGE_NDB_LINKS } from '../../../../src/Data/Australia/expectedAustraliaResults';
 
 

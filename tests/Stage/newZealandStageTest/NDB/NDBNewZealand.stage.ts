@@ -1,8 +1,9 @@
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import { NZ_STAGE_LINKS } from '../../../../src/Data/NewZealand/newZealandLinks';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-import StageRecursionsNZ from '../../../../src/methods/Recursions/PositiveStage/StageRecursionsNZ';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS } from '../../../../src/Data/NewZealand/expectedNewZealandResults';
 
 
 test.beforeAll(async () => {
@@ -12,23 +13,47 @@ test.beforeAll(async () => {
 
 
 test.describe('A/B NZ NDB', () => {
-    const recursionsNZ = new StageRecursionsNZ()
+    const Abtest = new RecursiveAbTest()
     
 
     test('NZ NDB stag', async () => {
-        await recursionsNZ.StageRecursiveTestNZNDBStag(NZ_STAGE_LINKS.NDBstag)
+        await Abtest.recursiveABTest({
+            url: NZ_STAGE_LINKS.NDBstag,
+            expectedLink: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNDB,
+            expectedComparisonLink1: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryNZNDB
+        })
     })
 
     test('NZ NDB Btag', async () => {
-        await recursionsNZ.StageRecursiveTestNZNDBBtag(NZ_STAGE_LINKS.NDBbtag)
+        await Abtest.recursiveABTest({
+            url: NZ_STAGE_LINKS.NDBbtag,
+            expectedLink: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNDB,
+            expectedComparisonLink1: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryNZNDB
+        })
     })
 
     test('NZ NoDep Stag', async () => {
-        await recursionsNZ.StageRecursiveTestNZNoDepStag(NZ_STAGE_LINKS.NDBstag)
+        await Abtest.recursiveABTest({
+            url: NZ_STAGE_LINKS.NDBstag,
+            expectedLink: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedComparisonLink1: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryNZNDB
+        })
     })
 
     test('NZ NoDep Btag', async () => {
-        await recursionsNZ.StageRecursiveTestNZNoDepBtag(NZ_STAGE_LINKS.NDBstag)
+        await Abtest.recursiveABTest({
+            url: NZ_STAGE_LINKS.NDBbtag,
+            expectedLink: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedComparisonLink1: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryNZNDB
+        })
     })
 
 })
