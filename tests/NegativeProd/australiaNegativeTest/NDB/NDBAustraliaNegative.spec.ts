@@ -3,7 +3,7 @@ import {test} from 'playwright/test';
 import { LOCATIONS } from '../../../../src/Data/constants';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
 import NegativeRecursionsAU from '../../../../src/methods/Recursions/Negative/negativeRecursionsAU';
-  
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';  
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
@@ -13,7 +13,7 @@ test.beforeAll(async () => {
 })
 
 test.describe('A/B AU NDB', async  () => {
-    const recursionsAU = new NegativeRecursionsAU()
+    const ABtest = new RecursiveAbTest()
 
     test('AU NoDep Stag', async () => {
         await recursionsAU.NegativeRecursiveTestAUNoDepStag('ross@kingbilly.xyz')

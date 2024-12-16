@@ -1,9 +1,9 @@
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import { AU_STAGE_LINKS } from '../../../../src/Data/Australia/australiaLinks';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-
-import StageRecursionsAU from '../../../../src/methods/Recursions/PositiveStage/StageRecursionsAU';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS } from '../../../../src/Data/Australia/expectedAustraliaResults';
 
 test.beforeAll(() => {
     const vpnController = new VpnController()
@@ -13,23 +13,51 @@ test.beforeAll(() => {
 
 test.describe('A/B Welcome AU Stage', () => {
     const vpnController = new VpnController()
-    const recursionsAU = new StageRecursionsAU()
+    const ABtest = new RecursiveAbTest()
 
 
     test('AU Welcome Stag', async () => {
-        await recursionsAU.StageRecursiveTestWelcomeAUStag(AU_STAGE_LINKS.welcomeStag)
+        await ABtest.recursiveABTest({
+            url: AU_STAGE_LINKS.welcomeStag,
+            expectedLink: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome,
+            expectedComparisonLink1: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome,
+            expectedComparisonLink2: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAU
+
+        })
     })
 
     test('AU Welcome Btag', async () => {
-        await recursionsAU.StageRecursiveTestWelcomeAUBtag(AU_STAGE_LINKS.welcomeBtag)
+        await ABtest.recursiveABTest({
+            url: AU_STAGE_LINKS.welcomeBtag,
+            expectedLink: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome,
+            expectedComparisonLink1: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome,
+            expectedComparisonLink2: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAU
+
+        })
     })
 
     test('AU Land Stag', async () => {
-        await recursionsAU.StageRecursiveTestWorldAUStag(AU_STAGE_LINKS.welcomeStag)
+        await ABtest.recursiveABTest({
+            url: AU_STAGE_LINKS.welcomeStag,
+            expectedLink: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World,
+            expectedComparisonLink1: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome,
+            expectedComparisonLink2: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAU
+
+        })
     })
 
     test('AU Land Btag', async () => {
-        await recursionsAU.StageRecursiveTestWorldAUBtag(AU_STAGE_LINKS.welcomeBtag)
+        await ABtest.recursiveABTest({
+            url: AU_STAGE_LINKS.welcomeBtag,
+            expectedLink: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World,
+            expectedComparisonLink1: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.Welcome,
+            expectedComparisonLink2: EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS.World,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAU
+
+        })
     })
 
 

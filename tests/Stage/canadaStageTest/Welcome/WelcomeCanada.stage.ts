@@ -1,8 +1,10 @@
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import { CA_STAGE_LINKS } from '../../../../src/Data/Canada/canadaLinks';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
 import StageRecursionsCA from '../../../../src/methods/Recursions/PositiveStage/StageRecursionsCA';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { EXPECTED_CANADA_STAGE_WELCOME_LINKS } from '../../../../src/Data/Canada/expectedCanadaResults.';
 
 
 test.beforeAll(async () => {
@@ -11,23 +13,47 @@ test.beforeAll(async () => {
 })
 
 test.describe('A/B CA Welcome Stage', () => {
-    const recursionsCA = new StageRecursionsCA()
+    const ABtest = new RecursiveAbTest()
 
         
         test(`CA Welcome Stag`, async () => {
-            await recursionsCA.StageRecursiveTestWelcomeStag(CA_STAGE_LINKS.welcomeStag)
+            await ABtest.recursiveABTest({
+                url: CA_STAGE_LINKS.welcomeStag,
+                expectedLink: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome,
+                expectedComparisonLink1: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome ,
+                expectedComparisonLink2: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand,
+                expectedQuery: EXPECTED_QUERY.expectedQueryCA
+            })
             })
         
         test(`CA Welcome Land Stag`, async () => {
-            await recursionsCA.StageRecursiveTestLandStag(CA_STAGE_LINKS.welcomeBtag)
+            await ABtest.recursiveABTest({
+                url: CA_STAGE_LINKS.welcomeStag,
+                expectedLink: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand,
+                expectedComparisonLink1: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome ,
+                expectedComparisonLink2: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand,
+                expectedQuery: EXPECTED_QUERY.expectedQueryCA
+            })
             })
 
         test(`CA Welcome Btag`, async () => {
-            await recursionsCA.StageRecursiveTestWelcomeBtag(CA_STAGE_LINKS.welcomeBtag)
+            await ABtest.recursiveABTest({
+                url: CA_STAGE_LINKS.welcomeStag,
+                expectedLink: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome,
+                expectedComparisonLink1: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome ,
+                expectedComparisonLink2: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand,
+                expectedQuery: EXPECTED_QUERY.expectedQueryCA
+            })
             })
         
         test(`CA Welcome Land Btag`, async () => {
-            await recursionsCA.StageRecursiveTestLandBtag(CA_STAGE_LINKS.welcomeBtag)
+            await ABtest.recursiveABTest({
+                url: CA_STAGE_LINKS.welcomeStag,
+                expectedLink: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand,
+                expectedComparisonLink1: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlWelcome ,
+                expectedComparisonLink2: EXPECTED_CANADA_STAGE_WELCOME_LINKS.expectedUrlLand,
+                expectedQuery: EXPECTED_QUERY.expectedQueryCA
+            })
         })
 })
 

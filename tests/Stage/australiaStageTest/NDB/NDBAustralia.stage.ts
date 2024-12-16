@@ -1,8 +1,11 @@
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import { AU_STAGE_LINKS } from '../../../../src/Data/Australia/australiaLinks';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
 import StageRecursionsAU from '../../../../src/methods/Recursions/PositiveStage/StageRecursionsAU';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { EXPECTED_AUSTRIA_STAGE_NDB_LINKS, EXPECTED_AUSTRIA_STAGE_WELCOME_LINKS } from '../../../../src/Data/Austria/expectedAustriaLinks';
+import { EXPECTED_AUSTRALIA_STAGE_NDB_LINKS } from '../../../../src/Data/Australia/expectedAustraliaResults';
 
 
 
@@ -13,24 +16,48 @@ test.beforeAll(async () => {
 })
 
 test.describe('A/B NDB AU Stage', () => {
-    const recursionsAU = new StageRecursionsAU()
+    const ABtest = new RecursiveAbTest()
     
 
     test('AU NoDep Stag', async () => {
-        await recursionsAU.StageRecursiveTestAUNoDepStag(AU_STAGE_LINKS.NDBstag)
+        await ABtest.recursiveABTest({
+            url: AU_STAGE_LINKS.NDBstag,
+            expectedLink: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedComparisonLink1: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+        })
         
     })
 
     test('AU NDB Stag', async () => {
-        await recursionsAU.StageRecursiveTestAUNDBStag(AU_STAGE_LINKS.NDBstag)
+        await ABtest.recursiveABTest({
+            url: AU_STAGE_LINKS.NDBstag,
+            expectedLink: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB,
+            expectedComparisonLink1: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+        })
     })
 
     test('AU NoDep Btag', async () => {
-        await recursionsAU.StageRecursiveTestAUNoDepBtag(AU_STAGE_LINKS.NDBbtag)
+        await ABtest.recursiveABTest({
+            url: AU_STAGE_LINKS.NDBbtag,
+            expectedLink: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedComparisonLink1: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+        })
     })
 
     test('AU NDB Btag', async () => {
-        await recursionsAU.StageRecursiveTestAUNDBBtag(AU_STAGE_LINKS.NDBbtag)
+        await ABtest.recursiveABTest({
+            url: AU_STAGE_LINKS.NDBbtag,
+            expectedLink: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB,
+            expectedComparisonLink1: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_AUSTRALIA_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+        })
     })
 
 })

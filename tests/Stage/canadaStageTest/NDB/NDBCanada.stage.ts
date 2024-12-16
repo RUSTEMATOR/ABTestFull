@@ -1,8 +1,9 @@
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import { CA_STAGE_LINKS } from '../../../../src/Data/Canada/canadaLinks';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-import StageRecursionsCA from '../../../../src/methods/Recursions/PositiveStage/StageRecursionsCA';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { EXPECTED_CANADA_STAGE_NDB_LINKS } from '../../../../src/Data/Canada/expectedCanadaResults.';
 
 
 test.beforeAll(async () => {
@@ -11,22 +12,46 @@ test.beforeAll(async () => {
 })
 
 test.describe('A/B CA NDB', () => {
-    const recursionsCA = new StageRecursionsCA()
+    const ABtest = new RecursiveAbTest()
 
         test('CA NDB Stag', async () => {
-            await recursionsCA.StageRecursiveTestCANDBStag(CA_STAGE_LINKS.NDBstag)
+            await ABtest.recursiveABTest({
+                url: CA_STAGE_LINKS.NDBstag,
+                expectedLink: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB,
+                expectedComparisonLink1: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB ,
+                expectedComparisonLink2: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
+                expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+            })
         })
 
         test('CA NDB Btag', async () => {
-            await recursionsCA.StageRecursiveTestCANDBBtag(CA_STAGE_LINKS.NDBbtag)
+            await ABtest.recursiveABTest({
+                url: CA_STAGE_LINKS.NDBbtag,
+                expectedLink: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB,
+                expectedComparisonLink1: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB ,
+                expectedComparisonLink2: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
+                expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+            })
         })
 
         test('CA NoDep Stag', async () => {
-            await recursionsCA.StageRecursiveTestCANoDepStag(CA_STAGE_LINKS.NDBstag)
+            await ABtest.recursiveABTest({
+                url: CA_STAGE_LINKS.NDBstag,
+                expectedLink: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
+                expectedComparisonLink1: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB ,
+                expectedComparisonLink2: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
+                expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+            })
         })
 
         test('CA NoDep Btag', async () => {
-            await recursionsCA.StageRecursiveTestCANoDepBtag(CA_STAGE_LINKS.NDBbtag)
+            await ABtest.recursiveABTest({
+                url: CA_STAGE_LINKS.NDBbtag,
+                expectedLink: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
+                expectedComparisonLink1: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB ,
+                expectedComparisonLink2: EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep,
+                expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+            })
         })
 
 })

@@ -3,6 +3,7 @@ import { LOCATIONS } from '../../../../src/Data/constants';
 import { DE_STAGE_LINKS } from '../../../../src/Data/Germany/germanyLinks';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
 import StageRecursionsDE from '../../../../src/methods/Recursions/PositiveStage/StageRecursionsDE';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
 
 
 test.beforeAll(async () => {

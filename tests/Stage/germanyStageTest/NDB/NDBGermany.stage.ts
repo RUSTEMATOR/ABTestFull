@@ -1,8 +1,9 @@
 import {test} from 'playwright/test';
-import { LOCATIONS } from '../../../../src/Data/constants';
+import { EXPECTED_QUERY, LOCATIONS } from '../../../../src/Data/constants';
 import { DE_STAGE_LINKS } from '../../../../src/Data/Germany/germanyLinks';
 import VpnController from '../../../../src/methods/VpnController/vpnController';
-import StageRecursionsDE from '../../../../src/methods/Recursions/PositiveStage/StageRecursionsDE';
+import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
+import { EXPECTED_GERMANY_STAGE_NDB_LINKS } from '../../../../src/Data/Germany/expectedGermanyResults';
 
 
 
@@ -14,22 +15,46 @@ test.beforeAll(async () => {
 })
 
 test.describe('A/B DE NDB', () => {
-    const recursionsDE = new StageRecursionsDE()
+    const ABtest = new RecursiveAbTest()
 
     test('DE NoDep Stag', async () => {
-        await recursionsDE.StageRecursiveTestDENoDepStag(DE_STAGE_LINKS.NDBstag)
+        await ABtest.recursiveABTest({
+            url: DE_STAGE_LINKS.NDBstag,
+            expectedLink: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedComparisonLink1: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+        })
     })
 
     test('DE NDB Stag', async () => {
-        await recursionsDE.StageRecursiveTestDENDBStag(DE_STAGE_LINKS.NDBstag)
+        await ABtest.recursiveABTest({
+            url: DE_STAGE_LINKS.NDBstag,
+            expectedLink: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB,
+            expectedComparisonLink1: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+        })
     })
 
     test('DE NoDep Btag', async () => {
-        await recursionsDE.StageRecursiveTestDENoDepBtag(DE_STAGE_LINKS.NDBbtag)
+        await ABtest.recursiveABTest({
+            url: DE_STAGE_LINKS.NDBbtag,
+            expectedLink: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedComparisonLink1: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+        })
     })
 
     test('DE NDB Btag', async () => {
-        await recursionsDE.StageRecursiveTestDENDBBtag(DE_STAGE_LINKS.NDBbtag)
+        await ABtest.recursiveABTest({
+            url: DE_STAGE_LINKS.NDBbtag,
+            expectedLink: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB,
+            expectedComparisonLink1: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB ,
+            expectedComparisonLink2: EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep,
+            expectedQuery: EXPECTED_QUERY.expectedQueryAUNDB
+        })
     })
 })
 
