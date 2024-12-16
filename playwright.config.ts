@@ -40,7 +40,7 @@ export default defineConfig({
                     uploadAttachments: true,
                     run: {
                       complete: false,
-                      title: 'A/B NDB Split', 
+                      title: 'Experiment', 
                       // id: '145'
 
                     }
@@ -73,6 +73,13 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**/tests/**/*.spec.ts'
     },
+
+    {
+      name: 'default-stage',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/**/*.stage.ts'
+    },
+
 
     {
       name: 'ndb-prod',
