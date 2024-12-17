@@ -8,7 +8,7 @@ import { EXPECTED_CANADA_LINKS_NDB } from '../../../../src/Data/Canada/expectedC
     
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnConnnect(LOCATIONS.Canada)
+    await vpnController.vpnConnnect(LOCATIONS.Canada)
 })
     
 
@@ -60,5 +60,5 @@ test.describe('A/B test NDB Canada', () => {
 
 test.afterAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnDisconnect()
+    await vpnController.vpnDisconnect()
 })

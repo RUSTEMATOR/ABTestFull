@@ -8,7 +8,7 @@ import { EXPECTED_CANADA_STAGE_WELCOME_LINKS } from '../../../../src/Data/Canada
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnConnnect(LOCATIONS.Canada)
+    await vpnController.vpnConnnect(LOCATIONS.Canada)
 })
 
 test.describe('A/B CA Welcome Stage', () => {
@@ -58,5 +58,5 @@ test.describe('A/B CA Welcome Stage', () => {
 
 test.afterAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnDisconnect()
+    await vpnController.vpnDisconnect()
 })

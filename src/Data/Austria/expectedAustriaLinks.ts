@@ -9,14 +9,14 @@ interface IExpectedLinksWelcome {
 }
 
 export const EXPECTED_AUSTRIA_WELCOME_LINKS: IExpectedLinksWelcome = {
-    Welcome: 'https://www.kingbillywin12.com/land/at/kings_welcome_pack_1',
-    Land: 'https://www.kingbillywin12.com/land/at/kings_land_1'
+    Welcome: 'https://www.kingbillycasino12.com/land/at/kings_welcome_pack_1',
+    Land: 'https://www.kingbillycasino12.com/land/at/kings_land_1'
 }
 
 
 export const EXPECTED_AUSTRIA_NDB_LINKS: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillywin12.com/land/at/ndb_2',
-    expectedUrlNoDep: 'https://www.kingbillywin12.com/land/at/kings_no_dep_2'
+    expectedUrlNDB: 'https://www.kingbillycasino12.com/land/at/ndb_2',
+    expectedUrlNoDep: 'https://www.kingbillycasino12.com/land/at/kings_no_dep_2'
 
 }
 

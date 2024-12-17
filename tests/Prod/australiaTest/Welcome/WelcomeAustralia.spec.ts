@@ -67,5 +67,5 @@ test.describe('A/B Welcome Australia', async  () => {
 
 test.afterAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnDisconnect()
+    await vpnController.vpnDisconnect()
 })

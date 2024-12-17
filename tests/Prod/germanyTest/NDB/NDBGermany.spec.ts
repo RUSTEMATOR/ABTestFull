@@ -8,7 +8,7 @@ import { EXPECTED_GERMANY_NDB_LINKS } from '../../../../src/Data/Germany/expecte
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnConnnect(LOCATIONS.Germany)
+    await vpnController.vpnConnnect(LOCATIONS.Germany)
 })
 
 test.describe('A/B NDB Germany', () => {

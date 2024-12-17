@@ -9,7 +9,7 @@ import { EXPECTED_CANADA_LINKS } from '../../../../src/Data/Canada/expectedCanad
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnConnnect(LOCATIONS.Canada)
+    await vpnController.vpnConnnect(LOCATIONS.Canada)
 })
     
 
@@ -67,6 +67,5 @@ test.describe('A/B test Welcome Canada', () => {
 
 test.afterAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnDisconnect()
-   
-    })
+    await vpnController.vpnDisconnect()
+})

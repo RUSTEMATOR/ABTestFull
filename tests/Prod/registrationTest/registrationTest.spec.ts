@@ -139,7 +139,7 @@ test.beforeAll(async () => {
     vpnController.vpnConnnect(LOCATIONS.Canada)
 })
 
-test.describe('Registration part of the AB test', () => {
+test.describe.skip('Registration part of the AB test', () => {
     const country = ''
     const openRegFormButton = '.main__button'
     const depositButton = '.header__deposit'

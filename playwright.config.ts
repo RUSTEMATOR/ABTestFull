@@ -37,11 +37,11 @@ export default defineConfig({
                     },
 
                     project: 'AUTOMATION',
-                    uploadAttachments: true,
+                    uploadAttachments: false,
                     run: {
                       complete: false,
                       title: 'Experiment', 
-                      // id: '145'
+                      id: '171'
 
                     }
 

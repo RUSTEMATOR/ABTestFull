@@ -10,7 +10,7 @@ import { EXPECTED_GERMANY_STAGE_NDB_LINKS } from '../../../../src/Data/Germany/e
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnConnnect(LOCATIONS.Germany)
+    await vpnController.vpnConnnect(LOCATIONS.Germany)
 
 })
 

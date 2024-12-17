@@ -28,8 +28,8 @@ export default class RecursiveAbTest{
 
         const methods = new Methods(page)
         const regMethods = new RegMethods1Step(page)
-
         await methods.visitPage(url)
+        await methods.sleep(2000)
         const baseCurrentUrl = await methods.formBaseLink()
 
         if (baseCurrentUrl === expectedLink){

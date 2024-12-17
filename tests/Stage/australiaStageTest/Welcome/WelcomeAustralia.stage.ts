@@ -5,9 +5,9 @@ import VpnController from '../../../../src/methods/VpnController/vpnController';
 import RecursiveAbTest from '../../../../src/methods/Recursions/GeneralRecursion/GeneralRecursion';
 import { EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS } from '../../../../src/Data/Australia/expectedAustraliaResults';
 
-test.beforeAll(() => {
+test.beforeAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnConnnect(LOCATIONS.Australia)
+    await vpnController.vpnConnnect(LOCATIONS.Australia)
     
 })
 
@@ -59,18 +59,12 @@ test.describe('A/B Welcome AU Stage', () => {
 
         })
     })
-
-
-    test.afterAll(async () => {
-        vpnController.vpnDisconnect()
-        
-    })
 })
 
 
 
 test.afterAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnDisconnect()
+    await vpnController.vpnDisconnect()
     
 })

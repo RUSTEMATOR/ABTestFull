@@ -8,7 +8,7 @@ import { EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS } from '../../../../src/Data/NewZe
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnConnnect(LOCATIONS.NewZealand)
+    await vpnController.vpnConnnect(LOCATIONS.NewZealand)
 })
 
 
@@ -61,5 +61,5 @@ test.describe('A/B NZ NDB', () => {
 
 test.afterAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnDisconnect()
+    await vpnController.vpnDisconnect()
 })

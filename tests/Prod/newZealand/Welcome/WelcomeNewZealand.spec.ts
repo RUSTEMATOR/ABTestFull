@@ -7,7 +7,7 @@ import { EXPECTED_NEW_ZEALAND_LINKS } from '../../../../src/Data/NewZealand/expe
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnConnnect(LOCATIONS.NewZealand)
+    await vpnController.vpnConnnect(LOCATIONS.NewZealand)
 })
 
 test.describe('A/B NZ Welcome', () => {
@@ -58,6 +58,6 @@ test.describe('A/B NZ Welcome', () => {
 
 test.afterAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnDisconnect()
+    await vpnController.vpnDisconnect()
    
 })

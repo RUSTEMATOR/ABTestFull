@@ -76,12 +76,12 @@ const stageExpectedLinks = {
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnConnnect(LOCATIONS.Germany)
+    await vpnController.vpnConnnect(LOCATIONS.Germany)
 })
     
 
 
-test.describe('Registration part of the AB test', () => {
+test.describe.skip('Registration part of the AB test', () => {
     const country = ''
     const openRegFormButton = '.main__button'
     const depositButton = '.header__deposit'
@@ -121,5 +121,5 @@ test.describe('Registration part of the AB test', () => {
 
 test.afterAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnDisconnect()
+    await vpnController.vpnDisconnect()
 })

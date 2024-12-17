@@ -63,6 +63,6 @@ test.describe('A/B NDB AU Stage', () => {
 
 test.afterAll(async () => {
     const vpnController = new VpnController()
-    vpnController.vpnDisconnect()
+    await vpnController.vpnDisconnect()
     
 })
