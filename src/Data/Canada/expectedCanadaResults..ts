@@ -16,8 +16,8 @@ export const EXPECTED_CANADA_LINKS: IExpectedLinks = {
 }
 
 export const EXPECTED_CANADA_LINKS_NDB: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillycasino.com/land/en-CA/ndb_2',
-    expectedUrlNoDep: 'https://www.kingbillycasino.com/land/en-CA/kings_no_dep_2'
+    expectedUrlNDB: 'https://www.kingbillycasino.com/land/en-CA/ndb_3',
+    expectedUrlNoDep: 'https://www.kingbillycasino.com/land/en-CA/kings_no_dep_3'
 }
 
 

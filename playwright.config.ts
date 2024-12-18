@@ -40,8 +40,8 @@ export default defineConfig({
                     uploadAttachments: false,
                     run: {
                       complete: false,
-                      title: '[Split: KB-N3-CA] Launch NDB 2 Test for CA Stage', 
-                      id: '175'
+                      title: '[Split: KB-N3-CA] Launch NDB 2 Test for CA', 
+                      id: '176'
 
                     }
 
@@ -69,6 +69,12 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'Registration',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/Prod/registrationTest/**/*.spec.ts'
+    },
+
+    {
       name: 'prod',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**/tests/**/*.spec.ts'
@@ -79,7 +85,6 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**/tests/**/*.stage.ts'
     },
-
 
     {
       name: 'ndb-prod',
@@ -299,107 +304,6 @@ export default defineConfig({
       testMatch: '**/tests/Stage/austriaStageTest/NDB/*.stage.ts'
     },
 
-
-    //PROD NEGATIVE ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------  
-
-
-    {
-      name: 'negative-pr-au-welcome',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeProd/australiaNegativeTest/Welcome/*.spec.ts'
-    },
-
-    {
-      name: 'negative-pr-au-ndb',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeProd/australiaNegativeTest/NDB/*.spec.ts'
-    },
-
-    {
-      name: 'negative-pr-ca-welcome',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeProd/canadaNegativeTest/Welcome/*.spec.ts'
-    },
-
-    {
-      name: 'negative-pr-ca-ndb',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeProd/canadaNegativeTest/NDB/*.spec.ts'
-    },
-
-    {
-      name: 'negative-pr-de-welcome',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeProd/germanyNegativeTest/Welcome/*.spec.ts'
-    },
-
-    {
-      name: 'negative-pr-de-ndb',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeProd/germanyNegativeTest/NDB/*.spec.ts'
-    },
-
-    {
-      name: 'negative-pr-nz-welcome',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeProd/germanyNegativeTest/Welcome/*.spec.ts'
-    },
-
-    {
-      name: 'negative-pr-nz-ndb',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeProd/germanyNegativeTest/NDB/*.spec.ts'
-    },
-
-    //STAGE NEGATIVE ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-    {
-      name: 'negative-st-au-welcome',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeStage/australiaNegativeTest/Welcome/*.stage.ts'
-    },
-
-    {
-      name: 'negative-st-au-ndb',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeStage/australiaNegativeTest/NDB/*.stage.ts'
-    },
-
-    {
-      name: 'negative-st-ca-welcome',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeStage/canadaNegativeTest/Welcome/*.stage.ts'
-    },
-
-    {
-      name: 'negative-st-ca-ndb',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeStage/canadaNegativeTest/NDB/*.stage.ts'
-    },
-
-    {
-      name: 'negative-st-de-welcome',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeStage/germanyNegativeTest/Welcome/*.stage.ts'
-    },
-
-    {
-      name: 'negative-st-de-ndb',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeStage/germanyNegativeTest/NDB/*.stage.ts'
-    },
-
-    {
-      name: 'negative-st-nz-welcome',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeStage/newZealandNegativeTest/Welcome/*.stage.ts'
-    },
-
-    {
-      name: 'negative-st-nz-ndb',
-      use: { ...devices['Desktop Chrome'] },
-      testMatch: '**/tests/NegativeStage/newZealandNegativeTest/NDB/*.stage.ts'
-    },
 
     // {
     //   name: 'firefox',
