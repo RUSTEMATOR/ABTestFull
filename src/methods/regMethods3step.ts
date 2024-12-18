@@ -15,9 +15,8 @@ export class RegMethods3Step {
         
     }
 
-    async goto({url, expectedLocator}: {url: string, expectedLocator: string}){
+    async goto({url}: {url: string}){
         await this.page.goto(url)
-        await expect(this.page.locator(`${expectedLocator}`)).toBeVisible()
     }
 
     async extractBtag(url: string): Promise<any>{

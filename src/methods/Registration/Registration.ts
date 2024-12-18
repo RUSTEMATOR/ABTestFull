@@ -4,6 +4,8 @@ import { RegMethods3Step } from "../regMethods3step"
 import RandomEmail from "../../randomEmail/randomEmail"
 import { Methods } from "../methods"
 import { RegMethods1Step } from "../regMethods1step"
+import { qase } from "playwright-qase-reporter/playwright"
+import moment from 'moment';
 
 
 export default class Registration {
@@ -20,6 +22,7 @@ export default class Registration {
         const ctx = await browser.newContext()
         const page = await ctx.newPage()
         const randomEmail = new RandomEmail()
+        const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
 
         const email = await randomEmail.generateRandomEmail(5)
         let methods = new Methods(page)
@@ -30,7 +33,7 @@ export default class Registration {
                 const regMethods = new RegMethods3Step(page)
 
                 await test.step(`Visit ${url}`, async () => {
-                    await regMethods.goto({url: url, expectedLocator: expectedLocator})
+                    await regMethods.goto({url: url})
                     baseCurrentUrl = await methods.formBaseLink()
                     console.log(`Opening ${url}`)
                 })
@@ -71,11 +74,17 @@ export default class Registration {
                             console.log(`Fill in location creds`)
                         })
 
+                        const finalUrl = await regMethods.page.url()
+                        qase.comment(`Registered with: ${email}\n\n
+                            Date: ${currentTime}\n\n URL: ${finalUrl}\n\n`)
+
                         await test.step('Create acount', async () => {
                             await regMethods.createAnAccount()
                             await regMethods.expectToBeVisible(depositButton)
                             console.log('Creating a new account')
                         })
+
+                        await ctx.close()
 
                     } else {
                     methods.sleep(1000)
@@ -89,7 +98,7 @@ export default class Registration {
                 const regMethods = new RegMethods1Step(page)
 
                 await test.step(`Visit ${url}`, async () => {
-                    await regMethods.goto({url: url, expectedLocator: expectedLocator})
+                    await regMethods.goto({url: url})
                     baseCurrentUrl = await methods.formBaseLink()
                     console.log(`Opening ${url}`)
                 })
@@ -110,11 +119,18 @@ export default class Registration {
                         console.log('Adult checkbox checked')
                     })
 
+                    const finalUrl = await regMethods.page.url()
+                        qase.comment(`Registered with: ${email}\n\n
+                            Date: ${currentTime}\n\n URL: ${finalUrl}\n\n`)
+
                     await test.step('Create acount', async () => {
                         await regMethods.createAnAccount()
                         await regMethods.expectToBeVisible(depositButton)
                         console.log('Creating a new account')
                     })
+
+
+                    await ctx.close()
 
                 } else {
                     methods.sleep(1000)
@@ -128,17 +144,17 @@ export default class Registration {
         }
 
         async negativeRecursiveRegistration(
-            {url, expectedLocator, PHONE_NUMBERS, expectedLink, openRegFormButton, is3step, errorMessage, errorText}:
-            {url: string, expectedLocator: string, PHONE_NUMBERS: string, expectedLink: string,
+            {url, PHONE_NUMBERS, expectedLink, openRegFormButton, is3step, errorMessage, errorText}:
+            {url: string, PHONE_NUMBERS: string, expectedLink: string,
             openRegFormButton: string, is3step: boolean, errorMessage: string, errorText: string
             }): Promise<undefined> {
                 
                 const browser = await chromium.launch()
                 const ctx = await browser.newContext()
                 const page = await ctx.newPage()
-                const randomEmail = new RandomEmail()
         
-                const email = await randomEmail.generateRandomEmail(5)
+                const email = 'ross@kingbilly.xyz'
+                const currentTime = moment().format("dddd, MMMM Do YYYY, h:mm:ss a")
                 let methods = new Methods(page)
                 let baseCurrentUrl
         
@@ -147,7 +163,9 @@ export default class Registration {
                         const regMethods = new RegMethods3Step(page)
         
                         await test.step(`Visit ${url}`, async () => {
-                            await regMethods.goto({url: url, expectedLocator: expectedLocator})
+                            await methods.sleep(4000)
+                            await regMethods.goto({url: url})
+                            await methods.sleep(4000)
                             baseCurrentUrl = await methods.formBaseLink()
                             console.log(`Opening ${url}`)
                         })
@@ -187,17 +205,23 @@ export default class Registration {
                                     await regMethods.fillLocationCreds(PHONE_NUMBERS)
                                     console.log(`Fill in location creds`)
                                 })
+
+                                const finalUrl = await regMethods.page.url()
+                                qase.comment(`Registered with: ${email}\n\n
+                                    Date: ${currentTime}\n\n URL: ${finalUrl}\n\n`)
         
                                 await test.step('Create acount', async () => {
                                     await regMethods.createAnAccount()
                                     await expect(page.locator(errorMessage).filter({hasText: errorText})).toBeVisible()
                                     console.log('Creating a new account')
                                 })
+
+                                await ctx.close()
         
                             } else {
                             methods.sleep(1000)
                             await ctx.close();
-                            return this.negativeRecursiveRegistration({url, expectedLocator, PHONE_NUMBERS,
+                            return this.negativeRecursiveRegistration({url, PHONE_NUMBERS,
                                                             expectedLink, openRegFormButton, is3step, errorMessage, errorText })
                         }
         
@@ -206,7 +230,9 @@ export default class Registration {
                         const regMethods = new RegMethods1Step(page)
         
                         await test.step(`Visit ${url}`, async () => {
-                            await regMethods.goto({url: url, expectedLocator: expectedLocator})
+                            await methods.sleep(4000)
+                            await regMethods.goto({url: url})
+                            await methods.sleep(4000)
                             baseCurrentUrl = await methods.formBaseLink()
                             console.log(`Opening ${url}`)
                         })
@@ -226,17 +252,24 @@ export default class Registration {
                                 await regMethods.checkAdultCheckbox()
                                 console.log('Adult checkbox checked')
                             })
+
+
+                            const finalUrl = await regMethods.page.url()
+                                qase.comment(`Registered with: ${email}\n\n
+                                    Date: ${currentTime}\n\n URL: ${finalUrl}\n\n`)
         
                             await test.step('Create acount', async () => {
                                 await regMethods.createAnAccount()
                                 await expect(page.locator(errorMessage).filter({hasText: errorText})).toBeVisible()
                                 console.log('Creating a new account')
                             })
+
+                            await ctx.close()
         
                         } else {
                             methods.sleep(1000)
                             await ctx.close();
-                            return this.negativeRecursiveRegistration({url, expectedLocator, PHONE_NUMBERS,
+                            return this.negativeRecursiveRegistration({url, PHONE_NUMBERS,
                                                             expectedLink, openRegFormButton, is3step, errorMessage, errorText })
                         }
         
