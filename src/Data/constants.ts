@@ -46,19 +46,19 @@ export const EXPECTED_QUERY: IExpectedQuery = {
     expectedQueryDE: "utm_source=Welcome&utm_medium=DE&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
     expectedQuerryDENDB: "utm_source=NDB&utm_medium=DE&utm_campaign=n2&utm_content=07_11_24&utm_term=Content2",
     expectedQueryCA: "utm_source=Welcome&utm_medium=CA&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
-    expectedQueryCANDB: 'utm_source=NDB&utm_medium=CA&utm_campaign=n2&utm_content=13_11_24&utm_term=Content2',
+    expectedQueryCANDB: 'utm_source=NDB&utm_medium=CA&utm_campaign=n3&utm_content=18_12_24&utm_term=Content3',
     expectedQueryAU: "utm_source=Welcome&utm_medium=AU&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
     expectedQueryAUNDB: 'utm_source=NDB&utm_medium=AU&utm_campaign=n3&utm_content=11_12_24&utm_term=Content3',
     expectedQueryNZ: "utm_source=Welcome&utm_medium=NZ&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome", 
     expectedQueryNZNDB: 'utm_source=NDB&utm_medium=NZ&utm_campaign=n2&utm_content=09_12_24&utm_term=Content2',
-    expectedQueryAT: 'utm_source=Welcome&utm_medium=AT&utm_campaign=w1&utm_content=18_10_24&utm_term=Original',
+    expectedQueryAT: 'utm_source=Welcome&utm_medium=AT&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome',
     expectedQueryATNDB: 'utm_source=NDB&utm_medium=AT&utm_campaign=n2&utm_content=22_11_24&utm_term=Content2',
     expectedQueryCH: 'utm_source=Welcome&utm_medium=CH&utm_campaign=w1&utm_content=18_10_24&utm_term=Original',
     expectedQueryCHNDB: 'utm_source=NDB&utm_medium=CH&utm_campaign=n2&utm_content=22_11_24&utm_term=Content2',
-    expectedQueryNO: 'utm_source=Welcome&utm_medium=NO&utm_campaign=w2&utm_content=25_11_30&utm_term=Original', 
-    expectedQueryNONDB: 'utm_source=NDB&utm_medium=NO&utm_campaign=n2&utm_content=28_10_24&utm_term=Content2',
-    expectedQueryIE: 'utm_source=Welcome&utm_medium=IE&utm_campaign=w2&utm_content=25_11_32&utm_term=Original',
-    expectedQueryIENDB: 'utm_medium=IE&utm_campaign=n2&utm_content=28_10_24&utm_term=Content2'
+    expectedQueryNO: 'utm_source=Welcome&utm_medium=NO&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome', 
+    expectedQueryNONDB: 'utm_source=NDB&utm_medium=NO&utm_campaign=n1&utm_content=18_10_24&utm_term=Original',
+    expectedQueryIE: 'utm_source=Welcome&utm_medium=IE&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome',
+    expectedQueryIENDB: 'utm_source=NDB&utm_medium=IE&utm_campaign=n1&utm_content=18_10_24&utm_term=Original'
 
 }
 

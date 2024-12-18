@@ -10,7 +10,7 @@ interface IExpectedLinksWelcome {
 
 export const EXPECTED_IRELAND_WELCOME_LINKS: IExpectedLinksWelcome = {
     Welcome: 'https://www.kingbillycasino.com/land/ie/kings_welcome_pack_1',
-    Land: 'https://www.kingbillycasino.com/land/ie/kings_world_welcome_pack_1'
+    Land: 'https://www.kingbillycasino.com/land/ie/kings_land_1'
 }
 
 
@@ -23,7 +23,7 @@ export const EXPECTED_IRELAND_NDB_LINKS: IExpectedLinksNDB = {
 
 export const EXPECTED_IRELAND_STAGE_WELCOME_LINKS: IExpectedLinksWelcome = {
     Welcome: 'https://www.kingbillycasino1.com/land/ie/kings_welcome_pack_1',
-    Land: 'https://www.kingbillycasino1.com/land/ie/kings_world_welcome_pack_1'
+    Land: 'https://www.kingbillycasino1.com/land/ie/kings_land_1'
 }
 
 
