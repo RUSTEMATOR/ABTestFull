@@ -41,7 +41,7 @@ export default defineConfig({
                     run: {
                       complete: false,
                       title: '[Split: KB-N3-DE] Launch Test for DE Stage', 
-                      // id: '176'
+                      id: '178'
 
                     }
 
@@ -72,6 +72,12 @@ export default defineConfig({
       name: 'Registration',
       use: { ...devices['Desktop Chrome'] },
       testMatch: '**/tests/Prod/registrationTest/**/*.spec.ts'
+    },
+
+    {
+      name: 'Registration-stage',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: '**/tests/Stage/registrationStageTest/**/*.stage.ts'
     },
 
     {
