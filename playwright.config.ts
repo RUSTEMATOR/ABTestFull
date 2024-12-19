@@ -37,11 +37,11 @@ export default defineConfig({
                     },
 
                     project: 'AUTOMATION',
-                    uploadAttachments: false,
+                    uploadAttachments: true,
                     run: {
                       complete: false,
-                      title: '[Split: KB-N3-CA] Launch NDB 2 Test for CA', 
-                      id: '176'
+                      title: '[Split: KB-N3-DE] Launch Test for DE Stage', 
+                      // id: '176'
 
                     }
 

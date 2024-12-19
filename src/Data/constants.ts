@@ -44,7 +44,7 @@ export const LOCATIONS: ILocation = {
 
 export const EXPECTED_QUERY: IExpectedQuery = {
     expectedQueryDE: "utm_source=Welcome&utm_medium=DE&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
-    expectedQuerryDENDB: "utm_source=NDB&utm_medium=DE&utm_campaign=n2&utm_content=07_11_24&utm_term=Content2",
+    expectedQuerryDENDB: "utm_source=NDB&utm_medium=DE&utm_campaign=n3&utm_content=19_12_24&utm_term=Content3",
     expectedQueryCA: "utm_source=Welcome&utm_medium=CA&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
     expectedQueryCANDB: 'utm_source=NDB&utm_medium=CA&utm_campaign=n3&utm_content=18_12_24&utm_term=Content3',
     expectedQueryAU: "utm_source=Welcome&utm_medium=AU&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
@@ -61,6 +61,9 @@ export const EXPECTED_QUERY: IExpectedQuery = {
     expectedQueryIENDB: 'utm_source=NDB&utm_medium=IE&utm_campaign=n1&utm_content=18_10_24&utm_term=Original'
 
 }
+
+
+
 
 
 export const PHONE_NUMBERS = {
