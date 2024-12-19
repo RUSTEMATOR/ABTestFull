@@ -27,7 +27,7 @@ test.describe('A/B Welcome NO', async  () => {
             expectedLink: EXPECTED_NORWAY_WELCOME_LINKS.Welcome, 
             expectedComparisonLink1: EXPECTED_NORWAY_WELCOME_LINKS.Welcome, 
             expectedComparisonLink2: EXPECTED_NORWAY_WELCOME_LINKS.Land, 
-            expectedQuery: EXPECTED_QUERY.expectedQueryAU 
+            expectedQuery: EXPECTED_QUERY.expectedQueryNO 
         })
     })
 
@@ -37,7 +37,7 @@ test.describe('A/B Welcome NO', async  () => {
             expectedLink: EXPECTED_NORWAY_WELCOME_LINKS.Welcome, 
             expectedComparisonLink1: EXPECTED_NORWAY_WELCOME_LINKS.Welcome, 
             expectedComparisonLink2: EXPECTED_NORWAY_WELCOME_LINKS.Land, 
-            expectedQuery: EXPECTED_QUERY.expectedQueryAU 
+            expectedQuery: EXPECTED_QUERY.expectedQueryNO 
         })
     })
 
@@ -47,7 +47,7 @@ test.describe('A/B Welcome NO', async  () => {
             expectedLink: EXPECTED_NORWAY_WELCOME_LINKS.Land, 
             expectedComparisonLink1: EXPECTED_NORWAY_WELCOME_LINKS.Welcome, 
             expectedComparisonLink2: EXPECTED_NORWAY_WELCOME_LINKS.Land, 
-            expectedQuery: EXPECTED_QUERY.expectedQueryAU 
+            expectedQuery: EXPECTED_QUERY.expectedQueryNO 
         })
     })
 
@@ -57,7 +57,7 @@ test.describe('A/B Welcome NO', async  () => {
             expectedLink: EXPECTED_NORWAY_WELCOME_LINKS.Land, 
             expectedComparisonLink1: EXPECTED_NORWAY_WELCOME_LINKS.Welcome, 
             expectedComparisonLink2: EXPECTED_NORWAY_WELCOME_LINKS.Land, 
-            expectedQuery: EXPECTED_QUERY.expectedQueryAU 
+            expectedQuery: EXPECTED_QUERY.expectedQueryNO 
         })
     })
 

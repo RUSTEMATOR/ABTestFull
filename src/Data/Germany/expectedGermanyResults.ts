@@ -15,8 +15,8 @@ export const EXPECTED_GERMANY_LINKS: IExpectedLinks = {
 
 
 export const EXPECTED_GERMANY_NDB_LINKS: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillycasino12.com/land/de/ndb_2',
-    expectedUrlNoDep: 'https://www.kingbillycasino12.com/land/de/kings_no_dep_2'
+    expectedUrlNDB: 'https://www.kingbillycasino12.com/land/de/ndb_3',
+    expectedUrlNoDep: 'https://www.kingbillycasino12.com/land/de/kings_no_dep_3'
 }
 
 
@@ -28,6 +28,6 @@ export const EXPECTED_GERMANY_STAGE_WELCOME_LINKS: IExpectedLinks = {
 
 
  export const EXPECTED_GERMANY_STAGE_NDB_LINKS: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillycasino1.com/land/de/ndb_2',
-    expectedUrlNoDep: 'https://www.kingbillycasino1.com/land/de/kings_no_dep_2'
+    expectedUrlNDB: 'https://www.kingbillycasino1.com/land/de/ndb_3',
+    expectedUrlNoDep: 'https://www.kingbillycasino1.com/land/de/kings_no_dep_3'
 }

@@ -22,7 +22,7 @@ test.describe('NO', async () => {
                     expectedLink: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNoDep, 
                     expectedComparisonLink1: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNDB, 
                     expectedComparisonLink2: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNoDep, 
-                    expectedQuery: EXPECTED_QUERY.expectedQueryATNDB 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryNONDB 
                 })
             })
 
@@ -32,7 +32,7 @@ test.describe('NO', async () => {
                     expectedLink: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNDB, 
                     expectedComparisonLink1: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNDB, 
                     expectedComparisonLink2: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNoDep, 
-                    expectedQuery: EXPECTED_QUERY.expectedQueryATNDB 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryNONDB 
                 })
             })
 
@@ -42,7 +42,7 @@ test.describe('NO', async () => {
                     expectedLink: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNoDep, 
                     expectedComparisonLink1: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNDB, 
                     expectedComparisonLink2: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNoDep, 
-                    expectedQuery: EXPECTED_QUERY.expectedQueryATNDB 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryNONDB 
                 })
             })
 
@@ -52,7 +52,7 @@ test.describe('NO', async () => {
                     expectedLink: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNDB, 
                     expectedComparisonLink1: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNDB, 
                     expectedComparisonLink2: EXPECTED_NORWAY_NDB_LINKS.expectedUrlNoDep, 
-                    expectedQuery: EXPECTED_QUERY.expectedQueryATNDB 
+                    expectedQuery: EXPECTED_QUERY.expectedQueryNONDB 
                 })
             })
 
