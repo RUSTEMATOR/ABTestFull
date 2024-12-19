@@ -40,8 +40,8 @@ export default defineConfig({
                     uploadAttachments: false,
                     run: {
                       complete: false,
-                      title: 'Experiment', 
-                      // id: '171'
+                      title: '[Split: KB-N3-CA] Launch NDB 2 Test for CA Stage', 
+                      id: '175'
 
                     }
 
