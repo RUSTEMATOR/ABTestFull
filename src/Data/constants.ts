@@ -43,28 +43,24 @@ export const LOCATIONS: ILocation = {
 
 
 export const EXPECTED_QUERY: IExpectedQuery = {
-    expectedQueryDE: "utm_source=Welcome&utm_medium=DE&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
-    expectedQuerryDENDB: "utm_source=NDB&utm_medium=DE&utm_campaign=n3&utm_content=19_12_24&utm_term=Content3",
-    expectedQueryCA: "utm_source=Welcome&utm_medium=CA&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
+    expectedQueryDE: "utm_source=Welcome&utm_medium=DE&utm_campaign=w1&utm_content=02_10_24&utm_term=Original",
+    expectedQuerryDENDB: "utm_source=NDB&utm_medium=DE&utm_campaign=n3&utm_content=20_12_24&utm_term=Content3",
+    expectedQueryCA: "utm_source=Welcome&utm_medium=CA&utm_campaign=w1&utm_content=02_10_24&utm_term=Original",
     expectedQueryCANDB: 'utm_source=NDB&utm_medium=CA&utm_campaign=n3&utm_content=18_12_24&utm_term=Content3',
-    expectedQueryAU: "utm_source=Welcome&utm_medium=AU&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome",
+    expectedQueryAU: "utm_source=Welcome&utm_medium=AU&utm_campaign=w2&utm_content=07_11_24&utm_term=Original",
     expectedQueryAUNDB: 'utm_source=NDB&utm_medium=AU&utm_campaign=n3&utm_content=11_12_24&utm_term=Content3',
-    expectedQueryNZ: "utm_source=Welcome&utm_medium=NZ&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome", 
+    expectedQueryNZ: "utm_source=Welcome&utm_medium=NZ&utm_campaign=w1&utm_content=02_10_24&utm_term=Original", 
     expectedQueryNZNDB: 'utm_source=NDB&utm_medium=NZ&utm_campaign=n2&utm_content=09_12_24&utm_term=Content2',
-    expectedQueryAT: 'utm_source=Welcome&utm_medium=AT&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome',
-    expectedQueryATNDB: 'utm_source=NDB&utm_medium=AT&utm_campaign=n2&utm_content=22_11_24&utm_term=Content2',
+    expectedQueryAT: 'utm_source=Welcome&utm_medium=AT&utm_campaign=w1&utm_content=18_10_24&utm_term=Original',
+    expectedQueryATNDB: 'utm_source=NDB&utm_medium=AT&utm_campaign=n3&utm_content=20_12_24&utm_term=Content3',
     expectedQueryCH: 'utm_source=Welcome&utm_medium=CH&utm_campaign=w1&utm_content=18_10_24&utm_term=Original',
-    expectedQueryCHNDB: 'utm_source=NDB&utm_medium=CH&utm_campaign=n2&utm_content=22_11_24&utm_term=Content2',
-    expectedQueryNO: 'utm_source=Welcome&utm_medium=NO&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome', 
+    expectedQueryCHNDB: 'utm_source=NDB&utm_medium=CH&utm_campaign=n3&utm_content=20_12_24&utm_term=Content3',
+    expectedQueryNO: 'utm_source=Welcome&utm_medium=NO&utm_campaign=w1&utm_content=18_10_24&utm_term=Original', 
     expectedQueryNONDB: 'utm_source=NDB&utm_medium=NO&utm_campaign=n1&utm_content=18_10_24&utm_term=Original',
-    expectedQueryIE: 'utm_source=Welcome&utm_medium=IE&utm_campaign=w_christmas&utm_content=05_12_24&utm_term=christmas_welcome',
+    expectedQueryIE: 'utm_source=Welcome&utm_medium=IE&utm_campaign=w1&utm_content=18_10_24&utm_term=Original',
     expectedQueryIENDB: 'utm_source=NDB&utm_medium=IE&utm_campaign=n1&utm_content=18_10_24&utm_term=Original'
 
 }
-
-
-
-
 
 export const PHONE_NUMBERS = {
     Canada: '250-722-0726 ',

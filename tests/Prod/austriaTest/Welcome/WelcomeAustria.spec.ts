@@ -27,7 +27,7 @@ test.describe('A/B Welcome AT', async  () => {
             expectedLink: EXPECTED_AUSTRIA_WELCOME_LINKS.Welcome, 
             expectedComparisonLink1: EXPECTED_AUSTRIA_WELCOME_LINKS.Welcome, 
             expectedComparisonLink2: EXPECTED_AUSTRIA_WELCOME_LINKS.Land, 
-            expectedQuery: EXPECTED_QUERY.expectedQueryAU 
+            expectedQuery: EXPECTED_QUERY.expectedQueryAT 
         })
     })
 
@@ -37,7 +37,7 @@ test.describe('A/B Welcome AT', async  () => {
             expectedLink: EXPECTED_AUSTRIA_WELCOME_LINKS.Welcome, 
             expectedComparisonLink1: EXPECTED_AUSTRIA_WELCOME_LINKS.Welcome, 
             expectedComparisonLink2: EXPECTED_AUSTRIA_WELCOME_LINKS.Land, 
-            expectedQuery: EXPECTED_QUERY.expectedQueryAU 
+            expectedQuery: EXPECTED_QUERY.expectedQueryAT 
         })
     })
 
@@ -47,7 +47,7 @@ test.describe('A/B Welcome AT', async  () => {
             expectedLink: EXPECTED_AUSTRIA_WELCOME_LINKS.Land, 
             expectedComparisonLink1: EXPECTED_AUSTRIA_WELCOME_LINKS.Welcome, 
             expectedComparisonLink2: EXPECTED_AUSTRIA_WELCOME_LINKS.Land, 
-            expectedQuery: EXPECTED_QUERY.expectedQueryAU 
+            expectedQuery: EXPECTED_QUERY.expectedQueryAT 
         })
     })
 
@@ -57,7 +57,7 @@ test.describe('A/B Welcome AT', async  () => {
             expectedLink: EXPECTED_AUSTRIA_WELCOME_LINKS.Land, 
             expectedComparisonLink1: EXPECTED_AUSTRIA_WELCOME_LINKS.Welcome, 
             expectedComparisonLink2: EXPECTED_AUSTRIA_WELCOME_LINKS.Land, 
-            expectedQuery: EXPECTED_QUERY.expectedQueryAU 
+            expectedQuery: EXPECTED_QUERY.expectedQueryAT 
         })
     })
 

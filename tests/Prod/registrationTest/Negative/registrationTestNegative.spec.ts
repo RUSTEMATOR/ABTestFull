@@ -7,20 +7,24 @@ import { CANADA_LINKS_NDB } from "../../../../src/Data/Canada/canadaLinks";
 import { EXPECTED_CANADA_LINKS_NDB } from "../../../../src/Data/Canada/expectedCanadaResults.";
 import { GERMANY_LINK_NDB, GERMANY_LINKS } from "../../../../src/Data/Germany/germanyLinks";
 import { EXPECTED_GERMANY_NDB_LINKS } from "../../../../src/Data/Germany/expectedGermanyResults";
+import { AUSTRIA_LINKNDB } from "../../../../src/Data/Austria/austriaLinks";
+import { EXPECTED_AUSTRIA_NDB_LINKS } from "../../../../src/Data/Austria/expectedAustriaLinks";
+import { SWITZERLAND_LINKNDB } from "../../../../src/Data/Switzerland/switzerlandLinks";
+import { EXPECTED_SWITZERLAND_NDB_LINKS } from "../../../../src/Data/Switzerland/expectedSwitzerlandLinks";
 
 
 
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    await vpnController.vpnConnnect(LOCATIONS.Germany)
+    await vpnController.vpnConnnect(LOCATIONS.Switzerland)
 })
     
 
 
 test.describe('Negative Registration Stage', () => {
 
-    const country = 'DE'
+    const country = 'CH'
     const typeA = 'NDB'
     const typeB = 'NoDep'
     const typeAOpenRegFormLocator = '.offer__button'
@@ -28,12 +32,14 @@ test.describe('Negative Registration Stage', () => {
     const errorText = ERROR_TEXT.DE
     const errorMessage = `div.error`
     const registration = new Registration()
-    const phoneNumbers = PHONE_NUMBERS.Germany
+    const phoneNumbers = PHONE_NUMBERS.Switzerland
+
+    test.describe(`${country}`, async () => {
 
     test(`${country} Negative Registration Test ${typeA} Btag`, async () => {
         const openRegFormButton = typeAOpenRegFormLocator
-        const url = GERMANY_LINK_NDB.Btag
-        const expectedLink = EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB
+        const url = SWITZERLAND_LINKNDB.Btag
+        const expectedLink = EXPECTED_SWITZERLAND_NDB_LINKS.expectedUrlNDB
         const is3step = true
 
 
@@ -49,8 +55,8 @@ test.describe('Negative Registration Stage', () => {
 
     test(`${country} Negative Registration Test ${typeA} Stag`, async () => {
         const openRegFormButton = typeAOpenRegFormLocator
-        const url = GERMANY_LINK_NDB.Stag
-        const expectedLink = EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB
+        const url = SWITZERLAND_LINKNDB.Stag
+        const expectedLink = EXPECTED_SWITZERLAND_NDB_LINKS.expectedUrlNDB
         const is3step = true
 
 
@@ -66,8 +72,8 @@ test.describe('Negative Registration Stage', () => {
 
     test(`${country} Negative Registration Test ${typeB} Btag`, async () => {
         const openRegFormButton = typeBOpenRegFormLocator
-        const url = GERMANY_LINK_NDB.Btag
-        const expectedLink = EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep
+        const url = SWITZERLAND_LINKNDB.Btag
+        const expectedLink = EXPECTED_SWITZERLAND_NDB_LINKS.expectedUrlNoDep
         const is3step = true
 
 
@@ -83,8 +89,8 @@ test.describe('Negative Registration Stage', () => {
 
     test(`${country} Negative Registration Test ${typeB} Stag`, async () => {
         const openRegFormButton = typeBOpenRegFormLocator
-        const url = GERMANY_LINK_NDB.Stag
-        const expectedLink = EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep
+        const url = SWITZERLAND_LINKNDB.Stag
+        const expectedLink = EXPECTED_SWITZERLAND_NDB_LINKS.expectedUrlNoDep
         const is3step = true
 
 
@@ -97,6 +103,8 @@ test.describe('Negative Registration Stage', () => {
             errorText: errorText})
         
     })
+
+})
 
 })
 

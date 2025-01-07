@@ -10,7 +10,7 @@ import { EXPECTED_IRELAND_WELCOME_LINKS } from '../../../../src/Data/Ireland/exp
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    await vpnController.vpnConnnect(LOCATIONS.Austria)
+    await vpnController.vpnConnnect(LOCATIONS.Ireland)
     
    
 })

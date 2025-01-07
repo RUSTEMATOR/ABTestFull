@@ -19,7 +19,7 @@ export default defineConfig({
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 4,
+  retries: 3,
   timeout: 120000,
   /* Opt out of parallel tests on CI. */
   workers: 1,
@@ -40,9 +40,8 @@ export default defineConfig({
                     uploadAttachments: true,
                     run: {
                       complete: false,
-                      title: '[Split: KB-N3-DE] Launch Test for DE Stage', 
-                      id: '178'
-
+                      title: 'A/B Split regression', 
+                      id: '198'
                     }
 
                   }

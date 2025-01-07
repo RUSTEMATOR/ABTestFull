@@ -10,7 +10,7 @@ interface IExpectedLinksWelcome {
 
 export const EXPECTED_NORWAY_WELCOME_LINKS: IExpectedLinksWelcome = {
     Welcome: 'https://www.kingbillycasino.com/land/no/kings_welcome_pack_1',
-    Land: 'https://www.kingbillycasino.com/land/no/kings_world_welcome_pack_1'
+    Land: 'https://www.kingbillycasino.com/land/no/kings_land_1'
 }
 
 
