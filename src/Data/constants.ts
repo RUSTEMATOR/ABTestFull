@@ -47,7 +47,7 @@ export const EXPECTED_QUERY: IExpectedQuery = {
     expectedQuerryDENDB: "utm_source=NDB&utm_medium=DE&utm_campaign=n3&utm_content=20_12_24&utm_term=Content3",
     expectedQueryCA: "utm_source=Welcome&utm_medium=CA&utm_campaign=w1&utm_content=02_10_24&utm_term=Original",
     expectedQueryCANDB: 'utm_source=NDB&utm_medium=CA&utm_campaign=n3&utm_content=18_12_24&utm_term=Content3',
-    expectedQueryAU: "utm_source=Welcome&utm_medium=AU&utm_campaign=w2&utm_content=07_11_24&utm_term=Original",
+    expectedQueryAU: "utm_source=Welcome&utm_medium=AU&utm_campaign=w3&utm_content=14_01_25&utm_term=rating",
     expectedQueryAUNDB: 'utm_source=NDB&utm_medium=AU&utm_campaign=n3&utm_content=11_12_24&utm_term=Content3',
     expectedQueryNZ: "utm_source=Welcome&utm_medium=NZ&utm_campaign=w1&utm_content=02_10_24&utm_term=Original", 
     expectedQueryNZNDB: 'utm_source=NDB&utm_medium=NZ&utm_campaign=n2&utm_content=09_12_24&utm_term=Content2',
@@ -61,6 +61,8 @@ export const EXPECTED_QUERY: IExpectedQuery = {
     expectedQueryIENDB: 'utm_source=NDB&utm_medium=IE&utm_campaign=n1&utm_content=18_10_24&utm_term=Original'
 
 }
+
+
 
 export const PHONE_NUMBERS = {
     Canada: '250-722-0726 ',

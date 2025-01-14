@@ -23,8 +23,8 @@ export const EXPECTED_AUSTRALIA_NDB_LINKS: IExpectedLinksNDB = {
 
 
 export const EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS: IExpectedLinksWelcome = {
-    Welcome: 'https://www.kingbillycasino1.com/land/en-AU/kings_welcome_pack_1',
-    World: 'https://www.kingbillycasino1.com/land/en-AU/kings_world_welcome_pack_1'
+    Welcome: 'https://www.kingbillycasino1.com/land/en-AU/kings_welcome_pack_2',
+    World: 'https://www.kingbillycasino1.com/land/en-AU/kings_welcome_pack_3'
 }
 
 

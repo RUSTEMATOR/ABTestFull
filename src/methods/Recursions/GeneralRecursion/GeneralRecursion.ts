@@ -58,6 +58,8 @@ export default class RecursiveAbTest{
             const finalUrl = await regMethods.page.url()
     
             qase.comment(`
+                Redirect URL: ${url}
+
                 Actual btag: ${actualBtag}\n Expected btag: ${expectedBtag}\n\n
                 
                 Current URL: ${baseCurrentUrl}\n Expected links: \n${expectedComparisonLink1}\n${expectedComparisonLink2}

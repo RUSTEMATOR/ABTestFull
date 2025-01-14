@@ -40,8 +40,8 @@ export default defineConfig({
                     uploadAttachments: true,
                     run: {
                       complete: false,
-                      title: 'A/B Split regression', 
-                      id: '198'
+                      title: 'Experiment', 
+                      // id: '198'
                     }
 
                   }
