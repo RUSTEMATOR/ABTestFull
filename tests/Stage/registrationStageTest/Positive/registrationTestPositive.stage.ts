@@ -8,7 +8,13 @@ import { EXPECTED_CANADA_STAGE_NDB_LINKS } from "../../../../src/Data/Canada/exp
 import { AT_STAGE_LINKS } from "../../../../src/Data/Austria/austriaLinks";
 import { EXPECTED_AUSTRIA_STAGE_NDB_LINKS } from "../../../../src/Data/Austria/expectedAustriaLinks";
 import { CH_STAGE_LINKS } from "../../../../src/Data/Switzerland/switzerlandLinks";
-import { EXPECTED_SWITZERLAND_STAGE_NDB_LINKS } from "../../../../src/Data/Switzerland/expectedSwitzerlandLinks";
+import { EXPECTED_SWITZERLAND_NDB_LINKS, EXPECTED_SWITZERLAND_STAGE_NDB_LINKS } from "../../../../src/Data/Switzerland/expectedSwitzerlandLinks";
+import { AU_STAGE_LINKS, AUSTRALIA_LINKNDB } from "../../../../src/Data/Australia/australiaLinks";
+import { EXPECTED_AUSTRALIA_STAGE_NDB_LINKS, EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS } from "../../../../src/Data/Australia/expectedAustraliaResults";
+import { DE_STAGE_LINKS } from "../../../../src/Data/Germany/germanyLinks";
+import { EXPECTED_GERMANY_STAGE_NDB_LINKS } from "../../../../src/Data/Germany/expectedGermanyResults";
+import { NZ_STAGE_LINKS } from "../../../../src/Data/NewZealand/newZealandLinks";
+import { EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS } from "../../../../src/Data/NewZealand/expectedNewZealandResults";
 
 
 
@@ -23,13 +29,13 @@ test.describe('Registration part of the AB test', () => {
 
     const country = 'CH'
     const typeA = 'NDB'
-    const typeB = 'NoDep'
+    const typeB = 'Nodep'
     const typeAOpenRegFormLocator = '.offer__button'
     const typeBOpenRegFormLocator = '.main__button'
     const registration = new Registration()
     const phoneNumbers = PHONE_NUMBERS.Switzerland
 
-    test.describe(`${country}`, async () => {
+    test.describe(`Registration ${country}`, async () => {
 
     test(`${country} Registration Test ${typeA} Btag`, async () => {
         const openRegFormButton = typeAOpenRegFormLocator

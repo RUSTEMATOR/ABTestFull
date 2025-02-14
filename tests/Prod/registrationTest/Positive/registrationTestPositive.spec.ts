@@ -8,37 +8,40 @@ import { EXPECTED_CANADA_LINKS_NDB } from "../../../../src/Data/Canada/expectedC
 import { GERMANY_LINK_NDB } from "../../../../src/Data/Germany/germanyLinks";
 import { EXPECTED_GERMANY_NDB_LINKS } from "../../../../src/Data/Germany/expectedGermanyResults";
 import { AUSTRIA_LINKNDB } from "../../../../src/Data/Austria/austriaLinks";
-import { EXPECTED_AUSTRALIA_NDB_LINKS } from "../../../../src/Data/Australia/expectedAustraliaResults";
+import { EXPECTED_AUSTRALIA_NDB_LINKS, EXPECTED_AUSTRALIA_WELCOME_LINKS } from "../../../../src/Data/Australia/expectedAustraliaResults";
 import { EXPECTED_AUSTRIA_NDB_LINKS } from "../../../../src/Data/Austria/expectedAustriaLinks";
 import { SWITZERLAND_LINKNDB } from "../../../../src/Data/Switzerland/switzerlandLinks";
 import { EXPECTED_SWITZERLAND_NDB_LINKS } from "../../../../src/Data/Switzerland/expectedSwitzerlandLinks";
+import { AUSTRALIA_LINKS_WELCOME } from "../../../../src/Data/Australia/australiaLinks";
+import { NEW_ZEALAND_LINKS_NDB } from "../../../../src/Data/NewZealand/newZealandLinks";
+import { EXPECTED_NEW_ZEALAND_LINKS_NDB } from "../../../../src/Data/NewZealand/expectedNewZealandResults";
 
 
-
-test.beforeAll(async () => {
-    const vpnController = new VpnController()
-    await vpnController.vpnConnnect(LOCATIONS.Switzerland)
-})
     
 
 
-test.describe('Registration part Stage', () => {
+test.describe('Registration part Prod', () => {
 
-    const country = 'CH'
+    const country = 'DE'
     const typeA = 'NDB'
     const typeB = 'NoDep'
     const typeAOpenRegFormLocator = '.offer__button'
     const typeBOpenRegFormLocator = '.main__button'
     const registration = new Registration()
-    const phoneNumbers = PHONE_NUMBERS.Switzerland
+    const phoneNumbers = PHONE_NUMBERS.Germany
 
-    test.describe(`${country}`, async () => {
+    test.describe(`Registration ${country}`, async () => {
+
+        test.beforeAll(async () => {
+            const vpnController = new VpnController()
+            await vpnController.vpnConnnect(LOCATIONS.Germany)
+        })
 
     test(`${country} Registration Test ${typeA} Btag`, async () => {
         const openRegFormButton = typeAOpenRegFormLocator
         const depositButton = '.header__deposit'
-        const url = SWITZERLAND_LINKNDB.Btag
-        const expectedLink = EXPECTED_SWITZERLAND_NDB_LINKS.expectedUrlNDB
+        const url = GERMANY_LINK_NDB.Btag
+        const expectedLink = EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB
         const is3step = true
 
 
@@ -55,8 +58,8 @@ test.describe('Registration part Stage', () => {
     test(`${country} Registration Test ${typeA} Stag`, async () => {
         const openRegFormButton = typeAOpenRegFormLocator
         const depositButton = '.header__deposit'
-        const url = SWITZERLAND_LINKNDB.Stag
-        const expectedLink = EXPECTED_SWITZERLAND_NDB_LINKS.expectedUrlNDB
+        const url = GERMANY_LINK_NDB.Stag
+        const expectedLink = EXPECTED_GERMANY_NDB_LINKS.expectedUrlNDB
         const is3step = true
 
 
@@ -73,8 +76,8 @@ test.describe('Registration part Stage', () => {
     test(`${country} Registration Test ${typeB} Btag`, async () => {
         const openRegFormButton = typeBOpenRegFormLocator
         const depositButton = '.header__deposit'
-        const url = SWITZERLAND_LINKNDB.Btag
-        const expectedLink = EXPECTED_SWITZERLAND_NDB_LINKS.expectedUrlNoDep
+        const url = GERMANY_LINK_NDB.Btag
+        const expectedLink = EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep
         const is3step = true
 
 
@@ -91,8 +94,8 @@ test.describe('Registration part Stage', () => {
     test(`${country} Registration Test ${typeB} Stag`, async () => {
         const openRegFormButton = typeBOpenRegFormLocator
         const depositButton = '.header__deposit'
-        const url = SWITZERLAND_LINKNDB.Stag
-        const expectedLink = EXPECTED_SWITZERLAND_NDB_LINKS.expectedUrlNoDep
+        const url = GERMANY_LINK_NDB.Stag
+        const expectedLink = EXPECTED_GERMANY_NDB_LINKS.expectedUrlNoDep
         const is3step = true
 
 
@@ -108,11 +111,13 @@ test.describe('Registration part Stage', () => {
 
     })
 
+    test.afterAll(async () => {
+        const vpnController = new VpnController()
+        await vpnController.vpnDisconnect()
+    })
+
 })
 
 
 
-test.afterAll(async () => {
-    const vpnController = new VpnController()
-    await vpnController.vpnDisconnect()
-})
+

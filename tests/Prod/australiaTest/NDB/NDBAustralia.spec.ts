@@ -11,7 +11,7 @@ test.beforeAll(async () => {
     await vpnController.vpnConnnect(LOCATIONS.Australia)
 })
 
-test.describe('Australia', async () => {
+test.describe.only('Australia', async () => {
     
         test.describe('A/B NDB Australia', async  () => {
         
@@ -64,3 +64,4 @@ test.afterAll(async () => {
     const vpnController = new VpnController()
     await vpnController.vpnDisconnect()
 })
+

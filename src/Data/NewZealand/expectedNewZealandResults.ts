@@ -14,8 +14,8 @@ export const EXPECTED_NEW_ZEALAND_LINKS: IExpectedLinks = {
 }
 
 export const EXPECTED_NEW_ZEALAND_LINKS_NDB: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillycasino.com/land/en-NZ/ndb_2',
-    expectedUrlNoDep: 'https://www.kingbillycasino.com/land/en-NZ/kings_no_dep_2'
+    expectedUrlNDB: 'https://www.kingbillycasino.com/land/en-NZ/ndb_3',
+    expectedUrlNoDep: 'https://www.kingbillycasino.com/land/en-NZ/kings_no_dep_3'
 }
 
 
@@ -26,6 +26,6 @@ export const EXPECTED_NEW_ZEALAND_STAGE_WELCOME_LINKS: IExpectedLinks = {
 
 
  export const EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillycasino1.com/land/en-NZ/ndb_2',
-    expectedUrlNoDep: 'https://www.kingbillycasino1.com/land/en-NZ/kings_no_dep_2'
+    expectedUrlNDB: 'https://www.kingbillycasino1.com/land/en-NZ/ndb_3',
+    expectedUrlNoDep: 'https://www.kingbillycasino1.com/land/en-NZ/kings_no_dep_3'
 }

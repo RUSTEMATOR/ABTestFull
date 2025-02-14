@@ -44,22 +44,21 @@ export const LOCATIONS: ILocation = {
 
 export const EXPECTED_QUERY: IExpectedQuery = {
     expectedQueryDE: "utm_source=Welcome&utm_medium=DE&utm_campaign=w1&utm_content=02_10_24&utm_term=Original",
-    expectedQuerryDENDB: "utm_source=NDB&utm_medium=DE&utm_campaign=n3&utm_content=20_12_24&utm_term=Content3",
+    expectedQuerryDENDB: "utm_source=NDB&utm_medium=DE&utm_campaign=n5&utm_content=13_02_25&utm_term=Awards",
     expectedQueryCA: "utm_source=Welcome&utm_medium=CA&utm_campaign=w1&utm_content=02_10_24&utm_term=Original",
-    expectedQueryCANDB: 'utm_source=NDB&utm_medium=CA&utm_campaign=n3&utm_content=18_12_24&utm_term=Content3',
+    expectedQueryCANDB: 'utm_source=NDB&utm_medium=CA&utm_campaign=n4&utm_content=28_01_25&utm_term=Content4',
     expectedQueryAU: "utm_source=Welcome&utm_medium=AU&utm_campaign=w3&utm_content=14_01_25&utm_term=rating",
-    expectedQueryAUNDB: 'utm_source=NDB&utm_medium=AU&utm_campaign=n3&utm_content=11_12_24&utm_term=Content3',
+    expectedQueryAUNDB: 'utm_source=NDB&utm_medium=AU&utm_campaign=n4&utm_content=21_01_25&utm_term=Content4',
     expectedQueryNZ: "utm_source=Welcome&utm_medium=NZ&utm_campaign=w1&utm_content=02_10_24&utm_term=Original", 
-    expectedQueryNZNDB: 'utm_source=NDB&utm_medium=NZ&utm_campaign=n2&utm_content=09_12_24&utm_term=Content2',
+    expectedQueryNZNDB: 'utm_source=NDB&utm_medium=NZ&utm_campaign=n3&utm_content=28_01_25&utm_term=Content3',
     expectedQueryAT: 'utm_source=Welcome&utm_medium=AT&utm_campaign=w1&utm_content=18_10_24&utm_term=Original',
-    expectedQueryATNDB: 'utm_source=NDB&utm_medium=AT&utm_campaign=n3&utm_content=20_12_24&utm_term=Content3',
+    expectedQueryATNDB: 'utm_source=NDB&utm_medium=AT&utm_campaign=n5&utm_content=13_02_25&utm_term=Awards',
     expectedQueryCH: 'utm_source=Welcome&utm_medium=CH&utm_campaign=w1&utm_content=18_10_24&utm_term=Original',
-    expectedQueryCHNDB: 'utm_source=NDB&utm_medium=CH&utm_campaign=n3&utm_content=20_12_24&utm_term=Content3',
+    expectedQueryCHNDB: 'utm_source=NDB&utm_medium=CH&utm_campaign=n5&utm_content=13_02_25&utm_term=Awards',
     expectedQueryNO: 'utm_source=Welcome&utm_medium=NO&utm_campaign=w1&utm_content=18_10_24&utm_term=Original', 
     expectedQueryNONDB: 'utm_source=NDB&utm_medium=NO&utm_campaign=n1&utm_content=18_10_24&utm_term=Original',
     expectedQueryIE: 'utm_source=Welcome&utm_medium=IE&utm_campaign=w1&utm_content=18_10_24&utm_term=Original',
     expectedQueryIENDB: 'utm_source=NDB&utm_medium=IE&utm_campaign=n1&utm_content=18_10_24&utm_term=Original'
-
 }
 
 

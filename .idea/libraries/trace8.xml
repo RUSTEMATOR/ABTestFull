@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="trace8">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/test-results/Prod-irelandTest-NDB-NDBIreland-IE-A-B-NDB-IE-IE-NDB-Stag-ndb-prod/trace.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

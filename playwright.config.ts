@@ -40,10 +40,9 @@ export default defineConfig({
                     uploadAttachments: true,
                     run: {
                       complete: false,
-                      title: 'Experiment', 
-                      // id: '198'
+                      title: '[Split: KB-N5-DE] Launch A/B Test for DEn 2025/02/13 prod',
+                      id: '235'
                     }
-
                   }
                 }
               ]

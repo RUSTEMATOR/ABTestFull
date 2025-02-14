@@ -16,8 +16,8 @@ export const EXPECTED_CANADA_LINKS: IExpectedLinks = {
 }
 
 export const EXPECTED_CANADA_LINKS_NDB: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillycasino.com/land/en-CA/ndb_3',
-    expectedUrlNoDep: 'https://www.kingbillycasino.com/land/en-CA/kings_no_dep_3'
+    expectedUrlNDB: 'https://www.kingbillycasino.com/land/en-CA/ndb_4',
+    expectedUrlNoDep: 'https://www.kingbillycasino.com/land/en-CA/kings_no_dep_4'
 }
 
 
@@ -29,7 +29,7 @@ export const EXPECTED_CANADA_STAGE_WELCOME_LINKS: IExpectedLinks = {
 
 
  export const EXPECTED_CANADA_STAGE_NDB_LINKS: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillycasino1.com/land/en-CA/ndb_3',
-    expectedUrlNoDep: 'https://www.kingbillycasino1.com/land/en-CA/kings_no_dep_3'
+    expectedUrlNDB: 'https://www.kingbillycasino1.com/land/en-CA/ndb_4',
+    expectedUrlNoDep: 'https://www.kingbillycasino1.com/land/en-CA/kings_no_dep_4'
 }
 
