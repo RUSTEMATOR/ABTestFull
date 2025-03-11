@@ -40,9 +40,9 @@ export default class Registration {
 
                     if(baseCurrentUrl === expectedLink){
 
-                        await test.step('Open Registration form', async () => {
-                            await regMethods.openRegForm(openRegFormButton)
-                        })
+                        // await test.step('Open Registration form', async () => {
+                        //     await regMethods.openRegForm(openRegFormButton)
+                        // })
 
                         await test.step('Fill in email field', async () => {
                             await regMethods.fillEmailPass({email: email, pass: '193786Az()'})
@@ -105,9 +105,9 @@ export default class Registration {
 
                 if(baseCurrentUrl === expectedLink){
 
-                    await test.step('Open Registration form', async () => {
-                        await regMethods.openRegForm(openRegFormButton)
-                    })
+                    // await test.step('Open Registration form', async () => {
+                    //     await regMethods.openRegForm(openRegFormButton)
+                    // })
 
                     await test.step('Fill in email field', async () => {
                         await regMethods.fillEmailPass({email: email, pass: '193786Az()'})
@@ -172,9 +172,9 @@ export default class Registration {
         
                             if(baseCurrentUrl === expectedLink){
         
-                                await test.step('Open Registration form', async () => {
-                                    await regMethods.openRegForm(openRegFormButton)
-                                })
+                                // await test.step('Open Registration form', async () => {
+                                //     await regMethods.openRegForm(openRegFormButton)
+                                // })
         
                                 await test.step('Fill in email field', async () => {
                                     await regMethods.fillEmailPass({email: email, pass: '193786Az()'})
@@ -239,9 +239,9 @@ export default class Registration {
         
                         if(baseCurrentUrl === expectedLink){
         
-                            await test.step('Open Registration form', async () => {
-                                await regMethods.openRegForm(openRegFormButton)
-                            })
+                            // await test.step('Open Registration form', async () => {
+                            //     await regMethods.openRegForm(openRegFormButton)
+                            // })
         
                             await test.step('Fill in email field', async () => {
                                 await regMethods.fillEmailPass({email: email, pass: '193786Az()'})

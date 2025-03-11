@@ -11,25 +11,25 @@ interface IExpectedLinksWelcome {
 
 export const EXPECTED_AUSTRALIA_WELCOME_LINKS: IExpectedLinksWelcome = {
     Welcome: 'https://www.kingbillywin20.com/land/en-AU/kings_welcome_pack_2',
-    World: 'https://www.kingbillywin20.com/land/en-AU/kings_welcome_pack_3'
+    World: 'https://www.kingbillywin20.com/land/en-AU/kings_welcome_pack_4'
 }
 
 
 export const EXPECTED_AUSTRALIA_NDB_LINKS: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillywin20.com/land/en-AU/ndb_4',
-    expectedUrlNoDep: 'https://www.kingbillywin20.com/land/en-AU/kings_no_dep_4'
+    expectedUrlNDB: 'https://www.kingbillywin20.com/land/en-AU/ndb_5',
+    expectedUrlNoDep: 'https://www.kingbillywin20.com/land/en-AU/kings_no_dep_5'
 
 }
 
 
 export const EXPECTED_AUSTRALIA_STAGE_WELCOME_LINKS: IExpectedLinksWelcome = {
     Welcome: 'https://www.kingbillycasino1.com/land/en-AU/kings_welcome_pack_2',
-    World: 'https://www.kingbillycasino1.com/land/en-AU/kings_welcome_pack_3'
+    World: 'https://www.kingbillycasino1.com/land/en-AU/kings_welcome_pack_4'
 }
 
 
  export const EXPECTED_AUSTRALIA_STAGE_NDB_LINKS: IExpectedLinksNDB = {
-    expectedUrlNDB: 'https://www.kingbillycasino1.com/land/en-AU/ndb_4',
-    expectedUrlNoDep: 'https://www.kingbillycasino1.com/land/en-AU/kings_no_dep_4'
+    expectedUrlNDB: 'https://www.kingbillycasino1.com/land/en-AU/ndb_5',
+    expectedUrlNoDep: 'https://www.kingbillycasino1.com/land/en-AU/kings_no_dep_5'
 }
 

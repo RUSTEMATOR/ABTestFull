@@ -20,29 +20,29 @@ import { EXPECTED_NEW_ZEALAND_STAGE_NDB_LINKS } from "../../../../src/Data/NewZe
 
 test.beforeAll(async () => {
     const vpnController = new VpnController()
-    await vpnController.vpnConnnect(LOCATIONS.Germany)
+    await vpnController.vpnConnnect(LOCATIONS.Canada)
 })
     
 
 
 test.describe('Negative Registration part of the AB test Stage', () => {
 
-    const country = 'DE'
+    const country = 'CA'
     const typeA = 'NDB'
     const typeB = 'NoDep'
     const typeAOpenRegFormLocator = '.offer__button'
     const typeBOpenRegFormLocator = '.main__button'
-    const errorText = ERROR_TEXT.DE
+    const errorText = ERROR_TEXT.EN
     const errorMessage = `div.error`
     const registration = new Registration()
-    const phoneNumbers = PHONE_NUMBERS.Germany
+    const phoneNumbers = PHONE_NUMBERS.Canada
 
     test.describe(`Registration Negative ${country}`, async () => {
 
     test(`${country} Negative Registration Test ${typeA} Btag`, async () => {
         const openRegFormButton = typeAOpenRegFormLocator
-        const url = DE_STAGE_LINKS.NDBbtag
-        const expectedLink = EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB
+        const url = CA_STAGE_LINKS.NDBbtag
+        const expectedLink = EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB
         const is3step = true
 
 
@@ -58,8 +58,8 @@ test.describe('Negative Registration part of the AB test Stage', () => {
 
     test(`${country} Negative Registration Test ${typeA} Stag`, async () => {
         const openRegFormButton = typeAOpenRegFormLocator
-        const url = DE_STAGE_LINKS.NDBstag
-        const expectedLink = EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNDB
+        const url = CA_STAGE_LINKS.NDBstag
+        const expectedLink = EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNDB
         const is3step = true
 
 
@@ -75,8 +75,8 @@ test.describe('Negative Registration part of the AB test Stage', () => {
 
     test(`${country} Negative Registration Test ${typeB} Btag`, async () => {
         const openRegFormButton = typeBOpenRegFormLocator
-        const url = DE_STAGE_LINKS.NDBbtag
-        const expectedLink = EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep
+        const url = CA_STAGE_LINKS.NDBbtag
+        const expectedLink = EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep
         const is3step = true
 
 
@@ -92,8 +92,8 @@ test.describe('Negative Registration part of the AB test Stage', () => {
 
     test(`${country} Negative Registration Test ${typeB} Stag`, async () => {
         const openRegFormButton = typeBOpenRegFormLocator
-        const url = DE_STAGE_LINKS.NDBstag
-        const expectedLink = EXPECTED_GERMANY_STAGE_NDB_LINKS.expectedUrlNoDep
+        const url = CA_STAGE_LINKS.NDBstag
+        const expectedLink = EXPECTED_CANADA_STAGE_NDB_LINKS.expectedUrlNoDep
         const is3step = true
 
 
